@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="true" />
+	<constant name="struts.devMode" value="true" />
+
+	<package name="helloworld" extends="struts-default">
+		<interceptors>
+			<interceptor name="loginInterceptor"
+				class="com.tpm.tool.AuthorizationInterceptor"></interceptor>
+			<interceptor-stack name="loginDefaultStack">
+				<interceptor-ref name="loginInterceptor">
+					<param name="ignoreActions">UserLogin</param>
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref
+			name="loginDefaultStack"></default-interceptor-ref>
+		<global-results>
+			<result name="login" type="redirect">/login.jsp</result>
+		</global-results>
+		<action name="home" class="com.tpm.action.homeAction"
+			method="execute">
+			<result name="success">/WEB-INF/jsp/home.jsp</result>
+		</action>
+		<action name="UserLogin" class="com.tpm.action.UserLoginAction"
+			method="execute">
+			<result name="home" type="chain">home</result> 
+		</action>
+		<action name="InsertEquipment" class="com.tpm.action.InsertEquipment"
+			method="execute">
+			<result name="success" type="chain">EquipmentList</result>
+		</action>
+		<action name="EquipmentList" class="com.tpm.action.EquipmentList"
+			method="execute">
+			<result name="success">/WEB-INF/jsp/equipmentlist.jsp</result> 
+		</action>
+		<action name="NewEquipment" class="com.tpm.action.NewEquipment"
+			method="execute">
+			<result name="success">/WEB-INF/jsp/insertequipment.jsp</result> 
+		</action>
+		<action name="EquipmentMaintain" class="com.tpm.action.EquipmentMaintain"
+			method="execute">
+			<result name="success">/WEB-INF/jsp/equipmentmaintain.jsp</result> 
+		</action>
+		<action name="ProcessLineAreas" class="com.tpm.action.ProcessLineAreas"
+			method="execute">
+			<result name="success">Json.jsp</result> 
+		</action>
+		<action name="GetEquipmentbyArea" class="com.tpm.action.GetEquipmentbyArea"
+			method="execute">
+			<result name="success">Json.jsp</result> 
+		</action>
+		<action name="GetReplacementParts" class="com.tpm.action.GetReplacementParts"
+			method="execute">
+			<result name="success">Json.jsp</result> 
+		</action>
+		<action name="InsertEquipmentMaintain" class="com.tpm.action.InsertEquipmentMaintain"
+			method="execute">
+			<result name="success" type="chain">EquipmentMaintainRecord</result> 
+		</action>
+		<action name="EquipmentMaintainRecord" class="com.tpm.action.EquipmentMaintainRecord"
+			method="execute">
+			<result name="success">/WEB-INF/jsp/equipmentmaintainRecord.jsp</result> 
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,9 @@
+.loginbackground{
+	background-image: url(../image/loginbackground.jpg);
+	height: 620px;
+}
+.labelcolor{
+	color:#FFFFFF;
+	font-size:20px;
+	font-weight:500;
+}
