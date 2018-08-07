@@ -67,5 +67,33 @@
 			method="execute">
 			<result name="success">/WEB-INF/jsp/equipmentmaintainRecord.jsp</result> 
 		</action>
+		<action name="InsertParts" class="com.tpm.action.InsertParts"
+			method="execute">
+			<result name="success">/WEB-INF/jsp/insertparts.jsp</result> 
+		</action>
+		<action name="IncreaseParts" class="com.tpm.action.IncreaseParts"
+			method="execute">
+			<result name="success">/WEB-INF/jsp/increaseparts.jsp</result> 
+		</action>
+		<action name="PartList" class="com.tpm.action.PartList"
+			method="execute">
+			<result name="success">/WEB-INF/jsp/partlist.jsp</result> 
+		</action>
+		<action name="InsertPart" class="com.tpm.action.InsertPart"
+			method="execute">
+			<result name="success" type="chain">PartList</result>  
+		</action>
+		<action name="IncreasePart" class="com.tpm.action.IncreasePart"
+			method="execute">
+			<result name="success" type="chain">PartList</result>   
+		</action>
+		<action name="MaintenanceType" class="com.tpm.action.MaintenanceType"
+			method="execute">
+			<result name="success">Json.jsp</result> 
+		</action>
+		<action name="GetPMSchedules" class="com.tpm.action.GetPMSchedules"
+			method="execute">
+			<result name="success">Json.jsp</result> 
+		</action>
 	</package>
 </struts>

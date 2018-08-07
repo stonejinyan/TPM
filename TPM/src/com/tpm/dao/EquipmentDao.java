@@ -12,12 +12,25 @@ import com.tpm.tool.JDBCUtils;
 
 public class EquipmentDao {
 
-	public List<EquipmentList> getAllEquipment() {
+	public List<EquipmentList> getAllEquipmentList() {
 		// TODO Auto-generated method stub
 		String sql = "select * from eplist";
 		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
 		try {
 			List<EquipmentList> list = queryRunner.query(sql, new BeanListHandler<EquipmentList>(EquipmentList.class));
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public List<Equipment> getAllEquipments() {
+		// TODO Auto-generated method stub
+		String sql = "select * from ep";
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		try {
+			List<Equipment> list = queryRunner.query(sql, new BeanListHandler<Equipment>(Equipment.class));
 			return list;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -55,5 +68,16 @@ public class EquipmentDao {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public void updateEPScore(Equipment equipment) {
+		String sql1 = "update ep set ep_score = ? , critical = ? where id = ?";
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		try {
+			queryRunner.update(sql1, equipment.getEp_score(), equipment.getCritical(), equipment.getId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e.getMessage());
+		}
 	}
 }

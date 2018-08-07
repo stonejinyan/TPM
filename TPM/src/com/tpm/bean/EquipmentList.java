@@ -6,7 +6,7 @@ public class EquipmentList {
 	private String epid;
 	private String epname;
 	private String description;
-	private int ep_score;
+	private double ep_score;
 	private String backup_plan;
 	private int check_cycle;
 	private String checkstaffname;
@@ -50,11 +50,11 @@ public class EquipmentList {
 		this.description = description;
 	}
 
-	public int getEp_score() {
+	public double getEp_score() {
 		return ep_score;
 	}
 
-	public void setEp_score(int ep_score) {
+	public void setEp_score(double ep_score) {
 		this.ep_score = ep_score;
 	}
 

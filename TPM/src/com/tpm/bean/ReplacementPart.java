@@ -15,8 +15,8 @@ public class ReplacementPart {
 	private int vicarism;
 	private int vulnerability;
 	private double partscore;
-	private double critical;
-	private int boxtype_id;
+	private String critical;
+	private String boxtype_id;
 	private int max;
 	private int order_number;
 	private int min;
@@ -128,19 +128,19 @@ public class ReplacementPart {
 		this.partscore = partscore;
 	}
 
-	public double getCritical() {
+	public String getCritical() {
 		return critical;
 	}
 
-	public void setCritical(double critical) {
+	public void setCritical(String critical) {
 		this.critical = critical;
 	}
 
-	public int getBoxtype_id() {
+	public String getBoxtype_id() {
 		return boxtype_id;
 	}
 
-	public void setBoxtype_id(int boxtype_id) {
+	public void setBoxtype_id(String boxtype_id) {
 		this.boxtype_id = boxtype_id;
 	}
 
@@ -194,7 +194,7 @@ public class ReplacementPart {
 
 	@Override
 	public String toString() {
-		return "ＲeplacementＰart [id=" + id + ", part_id=" + part_id + ", domain=" + domain + ", name=" + name
+		return "ReplacementPart [id=" + id + ", part_id=" + part_id + ", domain=" + domain + ", name=" + name
 		        + ", specification=" + specification + ", brand=" + brand + ", userep=" + userep + ", deliverycycle="
 		        + deliverycycle + ", partvalue=" + partvalue + ", epcritical=" + epcritical + ", vicarism=" + vicarism
 		        + ", vulnerability=" + vulnerability + ", partscore=" + partscore + ", critical=" + critical

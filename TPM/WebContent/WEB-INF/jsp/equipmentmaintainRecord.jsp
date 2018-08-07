@@ -62,7 +62,6 @@
 					<td >设备总价</td>
 					-->
 					<td class="text-center">维修类别</td>
-					<td class="text-center">计划耗时</td>
 					<td class="text-center">实际耗时</td>
 					<td class="text-center">维修时间</td>
 					<td class="text-center">操作</td>
@@ -84,7 +83,6 @@
 					<td >${ep_cost}</td>
 					-->
 					<td class="text-center">${maintenancetypename}</td>
-					<td class="text-center"></td>
 					<td class="text-center">${user_time}</td>
 					<td class="text-center">${time}</td>
 					<td class="text-center"><button type="button" class="btn btn-info">查看</button></td>

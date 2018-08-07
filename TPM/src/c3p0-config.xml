@@ -2,7 +2,7 @@
 <c3p0-config>
 	<default-config> <!-- 默认配置 -->
 		<property name="driverClass">com.mysql.jdbc.Driver</property>
-		<property name="jdbcUrl">jdbc:mysql://localhost:3306/tpm</property>
+		<property name="jdbcUrl">jdbc:mysql://localhost:3306/tpm?serverTimezone=GMT%2B8</property>
 		<property name="user">root</property>
 		<property name="password">123456</property>
 		<property name="acquireIncrement">1</property>

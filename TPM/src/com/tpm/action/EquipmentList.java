@@ -9,7 +9,7 @@ public class EquipmentList extends ActionSupport {
 	EquipmentDao equipmentDao = new EquipmentDao();
 
 	public String execute() throws Exception {
-		ActionContext.getContext().put("equipmentlist", equipmentDao.getAllEquipment());
+		ActionContext.getContext().put("equipmentlist", equipmentDao.getAllEquipmentList());
 		ActionContext.getContext().put("active", "EquipmentList");
 		return "success";
 
