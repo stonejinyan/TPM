@@ -41,7 +41,7 @@
 	var myparts = {};
 	window.onload = function() {
 		$.ajax({
-			url : 'http://localhost:8080/TPM/GetReplacementParts',
+			url : '/TPM/GetReplacementParts',
 			type : 'GET',
 			success : function(data) {
 				parts = data;

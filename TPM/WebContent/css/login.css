@@ -1,9 +1,21 @@
 .loginbackground{
-	background-image: url(../image/loginbackground.jpg);
-	height: 620px;
+	background-image: url(../image/loginbackgroun.jpg);
+	background-position: center center; 
+	background-repeat: no-repeat; 
+	background-attachment: scroll; 
+	background-size: 100% auto;
+	width:100%;
+	height:750px;
 }
 .labelcolor{
 	color:#FFFFFF;
 	font-size:20px;
 	font-weight:500;
+}
+
+.has-error .checkbox, .has-error .checkbox-inline, .has-error .control-label,
+	.has-error .help-block, .has-error .radio, .has-error .radio-inline,
+	.has-error.checkbox label, .has-error.checkbox-inline label, .has-error.radio label,
+	.has-error.radio-inline label {
+	color: #FFFFFF;
 }

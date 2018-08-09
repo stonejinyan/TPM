@@ -15,12 +15,13 @@ public class InsertEquipmentMaintain extends ActionSupport {
 	private MaintenanceDailyWorkRecord maintenanceDailyWorkRecord = new MaintenanceDailyWorkRecord();
 	private List<UseRecord> useRecords = new ArrayList<UseRecord>();
 	EquipmentMaintainDao equipmentMaintainDao = new EquipmentMaintainDao();
+	private int pmSchedule_id;
 
 	public String execute() throws Exception {
 		if (maintenanceDailyWorkRecord.getEp_id() != 0) {
 			maintenanceDailyWorkRecord
 			        .setStaff_id(((Staff) ActionContext.getContext().getSession().get("staff")).getId());
-			equipmentMaintainDao.insert(maintenanceDailyWorkRecord, useRecords);
+			equipmentMaintainDao.insert(maintenanceDailyWorkRecord, useRecords, pmSchedule_id);
 		}
 		// ActionContext.getContext().put("active", "equipmentmaintainRecord");
 		return "success";
@@ -41,6 +42,14 @@ public class InsertEquipmentMaintain extends ActionSupport {
 
 	public void setUseRecords(List<UseRecord> useRecords) {
 		this.useRecords = useRecords;
+	}
+
+	public int getPmSchedule_id() {
+		return pmSchedule_id;
+	}
+
+	public void setPmSchedule_id(int pmSchedule_id) {
+		this.pmSchedule_id = pmSchedule_id;
 	}
 
 }

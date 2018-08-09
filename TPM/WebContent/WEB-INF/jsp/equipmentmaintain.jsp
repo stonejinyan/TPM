@@ -17,8 +17,8 @@
 <title>TPM</title>
 
 <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrapValidator.css" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap.css"/>
+<link rel="stylesheet" href="css/bootstrapValidator.css"/>
 <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"
 	media="screen">
 <!-- Custom styles for this template -->
@@ -47,7 +47,7 @@
 	window.onload = function() {
 		document.getElementById("equipment").disabled = true;
 		$.ajax({
-			url : 'http://localhost:8080/TPM/GetReplacementParts',
+			url : '/TPM/GetReplacementParts',
 			type : 'GET',
 			success : function(data) {
 				parts = data;
@@ -65,14 +65,14 @@
 			<div class="row">
 				<div class="col-xs-7 ">
 					<br>
-					<form action="InsertEquipmentMaintain" method="get"
+					<form id="defaultForm" action="InsertEquipmentMaintain" method="get"
 						class="form-horizontal">
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-3 control-label">选择存放区域</label>
 							<div class="col-sm-8">
 								<select onChange="setEquipments()" id="equipmentarea"
-									class="form-control">
-									<option value="0">请选择设备存放区域</option>
+									class="form-control" name="area">
+									<option value="">请选择设备存放区域</option>
 									<s:iterator value="processLine_AreaList">
 										<option value="<s:property value="id" />"><s:property
 												value="name" /></option>
@@ -86,7 +86,7 @@
 								<div class="col-xs-8">
 									<select onChange="setPM()" id="equipment"
 										name="maintenanceDailyWorkRecord.ep_id" class="form-control">
-										<option value="0">请先选择设备存放区域</option>
+										<option value="">请先选择设备存放区域</option>
 									</select>
 								</div>
 							</div>
@@ -98,7 +98,7 @@
 									<input name="maintenanceDailyWorkRecord.user_time" type="text"
 										class="form-control" id="exampleInputAmount"
 										placeholder="请输入实际耗时分钟数....">
-									<div class="input-group-addon">分钟</div>
+									<div class="input-group-addon">分钟　</div>
 								</div>
 							</div>
 						</div>
@@ -106,7 +106,7 @@
 							<label for="inputEmail3" class="col-xs-3 control-label">维修日期</label>
 							<div class="col-xs-8">
 								<div class="control-group">
-									<div class="controls input-append date form_date" data-date=""
+									<div id="datetimePicker" class="controls input-append date form_date" data-date=""
 										data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
 										data-link-format="yyyy-mm-dd">
 										<input name="maintenanceDailyWorkRecord.time"
@@ -119,11 +119,12 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label name="maintenanceDailyWorkRecord.type" for="inputEmail3"
+							<label for="inputEmail3"
 								class="col-sm-3 control-label">维修类型</label>
 							<div class="col-sm-8">
 								<select name="maintenanceDailyWorkRecord.type" onChange="setPM()" id="MaintenanceType"
 									class="form-control">
+									<option value="">请选择维修类型</option>
 									<s:iterator value="MaintenanceType">
 										<option value="<s:property value="id" />"><s:property
 												value="name" /></option>
@@ -149,9 +150,9 @@
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-3 control-label">使用备品种类</label>
 							<div class="col-sm-8">
-								<select id="partkinds" onchange="newPart()" name=""
+								<select name="partkind" id="partkinds" onchange="newPart()" name=""
 									class="form-control">
-									<option value="0">0</option>
+									<option value="">无</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
 									<option value="3">3</option>
@@ -168,7 +169,7 @@
 						<div id='newPart'></div>
 						<div class="form-group">
 							<div class="col-sm-offset-4 col-sm-8">
-								<button type="submit" class="btn btn-default">提交</button>
+								<button id="validateBtn" type="submit" class="btn btn-default">提交</button>
 							</div>
 						</div>
 					</form>
@@ -181,15 +182,14 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-
+	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrapValidator.js"></script>
 	<script type="text/javascript" src="js/jquery.cxselect.js"></script>
 	<script>
 		window.jQuery
 				|| document.write('<script src="js/jquery.min.js"><\/script>');
 	</script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/bootstrapValidator.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="js/ie10-viewport-bug-workaround.js"></script>
 	<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"
@@ -253,13 +253,17 @@
 			//alert("id:"+id);
 			$
 					.ajax({
-						url : 'http://localhost:8080/TPM/GetEquipmentbyArea?save_area_id='
+						url : '/TPM/GetEquipmentbyArea?save_area_id='
 								+ id,
 						type : 'GET',
 						success : function(data) {
 							//alert(data[0].name);
 							//var obj = JSON.parse(data);
 							obj = data;
+							var opt = document.createElement('option');
+							opt.value = '';
+							opt.text = '请选择维修设备';
+							sltEquipment.add(opt, null);
 							for (var i = 0; i < obj.length; i++) {
 								var opt = document.createElement('option');
 								opt.value = obj[i].id;
@@ -272,7 +276,7 @@
 			if (id == 0) {
 				document.getElementById("equipment").disabled = true;
 				var opt = document.createElement('option');
-				opt.value = '0';
+				opt.value = '';
 				opt.text = '请先选择设备存放区域';
 				sltEquipment.add(opt, null);
 			}
@@ -325,13 +329,17 @@
 			if (maintenanceType.value == 1 && equipment.value != 0) {
 				$
 				.ajax({
-					url : 'http://localhost:8080/TPM/GetPMSchedules?ep_id='
+					url : '/TPM/GetPMSchedules?ep_id='
 							+ equipment.value,
 					type : 'GET',
 					success : function(data) {
 						obj = data;
-				            pm.innerHTML = '<div class="form-group"><label for="inputEmail3" class="col-sm-3 control-label">PM计划</label><div class="col-sm-8"><select id="PMSchedule" name="maintenanceDailyWorkRecord.pm_id" class="form-control"></select></div></div>';
+				            pm.innerHTML = '<div class="form-group"><label for="inputEmail3" class="col-sm-3 control-label">PM计划</label><div class="col-sm-8"><select id="PMSchedule" name="pmSchedule_id" class="form-control"></select></div></div>';
 				            var PMSchedule = document.getElementById("PMSchedule");
+				            var opt = document.createElement('option');
+							opt.value = '';
+							opt.text =  '请选择PM计划';
+							PMSchedule.add(opt, null);
 				            for (var i = 0; i < obj.length; i++) {
 							var opt = document.createElement('option');
 							opt.value = obj[i].id;
@@ -345,6 +353,91 @@
 				pm.innerText = "";
 			}
 		}
+		$('#datetimePicker').datetimepicker();
+		$(document).ready(function() {
+		    $('#defaultForm').bootstrapValidator({
+		        message: 'This value is not valid',
+		        feedbackIcons: {
+		            valid: 'glyphicon glyphicon-ok',
+		            invalid: 'glyphicon glyphicon-remove',
+		            validating: 'glyphicon glyphicon-refresh'
+		        },
+		        fields: {
+		        	area: {
+		                 validators: {
+		                     notEmpty: {
+		                         message: '请选择设备存放区域'
+		                     }
+		                 }
+		             },
+		        	'maintenanceDailyWorkRecord.user_time': {
+		                validators: {
+		                    notEmpty: {
+		                        message: '实际耗时分钟数为空'
+		                    }
+		                }
+		            },
+		            'maintenanceDailyWorkRecord.ep_id': {
+		                validators: {
+		                    notEmpty: {
+		                        message: '请选择维修设备'
+		                    }
+		                }
+		            },
+		            'maintenanceDailyWorkRecord.time': {
+		                validators: {
+		                    notEmpty: {
+		                        message: '请选择维修日期'
+		                    }
+		                }
+		            },
+		            'maintenanceDailyWorkRecord.type': {
+		                validators: {
+		                    notEmpty: {
+		                        message: '请选择维修类型'
+		                    }
+		                }
+		            },
+		            'maintenanceDailyWorkRecord.question_description': {
+		                validators: {
+		                    notEmpty: {
+		                        message: '请输入问题描述'
+		                    }
+		                }
+		            },
+		            'maintenanceDailyWorkRecord.process_description': {
+		                validators: {
+		                    notEmpty: {
+		                        message: '请输入处理方法'
+		                    }
+		                }
+		            },
+		            'partkind': {
+		                validators: {
+		                    notEmpty: {
+		                        message: '请选择备品使用种类'
+		                    }
+		                }
+		            },
+		            pmSchedule_id: {
+		                validators: {
+		                    notEmpty: {
+		                        message: '请选择PM计划'
+		                    }
+		                }
+		            }
+		        }
+		    });
+		        
+		    $('#datetimePicker')
+	        .on('dp.change dp.show', function(e) {
+	            // Validate the date when user change it
+	            $('#defaultForm').data('bootstrapValidator').revalidateField('maintenanceDailyWorkRecord.time');
+	            // You also can call it as following:
+	            // $('#defaultForm').bootstrapValidator('revalidateField', 'datetimePicker');
+	        });
+		});
+		
 	</script>
 </body>
 </html>

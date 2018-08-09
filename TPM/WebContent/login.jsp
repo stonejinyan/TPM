@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -17,7 +17,8 @@
 <title>TPM</title>
 
 <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap.css"/>
+<link rel="stylesheet" href="css/bootstrapValidator.css"/>
 <!-- Custom styles for this template -->
 <link href="css/custom.css" rel="stylesheet">
 <link href="css/login.css" rel="stylesheet">
@@ -26,7 +27,6 @@
 
 <!-- Custom styles for this template -->
 <link href="css/non-responsive.css" rel="stylesheet">
-
 <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 <script src="js/ie-emulation-modes-warning.js"></script>
@@ -42,32 +42,32 @@
 	<%@include file="WEB-INF/jsp/head.jsp"%>
 	<div class="loginbackground">
 		<div class="container">
-			<br>
-			<br>
+			<br> <br>
 			<div class="row">
 				<div class="col-xs-8"></div>
 				<div class="col-xs-4">
-					<form action="UserLogin" method="post" class="form-horizontal">
+					<form id="defaultForm" action="UserLogin" method="post" class="form-horizontal">
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-sm-9">
-							<h4 class="text-danger">${error}</h4>
+								<h4 class="text-danger">${error}</h4>
 							</div>
 							<label for="inputSESAID"
 								class="col-sm-3 control-label labelcolor">账号:</label>
 							<div class="col-sm-9">
 								<input name="staff.sesaid" type="SESAID" class="form-control"
 									id="SESAIDs" placeholder="SESAID">
+								<span class="help-block" id="sesaid" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputPassword3"
 								class="col-sm-3 control-label labelcolor">密码:</label>
 							<div class="col-sm-9">
-								<input name="staff.password" type="password" class="form-control"
-									id="inputPassword3" placeholder="Password">
+								<input name="staff.password" type="password"
+									class="form-control" id="inputPassword3" placeholder="Password">
+								<span class="help-block" id="password" />
 							</div>
 						</div>
-
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-sm-2">
 								<button type="submit" class="btn btn-default">Sign in</button>
@@ -82,13 +82,44 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="js/jquery.js"></script>
 	<script>
 		window.jQuery
-				|| document.write('<script src="js/jquery.min.js"><\/script>')
+				|| document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')
 	</script>
-	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrapValidator.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="js/ie10-viewport-bug-workaround.js"></script>
+ <script type="text/javascript">
+	$(document).ready(function() {
+	    $('#defaultForm').bootstrapValidator({
+	        message: 'This value is not valid',
+	        feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+	        fields: {
+	        	'staff.sesaid': {
+	                container: '#sesaid',
+	                validators: {
+	                    notEmpty: {
+	                        message: 'The SESAID is required and cannot be empty'
+	                    }
+	                }
+	            },
+	            'staff.password': {
+	                container: '#password',
+	                validators: {
+	                    notEmpty: {
+	                        message: 'The Password is required and cannot be empty'
+	                    }
+	                }
+	            }
+	        }
+	    });
+	});
+</script>
 </body>
 </html>

@@ -30,8 +30,8 @@ public class EquipmentMaintainDao {
 	}
 
 	@SuppressWarnings("resource")
-	public void insert(MaintenanceDailyWorkRecord maintenanceDailyWorkRecord, List<UseRecord> useRecords)
-	        throws SQLException {
+	public void insert(MaintenanceDailyWorkRecord maintenanceDailyWorkRecord, List<UseRecord> useRecords,
+	        int pmSchedule_id) throws SQLException {
 
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -71,7 +71,14 @@ public class EquipmentMaintainDao {
 				        + "')";
 				ps = conn.prepareStatement(sql3);
 				ps.executeUpdate();
+				String sql5 = "update replacement_part set number = number - '" + useRecord.getUse_number()
+				        + "' where id = '" + useRecord.getReplacement_part_id() + "'";
+				ps = conn.prepareStatement(sql5);
+				ps.executeUpdate();
 			}
+			String sql4 = "update pm_schedule set finish = '完成'  where id = '" + pmSchedule_id + "'";
+			ps = conn.prepareStatement(sql4);
+			ps.executeUpdate();
 			conn.commit();
 		} catch (Exception e) {
 			conn.rollback();
