@@ -3,6 +3,7 @@ package com.tpm.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.tpm.bean.ReplacementPart;
+import com.tpm.bean.Staff;
 import com.tpm.dao.ReplacementPartDao;
 
 public class IncreasePart extends ActionSupport {
@@ -11,8 +12,9 @@ public class IncreasePart extends ActionSupport {
 	ReplacementPartDao replacementPartDao = new ReplacementPartDao();
 
 	public String execute() throws Exception {
+		int staffid = ((Staff) ActionContext.getContext().getSession().get("staff")).getId();
 		ActionContext.getContext().put("active", "PartList");
-		replacementPartDao.update(replacementPart);
+		replacementPartDao.update(replacementPart, staffid);
 		return "success";
 	}
 

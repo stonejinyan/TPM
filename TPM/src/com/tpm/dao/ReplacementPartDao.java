@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.tpm.bean.ReplacementPart;
@@ -25,8 +26,10 @@ public class ReplacementPartDao {
 		return null;
 	}
 
-	public void insert(ReplacementPart replacementPart) {
+	public void insert(ReplacementPart replacementPart, int staffid) {
 		String sql1 = "insert into replacement_part values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql2 = "select * from replacement_part where part_id = ?";
+		String sql3 = "insert into account_record(id,add_number,staff_id,replacement_part_id,total) VALUES(null,?,?,?,?)";
 		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
 		Object[] param1 = { replacementPart.getPart_id(), replacementPart.getDomain(), replacementPart.getName(),
 		        replacementPart.getSpecification(), replacementPart.getBrand(), replacementPart.getUserep(),
@@ -37,17 +40,25 @@ public class ReplacementPartDao {
 		        replacementPart.getUnit(), replacementPart.getPrice() };
 		try {
 			queryRunner.update(sql1, param1);
+			ReplacementPart newpart = queryRunner.query(sql2, new BeanHandler<ReplacementPart>(ReplacementPart.class),
+			        replacementPart.getPart_id());
+			queryRunner.update(sql3, replacementPart.getNumber(), staffid, newpart.getId(), newpart.getNumber());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
 		}
 	}
 
-	public void update(ReplacementPart replacementPart) {
+	public void update(ReplacementPart replacementPart, int staffid) {
 		String sql1 = "update replacement_part set number = number + ? where part_id = ?";
+		String sql2 = "select * from replacement_part where part_id = ?";
+		String sql3 = "insert into account_record(id,add_number,staff_id,replacement_part_id,total) VALUES(null,?,?,?,?)";
 		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
 		try {
 			queryRunner.update(sql1, replacementPart.getNumber(), replacementPart.getPart_id());
+			ReplacementPart newpart = queryRunner.query(sql2, new BeanHandler<ReplacementPart>(ReplacementPart.class),
+			        replacementPart.getPart_id());
+			queryRunner.update(sql3, replacementPart.getNumber(), staffid, newpart.getId(), newpart.getNumber());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());

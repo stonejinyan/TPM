@@ -1,7 +1,9 @@
 package com.tpm.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.tpm.bean.ReplacementPart;
+import com.tpm.bean.Staff;
 import com.tpm.dao.ReplacementPartDao;
 import com.tpm.tool.MD5Utils;
 
@@ -11,6 +13,7 @@ public class InsertPart extends ActionSupport {
 	ReplacementPartDao replacementPartDao = new ReplacementPartDao();
 
 	public String execute() throws Exception {
+		int staffid = ((Staff) ActionContext.getContext().getSession().get("staff")).getId();
 		replacementPart.setPartscore(MD5Utils.getTwoDecimal(replacementPart.getDeliverycycle() * 0.217812197483059
 		        + replacementPart.getPartvalue() * 0.185866408518877
 		        + replacementPart.getEpcritical() * 0.209099709583737 + replacementPart.getVicarism() * 0.21297192642788
@@ -20,7 +23,7 @@ public class InsertPart extends ActionSupport {
 		} else {
 			replacementPart.setCritical("非关键");
 		}
-		replacementPartDao.insert(replacementPart);
+		replacementPartDao.insert(replacementPart, staffid);
 		return "success";
 
 	}

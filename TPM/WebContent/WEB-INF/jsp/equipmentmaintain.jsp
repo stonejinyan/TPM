@@ -110,7 +110,7 @@
 										data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
 										data-link-format="yyyy-mm-dd">
 										<input name="maintenanceDailyWorkRecord.time"
-											class="text-center" size="16" type="text" value="" readonly>
+											class="text-center" size="16" type="text" readonly>
 										<span class="add-on"><i class="icon-remove"></i></span> <span
 											class="add-on"><i class="icon-th"></i></span>
 									</div>
@@ -202,6 +202,7 @@
 			format : 'yyyy-mm-dd',//显示格式
 			minView : "month",//设置只显示到月份
 			initialDate : new Date(),//初始化当前日期
+			setDate : new Date(),//初始化当前日期
 			autoclose : true,//选中自动关闭
 			todayBtn : true,//显示今日按钮
 			weekStart : 1,
@@ -214,8 +215,10 @@
 		});
 		$('.form_date').datetimepicker({
 			language : 'zh-CN',
+			format : 'yyyy-mm-dd',//显示格式
 			minView : "month",//设置只显示到月份
 			initialDate : new Date(),//初始化当前日期
+			setDate : new Date(),//初始化当前日期
 			autoclose : true,//选中自动关闭
 			todayBtn : true,//显示今日按钮
 			weekStart : 1,
@@ -230,6 +233,7 @@
 			language : 'zh-CN',
 			minView : "month",//设置只显示到月份
 			initialDate : new Date(),//初始化当前日期
+			setDate : new Date(),//初始化当前日期
 			autoclose : true,//选中自动关闭
 			todayBtn : true,//显示今日按钮
 			weekStart : 1,
@@ -353,7 +357,6 @@
 				pm.innerText = "";
 			}
 		}
-		$('#datetimePicker').datetimepicker();
 		$(document).ready(function() {
 		    $('#defaultForm').bootstrapValidator({
 		        message: 'This value is not valid',
@@ -428,14 +431,6 @@
 		            }
 		        }
 		    });
-		        
-		    $('#datetimePicker')
-	        .on('dp.change dp.show', function(e) {
-	            // Validate the date when user change it
-	            $('#defaultForm').data('bootstrapValidator').revalidateField('maintenanceDailyWorkRecord.time');
-	            // You also can call it as following:
-	            // $('#defaultForm').bootstrapValidator('revalidateField', 'datetimePicker');
-	        });
 		});
 		
 	</script>

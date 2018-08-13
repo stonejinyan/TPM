@@ -43,9 +43,6 @@
 	<%@include file="head.jsp"%>
 	<div class="">
 		<div class="container insertEP">
-			
-			123
-			${staff}
 		</div>
 	</div>
 	<%@include file="bottom.jsp"%>
