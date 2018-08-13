@@ -66,15 +66,17 @@ public class EquipmentMaintainDao {
 			// System.out.println(RS.getInt(1));
 			for (int i = 0; i < useRecords.size(); i++) {
 				UseRecord useRecord = useRecords.get(i);
-				String sql3 = "insert into use_record values(null,'" + maintenanceDailyWorkRecord.getStaff_id() + "','"
-				        + useRecord.getReplacement_part_id() + "','" + RS.getInt(1) + "','" + useRecord.getUse_number()
-				        + "')";
-				ps = conn.prepareStatement(sql3);
-				ps.executeUpdate();
-				String sql5 = "update replacement_part set number = number - '" + useRecord.getUse_number()
-				        + "' where id = '" + useRecord.getReplacement_part_id() + "'";
-				ps = conn.prepareStatement(sql5);
-				ps.executeUpdate();
+				if (useRecord.getReplacement_part_id() != 0) {
+					String sql3 = "insert into use_record values(null,'" + maintenanceDailyWorkRecord.getStaff_id()
+					        + "','" + useRecord.getReplacement_part_id() + "','" + RS.getInt(1) + "','"
+					        + useRecord.getUse_number() + "')";
+					ps = conn.prepareStatement(sql3);
+					ps.executeUpdate();
+					String sql5 = "update replacement_part set number = number - '" + useRecord.getUse_number()
+					        + "' where id = '" + useRecord.getReplacement_part_id() + "'";
+					ps = conn.prepareStatement(sql5);
+					ps.executeUpdate();
+				}
 			}
 			String sql4 = "update pm_schedule set finish = '完成'  where id = '" + pmSchedule_id + "'";
 			ps = conn.prepareStatement(sql4);

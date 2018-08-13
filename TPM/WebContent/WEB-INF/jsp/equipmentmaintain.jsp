@@ -104,17 +104,16 @@
 						</div>
 						<div class="form-group">
 							<label for="inputEmail3" class="col-xs-3 control-label">维修日期</label>
-							<div class="col-xs-8">
+							<div class="col-xs-5">
 								<div class="control-group">
 									<div id="datetimePicker" class="controls input-append date form_date" data-date=""
 										data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
 										data-link-format="yyyy-mm-dd">
 										<input name="maintenanceDailyWorkRecord.time"
-											class="text-center" size="16" type="text" readonly>
+											class="text-center" size="16" type="text" readonly><div class="label label-success class="input-group-addon"">选填:默认为今天</div>
 										<span class="add-on"><i class="icon-remove"></i></span> <span
 											class="add-on"><i class="icon-th"></i></span>
 									</div>
-
 								</div>
 							</div>
 						</div>
@@ -387,13 +386,6 @@
 		                    }
 		                }
 		            },
-		            'maintenanceDailyWorkRecord.time': {
-		                validators: {
-		                    notEmpty: {
-		                        message: '请选择维修日期'
-		                    }
-		                }
-		            },
 		            'maintenanceDailyWorkRecord.type': {
 		                validators: {
 		                    notEmpty: {
@@ -412,13 +404,6 @@
 		                validators: {
 		                    notEmpty: {
 		                        message: '请输入处理方法'
-		                    }
-		                }
-		            },
-		            'partkind': {
-		                validators: {
-		                    notEmpty: {
-		                        message: '请选择备品使用种类'
 		                    }
 		                }
 		            },

@@ -1,6 +1,7 @@
 package com.tpm.action;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -18,6 +19,9 @@ public class InsertEquipmentMaintain extends ActionSupport {
 	private int pmSchedule_id;
 
 	public String execute() throws Exception {
+		if (maintenanceDailyWorkRecord.getTime() == null) {
+			maintenanceDailyWorkRecord.setTime(new java.sql.Date(new Date().getTime()));
+		}
 		if (maintenanceDailyWorkRecord.getEp_id() != 0) {
 			maintenanceDailyWorkRecord
 			        .setStaff_id(((Staff) ActionContext.getContext().getSession().get("staff")).getId());
