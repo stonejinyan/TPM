@@ -13,7 +13,7 @@ public class MaintenanceDailyWorkRecordListDao {
 
 	public List<MaintenanceDailyWorkRecordList> getAllMaintenanceDailyWorkRecords() {
 		// TODO Auto-generated method stub
-		String sql = "select * from equipmentmaintainrecord";
+		String sql = "select * from equipmentmaintainrecord order by id desc";
 		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
 		try {
 			List<MaintenanceDailyWorkRecordList> list = queryRunner.query(sql,

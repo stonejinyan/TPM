@@ -1,11 +1,12 @@
 .loginbackground{
-	background-image: url(../image/loginbackgroun.jpg);
+	background-image: url(../image/loginbackground.jpg);
 	background-position: center center; 
 	background-repeat: no-repeat; 
 	background-attachment: scroll; 
 	background-size: 100% auto;
-	width:100%;
-	height:750px;
+	width:1500px;
+	height:843px;
+	background-color: black;
 }
 .labelcolor{
 	color:#FFFFFF;

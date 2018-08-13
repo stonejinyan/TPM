@@ -19,6 +19,7 @@ public class InsertEquipmentMaintain extends ActionSupport {
 	private int pmSchedule_id;
 
 	public String execute() throws Exception {
+		System.out.println("插入设备维修记录：" + maintenanceDailyWorkRecord.getTime());
 		if (maintenanceDailyWorkRecord.getTime() == null) {
 			maintenanceDailyWorkRecord.setTime(new java.sql.Date(new Date().getTime()));
 		}
