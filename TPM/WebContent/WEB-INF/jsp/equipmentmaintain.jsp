@@ -72,7 +72,7 @@
 							<div class="col-sm-8">
 								<select onChange="setEquipments()" id="equipmentarea"
 									class="form-control" name="area">
-									<option value="">请选择设备存放区域</option>
+									<option value="">请选择存放区域</option>
 									<s:iterator value="processLine_AreaList">
 										<option value="<s:property value="id" />"><s:property
 												value="name" /></option>
@@ -81,12 +81,12 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-xs-3 control-label">选择设备编号</label>
+							<label for="inputEmail3" class="col-xs-3 control-label">选择编号</label>
 							<div>
 								<div class="col-xs-8">
 									<select onChange="setPM()" id="equipment"
 										name="maintenanceDailyWorkRecord.ep_id" class="form-control">
-										<option value="">请先选择设备存放区域</option>
+										<option value="">请先选择存放区域</option>
 									</select>
 								</div>
 							</div>
@@ -136,14 +136,14 @@
 							<label for="inputEmail3" class="col-sm-3 control-label">问题描述</label>
 							<div class="col-sm-8">
 								<textarea name="maintenanceDailyWorkRecord.question_description"
-									class="form-control" rows="3" placeholder="请输入设备问题描述....."></textarea>
+									class="form-control" rows="3" placeholder="请输入问题描述....."></textarea>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-3 control-label">处理方法</label>
 							<div class="col-sm-8">
 								<textarea name="maintenanceDailyWorkRecord.process_description"
-									class="form-control" rows="3" placeholder="请输入设备处理方法....."></textarea>
+									class="form-control" rows="3" placeholder="请输入处理方法....."></textarea>
 							</div>
 						</div>
 						<div class="form-group">

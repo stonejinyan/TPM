@@ -22,6 +22,7 @@ public class Equipment {
 	private String property_id;
 	private int attribute;
 	private int save_area_id;
+	private int type;
 	private Staff check_staff = new Staff();
 	private Staff maintain_staff = new Staff();
 	private ProcessLine_Area processLine_Area = new ProcessLine_Area();
@@ -210,6 +211,14 @@ public class Equipment {
 		this.processLine_Area = processLine_Area;
 	}
 
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
 	@Override
 	public String toString() {
 		return "Equipment [id=" + id + ", epid=" + epid + ", name=" + name + ", description=" + description
@@ -219,8 +228,8 @@ public class Equipment {
 		        + ep_score + ", backup_plan=" + backup_plan + ", check_method=" + check_method + ", check_cycle="
 		        + check_cycle + ", check_staff_id=" + check_staff_id + ", maintain_staff_id=" + maintain_staff_id
 		        + ", property_id=" + property_id + ", attribute=" + attribute + ", save_area_id=" + save_area_id
-		        + ", check_staff=" + check_staff + ", maintain_staff=" + maintain_staff + ", processLine_Area="
-		        + processLine_Area + "]";
+		        + ", type=" + type + ", check_staff=" + check_staff + ", maintain_staff=" + maintain_staff
+		        + ", processLine_Area=" + processLine_Area + "]";
 	}
 
 }

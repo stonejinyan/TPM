@@ -17,6 +17,7 @@ public class EquipmentList {
 	private String maintainstaffname;
 	private String checkmethodname;
 	private String property_id;
+	private String type;
 
 	public int getId() {
 		return id;
@@ -138,13 +139,22 @@ public class EquipmentList {
 		this.property_id = property_id;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	@Override
 	public String toString() {
 		return "EquipmentList [id=" + id + ", epid=" + epid + ", epname=" + epname + ", description=" + description
 		        + ", ep_score=" + ep_score + ", backup_plan=" + backup_plan + ", check_cycle=" + check_cycle
 		        + ", checkstaffname=" + checkstaffname + ", attribute=" + attribute + ", status=" + status
 		        + ", areaname=" + areaname + ", criticalname=" + criticalname + ", maintainstaffname="
-		        + maintainstaffname + ", checkmethodname=" + checkmethodname + ", property_id=" + property_id + "]";
+		        + maintainstaffname + ", checkmethodname=" + checkmethodname + ", property_id=" + property_id
+		        + ", type=" + type + "]";
 	}
 
 }

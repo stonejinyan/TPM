@@ -49,17 +49,29 @@
 					<form action="InsertEquipment" method="post"
 						class="form-horizontal">
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">设备编号</label>
+							<label for="inputEmail3" class="col-sm-3 control-label">设备/模具/工装</label>
 							<div class="col-sm-8">
-								<input name="equipment.epid" type="text" class="form-control"
-									id="inputEmail3" placeholder="EP-***.....">
+								<select name="equipment.type" class="form-control">
+									<option value ="1">设备</option>
+									<option value ="2">内部模具</option>
+									<option value ="3">外部模具</option>
+									<option value ="4">工装</option>
+									<option value ="5">工具</option>
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">设备名称</label>
+							<label for="inputEmail3" class="col-sm-3 control-label">编号</label>
+							<div class="col-sm-8">
+								<input name="equipment.epid" type="text" class="form-control"
+									id="inputEmail3" placeholder="**-***.....">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-3 control-label">名称</label>
 							<div class="col-sm-8">
 								<input name="equipment.name" type="text" class="form-control"
-									id="inputEmail3" placeholder="请输入设备名称.....">
+									id="inputEmail3" placeholder="请输入名称.....">
 							</div>
 						</div>
 						<div class="form-group">
@@ -70,14 +82,14 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">设备描述</label>
+							<label for="inputEmail3" class="col-sm-3 control-label">描述</label>
 							<div class="col-sm-8">
 								<textarea name="equipment.description" class="form-control" rows="3"
-									placeholder="请输入设备描述....."></textarea>
+									placeholder="请输入描述....."></textarea>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">设备状态</label>
+							<label for="inputEmail3" class="col-sm-3 control-label">状态</label>
 							<div class="col-sm-8">
 								<select name="equipment.status" class="form-control">
 									<option value ="1">正常</option>
@@ -87,13 +99,13 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">设备类型</label>
+							<label for="inputEmail3" class="col-sm-3 control-label">类别</label>
 							<div class="col-sm-8">
 								<select name="equipment.attribute" class="form-control">
-									<option value ="1">生产设备</option>
-									<option value ="2">仓储设备</option>
-									<option value ="3">检测设备</option>
-									<option value ="4">测试设备</option>
+									<option value ="1">生产</option>
+									<option value ="2">仓储</option>
+									<option value ="3">检测</option>
+									<option value ="4">测试</option>
 								</select>
 							</div>
 						</div>
@@ -120,7 +132,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">设备复杂度</label>
+							<label for="inputEmail3" class="col-sm-3 control-label">复杂度</label>
 							<div class="col-sm-8">
 								<select name="equipment.ep_complexity" class="form-control">
 									<option>1</option>
@@ -131,7 +143,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">设备制造渠道</label>
+							<label for="inputEmail3" class="col-sm-3 control-label">制造渠道</label>
 							<div class="col-sm-8">
 								<select name="equipment.ep_manufacturing_channel" class="form-control">
 									<option>1</option>
@@ -142,7 +154,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">设备总价</label>
+							<label for="inputEmail3" class="col-sm-3 control-label">总价</label>
 							<div class="col-sm-8">
 								<select name="equipment.ep_cost" class="form-control">
 									<option>1</option>
@@ -163,9 +175,9 @@
 							<label for="inputEmail3" class="col-sm-3 control-label">校验方式</label>
 							<div class="col-sm-8">
 								<select name="equipment.check_method" class="form-control">
-									<option value ="1">无需校验</option>
-									<option value ="2">内部校验</option>
-									<option value ="3">外部校验</option>
+									<option value ="0">无需校验</option>
+									<option value ="1">内部校验</option>
+									<option value ="2">外部校验</option>
 								</select>
 							</div>
 						</div>

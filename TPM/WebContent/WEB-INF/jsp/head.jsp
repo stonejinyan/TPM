@@ -80,11 +80,11 @@
 			<div id="navbar">
 				<ul class="nav navbar-nav">
 					<li <s:if test="#active=='home'">class="active"</s:if>><a href="home">首页</a></li>
-					<li <s:if test="%{#active == 'EquipmentMaintain'}">class="active"</s:if>><a href="EquipmentMaintain">设备维修</a></li>
+					<li <s:if test="%{#active == 'EquipmentMaintain'}">class="active"</s:if>><a href="EquipmentMaintain">维修</a></li>
 					<li <s:if test="%{#active == 'IncreaseParts'}">class="active"</s:if>><a href="IncreaseParts">备品入库</a></li>
-					<li <s:if test="%{#active == 'NewEquipment'}">class="active"</s:if>><a href="NewEquipment">设备新增</a></li>
+					<li <s:if test="%{#active == 'NewEquipment'}">class="active"</s:if>><a href="NewEquipment">设备/模具/工装新增</a></li>
 					<li <s:if test="%{#active == 'InsertParts'}">class="active"</s:if>><a href="InsertParts">备品新增</a></li>
-					<li <s:if test="%{#active == 'EquipmentList'}">class="active"</s:if>><a href="EquipmentList">设备明细</a></li>
+					<li <s:if test="%{#active == 'EquipmentList'}">class="active"</s:if>><a href="EquipmentList">设备/模具/工装明细</a></li>
 					<li <s:if test="%{#active == 'PartList'}">class="active"</s:if>><a href="PartList">备件明细</a></li>
 					<li <s:if test="%{#active == 'equipmentmaintainRecord'}">class="active"</s:if>><a href="EquipmentMaintainRecord">设备维修记录</a></li>
 					<!--  

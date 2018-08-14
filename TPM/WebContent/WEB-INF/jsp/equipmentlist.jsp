@@ -48,12 +48,12 @@
 				class="table table-striped table-bordered table-hover table-condensed insertEP">
 				<tr>
 					<td class="text-center">序号</td>
-					<td class="text-center">设备编号</td>
-					<td class="text-center">设备名称</td>
+					<td class="text-center">编号</td>
+					<td class="text-center">名称</td>
 					<td class="text-center">固资编号</td>
-					<td class="text-center">设备描述</td>
-					<td class="text-center">设备状态</td>
-					<td class="text-center">设备类型</td>
+					<td class="text-center">描述</td>
+					<td class="text-center">状态</td>
+					<td class="text-center">类型</td>
 					<!--  
 					<td >环境影响度</td>
 					<td >产量影响度</td>
@@ -61,7 +61,7 @@
 					<td >设备制造渠道</td>
 					<td >设备总价</td>
 					-->
-					<td class="text-center">设备评估分</td>
+					<td class="text-center">评估分</td>
 					<td class="text-center">关键等级</td>
 					<td class="text-center">备份计划</td>
 					<td class="text-center">校验方式</td>
@@ -69,13 +69,14 @@
 					<td class="text-center">校验负责人</td>
 					<td class="text-center">保养负责人</td>
 					<td class="text-center">存放区域</td>
+					<td class="text-center">设备/模具/工装</td>
 					<td class="text-center">操作</td>
 				</tr>
 				<s:iterator value="equipmentlist">
 				<tr>
 					<td class="text-center">${id}</td>
 					<td class="text-center">${epid}</td>
-					<td class="text-center">${epname}</td>
+					<td class="text-center" style="width:100px">${epname}</td>
 					<td class="text-center">${property_id}</td>
 					<td class="text-center">${description}</td>
 					<td class="text-center">${status}</td>
@@ -89,12 +90,13 @@
 					-->
 					<td class="text-center">${ep_score}</td>
 					<td class="text-center">${criticalname}</td>
-					<td class="text-center">${backup_plan}</td>
+					<td class="text-center" style="width:100px">${backup_plan}</td>
 					<td class="text-center">${checkmethodname}</td>
 					<td class="text-center">${check_cycle}</td>
 					<td class="text-center">${checkstaffname}</td>
 					<td class="text-center">${maintainstaffname}</td>
 					<td class="text-center">${areaname}</td>
+					<td class="text-center">${type}</td>
 					<td class="text-center"><button type="button" class="btn btn-info">查看</button></td>
 				</tr>
 					</s:iterator>

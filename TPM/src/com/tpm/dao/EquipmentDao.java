@@ -39,14 +39,15 @@ public class EquipmentDao {
 	}
 
 	public void insert(Equipment equipment) {
-		String sql1 = "insert into ep values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql1 = "insert into ep values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
 		Object[] param1 = { equipment.getEpid(), equipment.getName(), equipment.getDescription(), equipment.getStatus(),
 		        equipment.getCritical(), equipment.getEnvironmental_impact(), equipment.getOutput_impact(),
 		        equipment.getEp_complexity(), equipment.getEp_manufacturing_channel(), equipment.getEp_cost(),
 		        equipment.getEp_score(), equipment.getBackup_plan(), equipment.getCheck_method(),
 		        equipment.getCheck_cycle(), equipment.getCheck_staff_id(), equipment.getMaintain_staff_id(),
-		        equipment.getProperty_id(), equipment.getAttribute(), equipment.getSave_area_id() };
+		        equipment.getProperty_id(), equipment.getAttribute(), equipment.getSave_area_id(),
+		        equipment.getType() };
 		try {
 			queryRunner.update(sql1, param1);
 		} catch (SQLException e) {
