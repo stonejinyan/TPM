@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.tpm.bean.Staff;
 import com.tpm.service.StaffService;
+import com.tpm.tool.LogUtil;
 
 public class UserLoginAction extends ActionSupport {
 	StaffService staffService = new StaffService();
@@ -16,6 +17,7 @@ public class UserLoginAction extends ActionSupport {
 		if (staff != null) {
 			ActionContext.getContext().getSession().remove("error");
 			ActionContext.getContext().getSession().put("staff", staff);
+			LogUtil.RollingFile.info(staff.getName() + "登录成功");
 			return "home";
 		} else {
 			System.out.println("save error message");
