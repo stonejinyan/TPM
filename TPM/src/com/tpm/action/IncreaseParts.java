@@ -7,7 +7,7 @@ public class IncreaseParts extends ActionSupport {
 
 	// 转设备新增页面
 	public String execute() throws Exception {
-		ActionContext.getContext().put("active", "IncreaseParts");
+		ActionContext.getContext().put("active", "new");
 		// ActionContext.getContext().put("staffList", staffService.getAllStaff());
 		// ActionContext.getContext().put("processLine_AreaList",processLine_AreaDao.getAllProcessLine_Area());
 		return "success";

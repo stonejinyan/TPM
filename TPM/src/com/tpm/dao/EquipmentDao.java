@@ -81,4 +81,18 @@ public class EquipmentDao {
 			throw new RuntimeException(e.getMessage());
 		}
 	}
+
+	public List<EquipmentList> getAllEquipmentListByType(int type) {
+		// TODO Auto-generated method stub
+		String sql = "select * from eplist where type_id = ?";
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		try {
+			List<EquipmentList> list = queryRunner.query(sql, new BeanListHandler<EquipmentList>(EquipmentList.class),
+			        type);
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

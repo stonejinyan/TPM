@@ -7,7 +7,7 @@ public class InsertParts extends ActionSupport {
 
 	// 设备新增页面转发
 	public String execute() throws Exception {
-		ActionContext.getContext().put("active", "InsertParts");
+		ActionContext.getContext().put("active", "new");
 		// ActionContext.getContext().put("staffList", staffService.getAllStaff());
 		// ActionContext.getContext().put("processLine_AreaList",processLine_AreaDao.getAllProcessLine_Area());
 		return "success";

@@ -11,7 +11,7 @@ public class NewEquipment extends ActionSupport {
 	ProcessLine_AreaDao processLine_AreaDao = new ProcessLine_AreaDao();
 
 	public String execute() throws Exception {
-		ActionContext.getContext().put("active", "NewEquipment");
+		ActionContext.getContext().put("active", "new");
 		ActionContext.getContext().put("staffList", staffService.getAllStaff());
 		ActionContext.getContext().put("processLine_AreaList", processLine_AreaDao.getAllProcessLine_Area());
 		return "success";

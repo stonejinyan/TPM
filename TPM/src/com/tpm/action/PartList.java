@@ -9,7 +9,7 @@ public class PartList extends ActionSupport {
 	ReplacementPartDao replacementPartDao = new ReplacementPartDao();
 
 	public String execute() throws Exception {
-		ActionContext.getContext().put("active", "PartList");
+		ActionContext.getContext().put("active", "record");
 		ActionContext.getContext().put("Parts", replacementPartDao.getAllReplacementParts());
 		// ActionContext.getContext().put("processLine_AreaList",processLine_AreaDao.getAllProcessLine_Area());
 		return "success";

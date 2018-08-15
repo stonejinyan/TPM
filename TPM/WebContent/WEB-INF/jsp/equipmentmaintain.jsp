@@ -151,7 +151,7 @@
 							<div class="col-sm-8">
 								<select name="partkind" id="partkinds" onchange="newPart()" name=""
 									class="form-control">
-									<option value="">无</option>
+									<option value="0">无</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
 									<option value="3">3</option>
