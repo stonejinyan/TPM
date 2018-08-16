@@ -50,9 +50,9 @@
 				<div class="col-xs-5">
 					<div class="row">
 						<h4 class="display-5  title">Total Productive Maintenance
-							Management System</h4>
+							System</h4>
 						<h5 class="display-5  title">
-							<small class="display-5  title">全员生产性维护管理系统</small>
+							<small class="display-5  title">全员生产性维护系统</small>
 						</h5>
 					</div>
 				</div>

@@ -95,5 +95,9 @@
 			method="execute">
 			<result name="success">Json.jsp</result> 
 		</action>
+		<action name="PmProportion" class="com.tpm.action.PmProportion"
+			method="execute">
+			<result name="success">Json.jsp</result> 
+		</action>
 	</package>
 </struts>

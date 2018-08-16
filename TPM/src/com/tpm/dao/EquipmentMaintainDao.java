@@ -11,6 +11,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.tpm.bean.MaintenanceDailyWorkRecord;
 import com.tpm.bean.UseRecord;
+import com.tpm.bean.Ｍaintenance_time;
 import com.tpm.tool.JDBCUtils;
 
 public class EquipmentMaintainDao {
@@ -94,5 +95,19 @@ public class EquipmentMaintainDao {
 				ps.close();
 			}
 		}
+	}
+
+	public List<Ｍaintenance_time> getMaintenanceTime() {
+		// TODO Auto-generated method stub
+		String sql = "SELECT sum( user_time ) DATA,NAME FROM maintenance_daily_work_record,maintenance_type WHERE type = maintenance_type.id GROUP BY type";
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		try {
+			List<Ｍaintenance_time> list = queryRunner.query(sql,
+			        new BeanListHandler<Ｍaintenance_time>(Ｍaintenance_time.class));
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
