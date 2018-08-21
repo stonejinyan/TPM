@@ -12,6 +12,9 @@ public class EquipmentList extends ActionSupport {
 	public String execute() throws Exception {
 		ActionContext.getContext().put("equipmentlist", equipmentDao.getAllEquipmentListByType(type));
 		ActionContext.getContext().put("active", "record");
+		if (type == 5) {
+			return "toollist";
+		}
 		return "success";
 
 	}

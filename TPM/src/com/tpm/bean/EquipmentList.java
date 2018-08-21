@@ -1,5 +1,7 @@
 package com.tpm.bean;
 
+import java.sql.Date;
+
 public class EquipmentList {
 
 	private int id;
@@ -18,6 +20,10 @@ public class EquipmentList {
 	private String checkmethodname;
 	private String property_id;
 	private String type;
+	private String n_m;
+	private Date check_time;
+	private Date next_check_time;
+	private String user;
 
 	public int getId() {
 		return id;
@@ -147,6 +153,38 @@ public class EquipmentList {
 		this.type = type;
 	}
 
+	public String getN_m() {
+		return n_m;
+	}
+
+	public void setN_m(String n_m) {
+		this.n_m = n_m;
+	}
+
+	public Date getCheck_time() {
+		return check_time;
+	}
+
+	public void setCheck_time(Date check_time) {
+		this.check_time = check_time;
+	}
+
+	public Date getNext_check_time() {
+		return next_check_time;
+	}
+
+	public void setNext_check_time(Date next_check_time) {
+		this.next_check_time = next_check_time;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
 		return "EquipmentList [id=" + id + ", epid=" + epid + ", epname=" + epname + ", description=" + description
@@ -154,7 +192,8 @@ public class EquipmentList {
 		        + ", checkstaffname=" + checkstaffname + ", attribute=" + attribute + ", status=" + status
 		        + ", areaname=" + areaname + ", criticalname=" + criticalname + ", maintainstaffname="
 		        + maintainstaffname + ", checkmethodname=" + checkmethodname + ", property_id=" + property_id
-		        + ", type=" + type + "]";
+		        + ", type=" + type + ", n_m=" + n_m + ", check_time=" + check_time + ", next_check_time="
+		        + next_check_time + ", user=" + user + "]";
 	}
 
 }

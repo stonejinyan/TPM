@@ -76,8 +76,14 @@ canvas {
 			<h3>
 				　<span class="label label-success">KPI</span>
 			</h3>
-			<div class="container1 col-xs-6"></div>
-			<div class="container2 col-xs-6"></div>
+			<div class="container1 col-xs-6">
+				<div style="width: 100%;">
+					<canvas id="canvasMTTR"></canvas>
+				</div>
+			</div>
+			<div class="container2 col-xs-6"><div style="width: 100%;">
+					<canvas id="canvasMTBF"></canvas>
+				</div></div>
 		</div>
 		<hr>
 		<div class="row">
@@ -117,165 +123,178 @@ canvas {
 	<script type="text/javascript" src="js/Chartbundle.js"></script>
 	<script type="text/javascript" src="js/utils.js"></script>
 	<script type="text/javascript">
-		//MTTR  设置
-		function createConfig(position) {
-			return {
-				type : 'line',
-				data : {
-					labels : [ 'January', 'February', 'March', 'April', 'May',
-							'June', 'July', 'August', 'September', 'October',
-							'November', 'December' ],
-					datasets : [
-							{
-								label : '目标',
-								borderColor : window.chartColors.red,
-								backgroundColor : window.chartColors.red,
-								data : [ 30, 30, 30, 30, 30, 30, 30, 30, 30,
-										30, 30, 30 ],
-								fill : false,
-							}, {
-								label : '实际',
-								borderColor : window.chartColors.blue,
-								backgroundColor : window.chartColors.blue,
-								data : [ 22.4, 20.5, 24, 24.4, 23.5 ],
-								fill : false,
-							} ]
-				},
-				options : {
-					responsive : true,
-					title : {
-						display : true,
-						text : 'SEEE-2018年: ' + position
-					},
-					tooltips : {
-						position : position,
-						mode : 'index',
-						intersect : false,
-					},
-				}
-			};
+	var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	var configMTTR = {
+		type: 'line',
+		data: {
+			labels: MONTHS,
+			datasets: [{
+				label: '目标',
+				backgroundColor: window.chartColors.blue,
+				borderColor: window.chartColors.blue,
+				data: [ 30, 30, 30, 30, 30, 30, 30, 30, 30,
+					30, 30, 30 ],
+				fill: false,
+			}, {
+				label: '实际',
+				fill: false,
+				backgroundColor: "#38c859",
+				borderColor: "#38c859",
+				data: [ 22.4, 20.5, 24, 24.4, 23.5 ],
+			}]
+		},
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: '设备故障平均修复时间MTTR'
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: false,
+						labelString: '月'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: '小时'
+					}
+				}]
+			}
 		}
-		//MTBF  设置
-		function createConfig1(position) {
-			return {
-				type : 'line',
-				data : {
-					labels : [ 'January', 'February', 'March', 'April', 'May',
-							'June', 'July', 'August', 'September', 'October',
-							'November', 'December' ],
-					datasets : [
-							{
-								label : '目标',
-								borderColor : window.chartColors.red,
-								backgroundColor : window.chartColors.red,
-								data : [ 100, 100, 100, 100, 100, 100, 100,
-										100, 100, 100, 100, 100 ],
-								fill : false,
-							},
-							{
-								label : '实际',
-								borderColor : window.chartColors.blue,
-								backgroundColor : window.chartColors.blue,
-								data : [ 161.3, 64.3, 261.2, 133.5, 85.6,
-										106.7, 161.4 ],
-								fill : false,
-							} ]
+	};
+	var configMTBF = {
+			type: 'line',
+			data: {
+				labels: MONTHS,
+				datasets: [{
+					label: '目标',
+					backgroundColor: window.chartColors.blue,
+					borderColor: window.chartColors.blue,
+					data: [ 100, 100, 100, 100, 100, 100, 100,
+						100, 100, 100, 100, 100 ],
+					fill: false,
+				}, {
+					label: '实际',
+					fill: false,
+					backgroundColor: "#38c859",
+					borderColor: "#38c859",
+					data: [ 161.3, 64.3, 261.2, 133.5, 85.6,
+						106.7, 161.4 ],
+				}]
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: '设备平均故障间隔时间MTBF'
 				},
-				options : {
-					responsive : true,
-					title : {
-						display : true,
-						text : 'SEEE-2018年: ' + position
-					},
-					tooltips : {
-						position : position,
-						mode : 'index',
-						intersect : false,
-					},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: false,
+							labelString: 'Month'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: '小时'
+						}
+					}]
 				}
-			};
-		}
-		//PM占比设置
-		var randomScalingFactor = function() {
-			return Math.round(Math.random() * 100);
+			}
 		};
-		var pmProportion = [];
+	//PM占比设置
+	var randomScalingFactor = function() {
+		return Math.round(Math.random() * 100);
+	};
+	var pmProportion = [0,0,0,0,0];
+	function setChartArea(){
 		$.ajax({
 			url : '/TPM/PmProportion',
 			type : 'GET',
 			success : function(data) {
-				for (var i = 0; i < data.length; i++) {
-					pmProportion[i] = data[i];
-				}
+			//config.data.datasets.data.push(30);
+	        //alert(pmProportion);
+				//for (var i = 0; i < data.length; i++) {
+					//pmProportion[i] = data[i];
+				//}
+				var i = 0;
+			config.data.datasets.forEach(function(dataset) {
+				dataset.data = dataset.data.map(function() {
+					return data[i++];
+				});
+			});
+	        var ctx = document.getElementById('chart-area').getContext('2d');
+			window.myDoughnut = new Chart(ctx, config);
 			}
 		});
-				//alert(pmProportion);
-		var config = {
-			type : 'doughnut',
-			data : {
-				datasets : [ {
-					data : pmProportion,
-					backgroundColor: [
-						window.chartColors.blue,
-						window.chartColors.red,
-						window.chartColors.yellow,
-						window.chartColors.green,
-						window.chartColors.orange,
-					],
-					label : 'Dataset 1'
-				} ],
-				labels : [ 'PM', 'RM', 'AM-巡线', '支援/调机', 'other' ]
+    }
+	var config = {
+		type : 'doughnut',
+		data : {
+			datasets : [ {
+				data : pmProportion,
+				backgroundColor: [
+					window.chartColors.blue,
+					window.chartColors.red,
+					window.chartColors.yellow,
+					window.chartColors.green,
+					window.chartColors.orange,
+				],
+				label : 'Dataset 1'
+			} ],
+			labels : [ 'PM', 'RM', 'AM-巡线', '支援/调机', 'other' ]
+		},
+		options : {
+			responsive : true,
+			legend : {
+				position : 'top',
 			},
-			options : {
-				responsive : true,
-				legend : {
-					position : 'top',
-				},
-				title : {
-					display : false,
-					text : ''
-				},
-				animation : {
-					animateScale : true,
-					animateRotate : true
-				}
+			title : {
+				display : false,
+				text : ''
+			},
+			animation : {
+				animateScale : true,
+				animateRotate : true
 			}
-		};
+		}
+	};
 
+	    
+	    
 		window.onload = function() {
-
-			//MTTR初始化
-			var container = document.querySelector('.container1');
-
-			[ 'MTTR' ].forEach(function(position) {
-				var div = document.createElement('div');
-				div.classList.add('chart-container');
-
-				var canvas = document.createElement('canvas');
-				div.appendChild(canvas);
-				container.appendChild(div);
-
-				var ctx = canvas.getContext('2d');
-				var config = createConfig(position);
-				new Chart(ctx, config);
-			});
-			//MTBF初始化
-			var container = document.querySelector('.container2');
-
-			[ 'MTBF' ].forEach(function(position) {
-				var div = document.createElement('div');
-				div.classList.add('chart-container');
-
-				var canvas = document.createElement('canvas');
-				div.appendChild(canvas);
-				container.appendChild(div);
-
-				var ctx = canvas.getContext('2d');
-				var config = createConfig1(position);
-				new Chart(ctx, config);
-			});
-			var ctx = document.getElementById('chart-area').getContext('2d');
-			window.myDoughnut = new Chart(ctx, config);
+			
+			var ctx = document.getElementById('canvasMTTR').getContext('2d');
+			window.myLine = new Chart(ctx, configMTTR);
+			var ctx = document.getElementById('canvasMTBF').getContext('2d');
+			window.myLine = new Chart(ctx, configMTBF);
+			setChartArea();
+			
 		};
 	</script>
 </body>

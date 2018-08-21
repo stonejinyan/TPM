@@ -38,6 +38,7 @@
 		<action name="EquipmentList" class="com.tpm.action.EquipmentList"
 			method="execute">
 			<result name="success">/WEB-INF/jsp/equipmentlist.jsp</result> 
+			<result name="toollist">/WEB-INF/jsp/toollist.jsp</result> 
 		</action>
 		<action name="NewEquipment" class="com.tpm.action.NewEquipment"
 			method="execute">

@@ -40,7 +40,7 @@
 <!-- /container -->
 
 	<div class="bottom text-center">
-		<br><h5 class="display-5">为了获得最佳操作体验，建议您使用最新版本的浏览器，支持1024 X 768以上分辨率   </h5>
+		<br><h5 class="display-5">为了获得最佳操作体验，建议您使用最新版本的Google谷歌浏览器，支持1024 X 768以上分辨率   </h5>
 		<h5 class="display-5">
 			Copy right reserved by Schneider Electric (China) Co., Ltd.
 		</h5>
@@ -49,7 +49,7 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="js/jquery.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
 	<script>
 		window.jQuery
 				|| document.write('<script src="js/jquery.min.js"><\/script>')

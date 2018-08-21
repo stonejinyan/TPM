@@ -44,10 +44,10 @@
 		<div>
 			<div class="row logobar">
 
-				<div class="col-xs-3 logo text-right">
+				<div class="col-xs-2 logo text-right" style="vertical-align: middle;">
 					<img alt="logo" src="image/logo.png">
 				</div>
-				<div class="col-xs-5">
+				<div class="col-xs-7">
 					<div class="row">
 						<h4 class="display-5  title">Total Productive Maintenance
 							System</h4>
@@ -63,8 +63,8 @@
 						<h6 class="display-5 title text-right">欢迎你！</h6>
 					</div>
 				</div>
-				<div class="col-xs-2">
-					<img class="img-responsive" alt="" src="image/head.png"
+				<div class="col-xs-1" style="display: table-cell;vertical-align: middle;text-align: center;">
+					<img class="img-responsive center-block" alt="" src="image/head.png"
 						width="50px">
 				</div>
 				</s:if>
@@ -88,19 +88,18 @@
 						<ul class="dropdown-menu">
 							<li><a href="IncreaseParts">备品入库</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="NewEquipment">设备/模具/工装新增</a></li>
 							<li><a href="InsertParts">备品新增</a></li>
+							<li><a href="NewEquipment">设备/模具/工装新增</a></li>
 						</ul></li>
 					<li class="dropdown <s:if test="%{#active == 'record'}">active</s:if>"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">台账查看<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="EquipmentList?type=1">设备台账</a></li>
+							<li><a href="EquipmentList?type=4">工装台账</a></li>
 							<li><a href="EquipmentList?type=2">内部模具台账</a></li>
 							<li><a href="EquipmentList?type=3">外部模具台账</a></li>
-							<li><a href="EquipmentList?type=4">工装台账</a></li>
-							<li><a href="#">扭力工具台账</a></li>
-							<li><a href="#">铆接工具台账</a></li>
+							<li><a href="EquipmentList?type=5">扭力工具台账</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="PartList">备品台账</a></li>
 							<li><a href="PartUserList">备品使用记录</a></li>
@@ -121,7 +120,7 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="js/jquery.js"></script>
+	<script src="js/jquery-1.10.2.min.js"></script>
 	<script>
 		window.jQuery
 				|| document.write('<script src="js/jquery.min.js"><\/script>')
