@@ -84,7 +84,7 @@ public class EquipmentDao {
 
 	public List<EquipmentList> getAllEquipmentListByType(int type) {
 		// TODO Auto-generated method stub
-		String sql = "select * from eplist where type_id = ?";
+		String sql = "select * from eplist where type_id = ? order by id";
 		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
 		try {
 			List<EquipmentList> list = queryRunner.query(sql, new BeanListHandler<EquipmentList>(EquipmentList.class),

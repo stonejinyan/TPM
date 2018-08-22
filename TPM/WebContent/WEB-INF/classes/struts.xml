@@ -100,5 +100,9 @@
 			method="execute">
 			<result name="success">Json.jsp</result> 
 		</action>
+		<action name="PartUseList" class="com.tpm.action.PartUseList"
+			method="execute">
+			<result name="success">/WEB-INF/jsp/partuselist.jsp</result> 
+		</action>
 	</package>
 </struts>

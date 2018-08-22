@@ -102,7 +102,7 @@
 							<li><a href="EquipmentList?type=5">扭力工具台账</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="PartList">备品台账</a></li>
-							<li><a href="PartUserList">备品使用记录</a></li>
+							<li><a href="PartUseList">备品使用记录</a></li>
 						</ul></li>
 				</ul>
 				<!-- 

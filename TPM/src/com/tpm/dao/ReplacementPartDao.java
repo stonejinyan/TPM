@@ -7,6 +7,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
+import com.tpm.bean.PartUseRecordList;
 import com.tpm.bean.ReplacementPart;
 import com.tpm.tool.JDBCUtils;
 
@@ -76,6 +77,20 @@ public class ReplacementPartDao {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
 		}
+	}
+
+	public List<PartUseRecordList> getPartUseRecordList() {
+		// TODO Auto-generated method stub
+		String sql = "select * from part_user_record";
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		try {
+			List<PartUseRecordList> list = queryRunner.query(sql,
+			        new BeanListHandler<PartUseRecordList>(PartUseRecordList.class));
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 //	public List<Equipment> getAllEquipmentBySave_area_id(int save_area_id) { //
