@@ -9,7 +9,7 @@
 <!-- The above 2 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="description" content="">
 <meta name="author" content="stonejinyan">
-
+<meta http-equiv="refresh" content="60">
 <!-- Note there is no responsive meta tag here -->
 
 <link rel="icon" href="image/favicon.ico">
@@ -91,6 +91,25 @@ canvas {
 				<h3>
 					<span class="label label-success">PM计划</span>
 				</h3>
+				<table
+				class="table table-striped table-bordered table-hover table-condensed insertEP">
+				<tr>
+					<td class="text-center">PM计划编号</td>
+					<td class="text-center">备品编号</td>
+					<td class="text-center">备品名称</td>
+					<td class="text-center">保养日期</td>
+					<td class="text-center">操作</td>
+				</tr>
+				<s:iterator value="Week_Pm_Schedule">
+				<tr>
+					<td class="text-center">${id}</td>
+					<td class="text-center">${epid}</td>
+					<td class="text-center">${epname}</td>
+					<td class="text-center">${time}</td>
+					<td class="text-center"><button type="button" class="btn btn-info">维修</button></td>
+				</tr>
+					</s:iterator>
+			</table>
 			</div>
 			<div class="col-xs-1"></div>
 			<div class="col-xs-5 insertEP">
