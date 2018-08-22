@@ -5,7 +5,7 @@
 <struts>
 	<constant name="struts.enable.DynamicMethodInvocation"
 		value="true" />
-	<constant name="struts.devMode" value="true" />
+	<constant name="struts.devMode" value="disable" />
 
 	<package name="helloworld" extends="struts-default">
 		<interceptors>
@@ -22,6 +22,7 @@
 			name="loginDefaultStack"></default-interceptor-ref>
 		<global-results>
 			<result name="login" type="redirect">/login.jsp</result>
+            <result name="invalid.token" type="redirect">/error.jsp</result>
 		</global-results>
 		<action name="home" class="com.tpm.action.homeAction"
 			method="execute">
@@ -29,11 +30,14 @@
 		</action>
 		<action name="UserLogin" class="com.tpm.action.UserLoginAction"
 			method="execute">
-			<result name="home" type="chain">home</result> 
+			<interceptor-ref name="token"></interceptor-ref>
+			<interceptor-ref
+			name="loginDefaultStack"></interceptor-ref>
+			<result name="home" type="redirectAction">home</result> 
 		</action>
 		<action name="InsertEquipment" class="com.tpm.action.InsertEquipment"
 			method="execute">
-			<result name="success" type="chain">EquipmentList</result>
+			<result name="success" type="redirectAction">EquipmentList</result>
 		</action>
 		<action name="EquipmentList" class="com.tpm.action.EquipmentList"
 			method="execute">
@@ -62,7 +66,7 @@
 		</action>
 		<action name="InsertEquipmentMaintain" class="com.tpm.action.InsertEquipmentMaintain"
 			method="execute">
-			<result name="success" type="chain">EquipmentMaintainRecord</result> 
+			<result name="success" type="redirectAction">EquipmentMaintainRecord</result> 
 		</action>
 		<action name="EquipmentMaintainRecord" class="com.tpm.action.EquipmentMaintainRecord"
 			method="execute">
@@ -82,11 +86,11 @@
 		</action>
 		<action name="InsertPart" class="com.tpm.action.InsertPart"
 			method="execute">
-			<result name="success" type="chain">PartList</result>  
+			<result name="success" type="redirectAction">PartList</result>  
 		</action>
 		<action name="IncreasePart" class="com.tpm.action.IncreasePart"
 			method="execute">
-			<result name="success" type="chain">PartList</result>   
+			<result name="success" type="redirectAction">PartList</result>   
 		</action>
 		<action name="MaintenanceType" class="com.tpm.action.MaintenanceType"
 			method="execute">
