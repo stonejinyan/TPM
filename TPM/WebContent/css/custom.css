@@ -18,6 +18,7 @@ body{
 }
 
 .logo{
+	max-width: 200px;
 }
 .title{
 	color: #00a650;

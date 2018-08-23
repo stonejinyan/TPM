@@ -13,31 +13,33 @@ public class PmProportion extends ActionSupport {
 	public String execute() throws Exception {
 		EquipmentMaintainDao equipmentMaintainDao = new EquipmentMaintainDao();
 		Gson gson = new Gson();
-		int[] is = { 0, 0, 0, 0, 0 };
+		int[] is = { 0, 0, 0, 0 };
+		int[] PmProportion = { 0, 0, 0, 0, };
 		List<Ｍaintenance_time> maintenance_times = equipmentMaintainDao.getMaintenanceTime();
 		for (int i = 0; i < maintenance_times.size(); i++) {
 			switch (maintenance_times.get(i).getName()) {
 			case "PM":
 				is[0] = maintenance_times.get(i).getData();
 				break;
-			case "RM":
+			case "PM-巡线":
 				is[1] = maintenance_times.get(i).getData();
 				break;
-			case "AM-巡线":
+			case "RM":
 				is[2] = maintenance_times.get(i).getData();
 				break;
-			case "支援/调机":
+			case "Other":
 				is[3] = maintenance_times.get(i).getData();
-				break;
-			case "other":
-				is[4] = maintenance_times.get(i).getData();
 				break;
 
 			default:
 				break;
 			}
 		}
-		ActionContext.getContext().put("Json", gson.toJson(is));
+		PmProportion[0] = is[0] * 100 / (is[0] + is[1] + is[2] + is[3]);
+		PmProportion[1] = is[1] * 100 / (is[0] + is[1] + is[2] + is[3]);
+		PmProportion[2] = is[2] * 100 / (is[0] + is[1] + is[2] + is[3]);
+		PmProportion[3] = is[3] * 100 / (is[0] + is[1] + is[2] + is[3]);
+		ActionContext.getContext().put("Json", gson.toJson(PmProportion));
 		return "success";
 	}
 }

@@ -81,40 +81,43 @@ canvas {
 					<canvas id="canvasMTTR"></canvas>
 				</div>
 			</div>
-			<div class="container2 col-xs-6"><div style="width: 100%;">
+			<div class="container2 col-xs-6">
+				<div style="width: 100%;">
 					<canvas id="canvasMTBF"></canvas>
-				</div></div>
+				</div>
+			</div>
 		</div>
 		<hr>
 		<div class="row">
 			<div class="col-xs-6 insertEP">
 				<h3>
-					<span class="label label-success">PM计划</span>
+					<span class="label label-success">预防性维护计划</span>
 				</h3>
 				<table
-				class="table table-striped table-bordered table-hover table-condensed insertEP">
-				<tr>
-					<td class="text-center">PM计划编号</td>
-					<td class="text-center">备品编号</td>
-					<td class="text-center">备品名称</td>
-					<td class="text-center">保养日期</td>
-					<td class="text-center">操作</td>
-				</tr>
-				<s:iterator value="Week_Pm_Schedule">
-				<tr>
-					<td class="text-center">${id}</td>
-					<td class="text-center">${epid}</td>
-					<td class="text-center">${epname}</td>
-					<td class="text-center">${time}</td>
-					<td class="text-center"><button type="button" class="btn btn-info">维修</button></td>
-				</tr>
+					class="table table-striped table-bordered table-hover table-condensed insertEP">
+					<tr>
+						<td class="text-center">计划编号</td>
+						<td class="text-center">备品编号</td>
+						<td class="text-center">备品名称</td>
+						<td class="text-center">保养日期</td>
+						<td class="text-center">操作</td>
+					</tr>
+					<s:iterator value="Week_Pm_Schedule">
+						<tr>
+							<td class="text-center">${id}</td>
+							<td class="text-center">${epid}</td>
+							<td class="text-center">${epname}</td>
+							<td class="text-center">${time}</td>
+							<td class="text-center"><button type="button"
+									class="btn btn-info">维修</button></td>
+						</tr>
 					</s:iterator>
-			</table>
+				</table>
 			</div>
 			<div class="col-xs-1"></div>
 			<div class="col-xs-5 insertEP">
 				<h3>
-					<span class="label label-success">PM占比</span>
+					<span class="label label-success">预防性维护占比</span>
 				</h3>
 				<div id="canvas-holder" style="width: 100%">
 					<canvas id="chart-area"></canvas>
@@ -142,178 +145,223 @@ canvas {
 	<script type="text/javascript" src="js/Chartbundle.js"></script>
 	<script type="text/javascript" src="js/utils.js"></script>
 	<script type="text/javascript">
-	var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-	var configMTTR = {
-		type: 'line',
-		data: {
-			labels: MONTHS,
-			datasets: [{
-				label: '目标',
-				backgroundColor: window.chartColors.blue,
-				borderColor: window.chartColors.blue,
-				data: [ 30, 30, 30, 30, 30, 30, 30, 30, 30,
-					30, 30, 30 ],
-				fill: false,
-			}, {
-				label: '实际',
-				fill: false,
-				backgroundColor: "#38c859",
-				borderColor: "#38c859",
-				data: [ 22.4, 20.5, 24, 24.4, 23.5 ],
-			}]
-		},
-		options: {
-			responsive: true,
-			title: {
-				display: true,
-				text: '设备故障平均修复时间MTTR'
-			},
-			tooltips: {
-				mode: 'index',
-				intersect: false,
-			},
-			hover: {
-				mode: 'nearest',
-				intersect: true
-			},
-			scales: {
-				xAxes: [{
-					display: true,
-					scaleLabel: {
-						display: false,
-						labelString: '月'
-					}
-				}],
-				yAxes: [{
-					display: true,
-					scaleLabel: {
-						display: true,
-						labelString: '小时'
-					}
-				}]
-			}
-		}
-	};
-	var configMTBF = {
-			type: 'line',
-			data: {
-				labels: MONTHS,
-				datasets: [{
-					label: '目标',
-					backgroundColor: window.chartColors.blue,
-					borderColor: window.chartColors.blue,
-					data: [ 100, 100, 100, 100, 100, 100, 100,
-						100, 100, 100, 100, 100 ],
-					fill: false,
+		var MONTHS = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
+				'Sep', 'Oct', 'Nov', 'Dec' ];
+		var configMTTR = {
+			type : 'line',
+			data : {
+				labels : MONTHS,
+				datasets : [ {
+					label : '目标',
+					backgroundColor : window.chartColors.blue,
+					borderColor : window.chartColors.blue,
+					data : [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30 ],
+					fill : false,
 				}, {
-					label: '实际',
-					fill: false,
-					backgroundColor: "#38c859",
-					borderColor: "#38c859",
-					data: [ 161.3, 64.3, 261.2, 133.5, 85.6,
-						106.7, 161.4 ],
-				}]
+					label : '实际',
+					fill : false,
+					backgroundColor : "#38c859",
+					borderColor : "#38c859",
+					data : [ 22.4, 20.5, 24, 24.4, 23.5 ],
+				} ]
 			},
-			options: {
-				responsive: true,
-				title: {
-					display: true,
-					text: '设备平均故障间隔时间MTBF'
+			options : {
+				responsive : true,
+				title : {
+					display : true,
+					text : '设备故障平均修复时间MTTR'
 				},
-				tooltips: {
-					mode: 'index',
-					intersect: false,
+				tooltips : {
+					mode : 'index',
+					intersect : false,
 				},
-				hover: {
-					mode: 'nearest',
-					intersect: true
+				hover : {
+					mode : 'nearest',
+					intersect : true
 				},
-				scales: {
-					xAxes: [{
-						display: true,
-						scaleLabel: {
-							display: false,
-							labelString: 'Month'
+				scales : {
+					xAxes : [ {
+						display : true,
+						scaleLabel : {
+							display : false,
+							labelString : '月'
 						}
-					}],
-					yAxes: [{
-						display: true,
-						scaleLabel: {
-							display: true,
-							labelString: '小时'
+					} ],
+					yAxes : [ {
+						display : true,
+						scaleLabel : {
+							display : true,
+							labelString : '分钟'
 						}
-					}]
+					} ]
 				}
 			}
 		};
-	//PM占比设置
-	var randomScalingFactor = function() {
-		return Math.round(Math.random() * 100);
-	};
-	var pmProportion = [0,0,0,0,0];
-	function setChartArea(){
-		$.ajax({
-			url : '/TPM/PmProportion',
-			type : 'GET',
-			success : function(data) {
-			//config.data.datasets.data.push(30);
-	        //alert(pmProportion);
-				//for (var i = 0; i < data.length; i++) {
+		var configMTBF = {
+			type : 'line',
+			data : {
+				labels : MONTHS,
+				datasets : [
+						{
+							label : '目标',
+							backgroundColor : window.chartColors.blue,
+							borderColor : window.chartColors.blue,
+							data : [ 100, 100, 100, 100, 100, 100, 100, 100,
+									100, 100, 100, 100 ],
+							fill : false,
+						},
+						{
+							label : '实际',
+							fill : false,
+							backgroundColor : "#38c859",
+							borderColor : "#38c859",
+							data : [ 161.3, 64.3, 261.2, 133.5, 85.6, 106.7,
+									161.4 ],
+						} ]
+			},
+			options : {
+				responsive : true,
+				title : {
+					display : true,
+					text : '设备平均故障间隔时间MTBF'
+				},
+				tooltips : {
+					mode : 'index',
+					intersect : false,
+				},
+				hover : {
+					mode : 'nearest',
+					intersect : true
+				},
+				scales : {
+					xAxes : [ {
+						display : true,
+						scaleLabel : {
+							display : false,
+							labelString : 'Month'
+						}
+					} ],
+					yAxes : [ {
+						display : true,
+						scaleLabel : {
+							display : true,
+							labelString : '小时'
+						}
+					} ]
+				}
+			}
+		};
+		//PM占比设置
+		var randomScalingFactor = function() {
+			return Math.round(Math.random() * 100);
+		};
+		var pmProportion = [ 0, 0, 0, 0 ];
+		function setChartArea() {
+			$.ajax({
+				url : '/TPM/PmProportion',
+				type : 'GET',
+				success : function(data) {
+					//config.data.datasets.data.push(30);
+					//alert(pmProportion);
+					//for (var i = 0; i < data.length; i++) {
 					//pmProportion[i] = data[i];
-				//}
-				var i = 0;
-			config.data.datasets.forEach(function(dataset) {
-				dataset.data = dataset.data.map(function() {
-					return data[i++];
-				});
+					//}
+					var i = 0;
+					config.data.datasets.forEach(function(dataset) {
+						dataset.data = dataset.data.map(function() {
+							return data[i++];
+						});
+					});
+					var ctx = document.getElementById('chart-area').getContext(
+							'2d');
+					window.myDoughnut = new Chart(ctx, config);
+				}
 			});
-	        var ctx = document.getElementById('chart-area').getContext('2d');
-			window.myDoughnut = new Chart(ctx, config);
+		}
+		var config = {
+			type : 'doughnut',
+			data : {
+				datasets : [ {
+					data : pmProportion,
+					mytype : 'doughnut',
+					backgroundColor : [ window.chartColors.blue,
+							window.chartColors.green, window.chartColors.red,
+							window.chartColors.orange, ],
+					label : 'Dataset 1'
+				} ],
+				labels : [ 'PM', 'PM-巡线', 'RM', 'other' ]
+			},
+			options : {
+				responsive : true,
+				legend : {
+					position : 'top',
+				},
+				title : {
+					display : false,
+					text : ''
+				},
+				animation : {
+					animateScale : true,
+					animateRotate : true
+				}
+			}
+		};
+
+		// Define a plugin to provide data labels
+		Chart.plugins.register({
+			afterDatasetsDraw : function(chart) {
+				if (chart.data.datasets[0].mytype == 'doughnut') {
+					//alert(chart.getDatasetMeta(i));
+					var ctx = chart.ctx;
+					//var ctx = document.getElementById('chart-area').getContext('2d');
+					chart.data.datasets.forEach(function(dataset, i) {
+						var meta = chart.getDatasetMeta(i);
+						if (!meta.hidden) {
+							meta.data
+									.forEach(function(element, index) {
+										//if(dataset.labels[0].toString()!= 'PM' ){
+										//return false;
+										//}
+										// Draw the text in black, with the specified font
+										ctx.fillStyle = 'rgb(0, 0, 0)';
+
+										var fontSize = 16;
+										var fontStyle = 'normal';
+										var fontFamily = 'Helvetica Neue';
+										ctx.font = Chart.helpers
+												.fontString(fontSize,
+														fontStyle, fontFamily);
+
+										// Just naively convert to string for now
+										var dataString = dataset.data[index]
+												.toString();
+
+										// Make sure alignment settings are correct
+										ctx.textAlign = 'center';
+										ctx.textBaseline = 'middle';
+
+										var padding = 5;
+										var position = element
+												.tooltipPosition();
+										ctx.fillText(dataString + '%',
+												position.x, position.y
+														- (fontSize / 2)
+														- padding + 10);
+									});
+						}
+					});
+				}
 			}
 		});
-    }
-	var config = {
-		type : 'doughnut',
-		data : {
-			datasets : [ {
-				data : pmProportion,
-				backgroundColor: [
-					window.chartColors.blue,
-					window.chartColors.red,
-					window.chartColors.yellow,
-					window.chartColors.green,
-					window.chartColors.orange,
-				],
-				label : 'Dataset 1'
-			} ],
-			labels : [ 'PM', 'RM', 'AM-巡线', '支援/调机', 'other' ]
-		},
-		options : {
-			responsive : true,
-			legend : {
-				position : 'top',
-			},
-			title : {
-				display : false,
-				text : ''
-			},
-			animation : {
-				animateScale : true,
-				animateRotate : true
-			}
-		}
-	};
 
-	    
-	    
 		window.onload = function() {
-			
+
 			var ctx = document.getElementById('canvasMTTR').getContext('2d');
 			window.myLine = new Chart(ctx, configMTTR);
 			var ctx = document.getElementById('canvasMTBF').getContext('2d');
 			window.myLine = new Chart(ctx, configMTBF);
 			setChartArea();
-			
+
 		};
 	</script>
 </body>

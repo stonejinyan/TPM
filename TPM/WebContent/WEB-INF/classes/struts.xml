@@ -30,9 +30,6 @@
 		</action>
 		<action name="UserLogin" class="com.tpm.action.UserLoginAction"
 			method="execute">
-			<interceptor-ref name="token"></interceptor-ref>
-			<interceptor-ref
-			name="loginDefaultStack"></interceptor-ref>
 			<result name="home" type="redirectAction">home</result> 
 		</action>
 		<action name="InsertEquipment" class="com.tpm.action.InsertEquipment"

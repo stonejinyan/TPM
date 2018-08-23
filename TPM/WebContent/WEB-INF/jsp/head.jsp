@@ -44,8 +44,8 @@
 		<div>
 			<div class="row logobar">
 
-				<div class="col-xs-2 logo text-right" style="vertical-align: middle;">
-					<img alt="logo" src="image/logo.png">
+				<div class="col-xs-2 text-right" style="vertical-align: middle;">
+					<img class="logo" alt="logo" src="image/logo.png">
 				</div>
 				<div class="col-xs-7">
 					<div class="row">

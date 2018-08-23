@@ -73,7 +73,6 @@
 								<button type="submit" class="btn btn-default">Sign in</button>
 							</div>
 						</div>
-						 <s:token></s:token>
 					</form>
 				</div>
 			</div>
