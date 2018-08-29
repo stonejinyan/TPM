@@ -21,6 +21,7 @@
 <!-- Custom styles for this template -->
 <link href="css/custom.css" rel="stylesheet">
 <link href="css/login.css" rel="stylesheet">
+<link href="css/home.css" rel="stylesheet">
 <link href="css/insertequipment.css" rel="stylesheet">
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -72,55 +73,135 @@ canvas {
 	<%@include file="head.jsp"%>
 	<br>
 	<div class="container-fluid">
+
+
+
+		<div class="row PMplan">
+			<div class="col-xs-6 PMplan hr">
+				<h3>
+					<span class="label label-success">预防性维护计划</span>
+				</h3>
+				<div class="bg-demo">
+					<div class="">
+						<div id="carousel-example-vertical"
+							class="carousel vertical slide">
+							<div class="carousel-inner" role="listbox">
+								<%
+									int i = 0;
+									boolean first = true;
+								%>
+								<s:iterator value="Week_Pm_Schedule">
+									<%
+										if (first == true) {
+									%>
+									<div class="item active">
+										<p class="ticker-headline">
+										<table
+											class="table table-striped table-bordered table-hover table-condensed insertEP">
+											<tr>
+												<td class="text-center">计划编号</td>
+												<td class="text-center">备品编号</td>
+												<td class="text-center">备品名称</td>
+												<td class="text-center">保养日期</td>
+												<td class="text-center">操作</td>
+											</tr>
+											<%
+												first = false;
+													}
+													if (i != 0 && i % 4 == 0) {
+											%>
+
+											<div class="item">
+												<p class="ticker-headline">
+												<table
+													class="table table-striped table-bordered table-hover table-condensed insertEP">
+													<tr>
+														<td class="text-center">计划编号</td>
+														<td class="text-center">备品编号</td>
+														<td class="text-center">备品名称</td>
+														<td class="text-center">保养日期</td>
+														<td class="text-center">操作</td>
+													</tr>
+													<%
+														}
+													%>
+
+													<%
+														i++;
+													%>
+													<tr>
+														<td class="text-center">${id}</td>
+														<td class="text-center">${epid}</td>
+														<td class="text-center">${epname}</td>
+														<td class="text-center">${time}</td>
+														<td class="text-center"><a type="button"
+															href="EquipmentMaintain" class="btn btn-info">维修</a></td>
+													</tr>
+													<%
+														if (i != 0 && i % 4 == 0) {
+													%>
+
+												</table>
+												</p>
+											</div>
+											<%
+												}
+											%>
+
+											</s:iterator>
+											<%
+												if (i % 4 != 0) {
+											%>
+
+										</table>
+										</p>
+									</div>
+									<%
+										}
+									%>
+								
+							</div>
+
+							<!-- Controls -->
+							<a class="up carousel-control" href="#carousel-example-vertical"
+								role="button" data-slide="prev"> <span
+								class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a> <a class="down carousel-control"
+								href="#carousel-example-vertical" role="button"
+								data-slide="next"> <span
+								class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 insertEP">
+				<h3>
+					<span class="label label-success">预防性维护资源占比</span>
+				</h3>
+				<div class="col-xs-offset-2" id="canvas-holder" style="width: 75%">
+					<canvas id="chart-area"></canvas>
+				</div>
+			</div>
+		</div>
+		<hr>
 		<div class="row insertEP">
-			<h3>
-				　<span class="label label-success">KPI</span>
-			</h3>
-			<div class="container1 col-xs-6">
+			<div class="container1 col-xs-6 hr">
+				<h3>
+					<span class="label label-success">设备故障平均修复时间MTTR</span>
+				</h3>
 				<div style="width: 100%;">
 					<canvas id="canvasMTTR"></canvas>
 				</div>
 			</div>
 			<div class="container2 col-xs-6">
+				<h3>
+					<span class="label label-success">设备故障平均修复时间MTTR</span>
+				</h3>
 				<div style="width: 100%;">
 					<canvas id="canvasMTBF"></canvas>
-				</div>
-			</div>
-		</div>
-		<hr>
-		<div class="row">
-			<div class="col-xs-6 insertEP">
-				<h3>
-					<span class="label label-success">预防性维护计划</span>
-				</h3>
-				<table
-					class="table table-striped table-bordered table-hover table-condensed insertEP">
-					<tr>
-						<td class="text-center">计划编号</td>
-						<td class="text-center">备品编号</td>
-						<td class="text-center">备品名称</td>
-						<td class="text-center">保养日期</td>
-						<td class="text-center">操作</td>
-					</tr>
-					<s:iterator value="Week_Pm_Schedule">
-						<tr>
-							<td class="text-center">${id}</td>
-							<td class="text-center">${epid}</td>
-							<td class="text-center">${epname}</td>
-							<td class="text-center">${time}</td>
-							<td class="text-center"><button type="button"
-									class="btn btn-info">维修</button></td>
-						</tr>
-					</s:iterator>
-				</table>
-			</div>
-			<div class="col-xs-1"></div>
-			<div class="col-xs-5 insertEP">
-				<h3>
-					<span class="label label-success">预防性维护占比</span>
-				</h3>
-				<div id="canvas-holder" style="width: 100%">
-					<canvas id="chart-area"></canvas>
 				</div>
 			</div>
 		</div>
@@ -129,7 +210,6 @@ canvas {
 			<div class="col-xs-12 insertEP"></div>
 		</div>
 	</div>
-	<br>
 	<%@include file="bottom.jsp"%>
 	<!-- Bootstrap core JavaScript
     ================================================== -->
@@ -168,7 +248,7 @@ canvas {
 			options : {
 				responsive : true,
 				title : {
-					display : true,
+					display : false,
 					text : '设备故障平均修复时间MTTR'
 				},
 				tooltips : {
