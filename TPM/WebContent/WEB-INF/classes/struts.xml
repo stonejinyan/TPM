@@ -34,7 +34,11 @@
 		</action>
 		<action name="InsertEquipment" class="com.tpm.action.InsertEquipment"
 			method="execute">
-			<result name="success" type="redirectAction">EquipmentList</result>
+			<result name="success" type="redirectAction">EquipmentList?type=1</result>
+		</action>
+		<action name="NewTool" class="com.tpm.action.NewTool"
+			method="execute">
+			<result name="success">/WEB-INF/jsp/inserttool.jsp</result>
 		</action>
 		<action name="EquipmentList" class="com.tpm.action.EquipmentList"
 			method="execute">

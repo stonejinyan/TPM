@@ -39,15 +39,15 @@ public class EquipmentDao {
 	}
 
 	public void insert(Equipment equipment) {
-		String sql1 = "insert into ep values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql1 = "insert into ep(id,epid,name,description,status,critical,environmental_impact,output_impact,ep_complexity,ep_manufacturing_channel,ep_cost,ep_score,backup_plan,check_method,check_cycle,check_staff_id,maintain_staff_id,property_id,attribute,save_area_id,type,n_m,user) values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
 		Object[] param1 = { equipment.getEpid(), equipment.getName(), equipment.getDescription(), equipment.getStatus(),
 		        equipment.getCritical(), equipment.getEnvironmental_impact(), equipment.getOutput_impact(),
 		        equipment.getEp_complexity(), equipment.getEp_manufacturing_channel(), equipment.getEp_cost(),
 		        equipment.getEp_score(), equipment.getBackup_plan(), equipment.getCheck_method(),
 		        equipment.getCheck_cycle(), equipment.getCheck_staff_id(), equipment.getMaintain_staff_id(),
-		        equipment.getProperty_id(), equipment.getAttribute(), equipment.getSave_area_id(),
-		        equipment.getType() };
+		        equipment.getProperty_id(), equipment.getAttribute(), equipment.getSave_area_id(), equipment.getType(),
+		        equipment.getN_m(), equipment.getUser() };
 		try {
 			queryRunner.update(sql1, param1);
 		} catch (SQLException e) {

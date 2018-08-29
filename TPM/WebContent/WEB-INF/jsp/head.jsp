@@ -90,6 +90,7 @@
 							<li role="separator" class="divider"></li>
 							<li><a href="InsertParts">备品新增</a></li>
 							<li><a href="NewEquipment">设备/模具/工装新增</a></li>
+							<li><a href="NewTool">扭力工具新增</a></li>
 						</ul></li>
 					<li class="dropdown <s:if test="%{#active == 'record'}">active</s:if>"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"

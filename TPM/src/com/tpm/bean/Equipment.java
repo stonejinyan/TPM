@@ -23,6 +23,8 @@ public class Equipment {
 	private int attribute;
 	private int save_area_id;
 	private int type;
+	private String user;
+	private String n_m;
 	private Staff check_staff = new Staff();
 	private Staff maintain_staff = new Staff();
 	private ProcessLine_Area processLine_Area = new ProcessLine_Area();
@@ -219,6 +221,22 @@ public class Equipment {
 		this.type = type;
 	}
 
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getN_m() {
+		return n_m;
+	}
+
+	public void setN_m(String n_m) {
+		this.n_m = n_m;
+	}
+
 	@Override
 	public String toString() {
 		return "Equipment [id=" + id + ", epid=" + epid + ", name=" + name + ", description=" + description
@@ -228,8 +246,8 @@ public class Equipment {
 		        + ep_score + ", backup_plan=" + backup_plan + ", check_method=" + check_method + ", check_cycle="
 		        + check_cycle + ", check_staff_id=" + check_staff_id + ", maintain_staff_id=" + maintain_staff_id
 		        + ", property_id=" + property_id + ", attribute=" + attribute + ", save_area_id=" + save_area_id
-		        + ", type=" + type + ", check_staff=" + check_staff + ", maintain_staff=" + maintain_staff
-		        + ", processLine_Area=" + processLine_Area + "]";
+		        + ", type=" + type + ", user=" + user + ", n_m=" + n_m + ", check_staff=" + check_staff
+		        + ", maintain_staff=" + maintain_staff + ", processLine_Area=" + processLine_Area + "]";
 	}
 
 }
