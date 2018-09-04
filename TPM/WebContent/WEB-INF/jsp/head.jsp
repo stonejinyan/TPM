@@ -49,18 +49,18 @@
 				</div>
 				<div class="col-xs-7">
 					<div class="row">
-						<h4 class="display-5  title">Total Productive Maintenance
-							System</h4>
-						<h5 class="display-5  title">
+						<h3 class="display-5  title hmargin">Total Productive Maintenance
+							System</h3>
+						<h3 class="display-5  title hmargin">
 							<small class="display-5  title">全员生产性维护系统</small>
-						</h5>
+						</h3>
 					</div>
 				</div>
 				<s:if test="%{#session.staff != null}">
 				<div class="col-xs-2">
 					<div class="row text-right">
 						<h4 class="display-5  title text-right">${staff.name}</h4>
-						<h6 class="display-5 title text-right">欢迎你！</h6>
+						<h5 class="display-5 title text-right">欢迎你！</h5>
 					</div>
 				</div>
 				<div class="col-xs-1" style="display: table-cell;vertical-align: middle;text-align: center;">

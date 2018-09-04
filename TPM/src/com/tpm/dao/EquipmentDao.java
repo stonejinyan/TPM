@@ -4,8 +4,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
+import com.tpm.bean.Count;
 import com.tpm.bean.Equipment;
 import com.tpm.bean.EquipmentList;
 import com.tpm.tool.JDBCUtils;
@@ -82,17 +84,30 @@ public class EquipmentDao {
 		}
 	}
 
-	public List<EquipmentList> getAllEquipmentListByType(int type) {
+	public List<EquipmentList> getAllEquipmentListByType(String sqlString, Object[] param) {
 		// TODO Auto-generated method stub
-		String sql = "select * from eplist where type_id = ? order by id";
+		String sql = "select * from eplist where" + sqlString + " order by id limit ?,10";
 		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
 		try {
 			List<EquipmentList> list = queryRunner.query(sql, new BeanListHandler<EquipmentList>(EquipmentList.class),
-			        type);
+			        param);
 			return list;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public int getPageTotalSize(String sqlString, Object[] param) {
+		// TODO Auto-generated method stub
+		String sql = "select count(*) count from eplist where" + sqlString;
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		try {
+			Count count = queryRunner.query(sql, new BeanHandler<Count>(Count.class), param);
+			return count.getCount();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

@@ -73,34 +73,63 @@
 					<td class="text-center">操作</td>
 				</tr>
 				<s:iterator value="equipmentlist">
-				<tr>
-					<td class="text-center">${id}</td>
-					<td class="text-center">${epid}</td>
-					<td class="text-center" style="width:100px">${epname}</td>
-					<td class="text-center">${property_id}</td>
-					<td class="text-center">${description}</td>
-					<td class="text-center">${status}</td>
-					<td class="text-center">${attribute}</td>
-					<!-- 
+					<tr>
+						<td class="text-center">${id}</td>
+						<td class="text-center">${epid}</td>
+						<td class="text-center" style="width: 100px">${epname}</td>
+						<td class="text-center">${property_id}</td>
+						<td class="text-center">${description}</td>
+						<td class="text-center">${status}</td>
+						<td class="text-center">${attribute}</td>
+						<!-- 
 					<td >${environmental_impact}</td>
 					<td >${output_impact}</td>
 					<td >${ep_complexity}</td>
 					<td >${ep_manufacturing_channel}</td>
 					<td >${ep_cost}</td>
 					-->
-					<td class="text-center">${ep_score}</td>
-					<td class="text-center">${criticalname}</td>
-					<td class="text-center" style="width:100px">${backup_plan}</td>
-					<td class="text-center">${checkmethodname}</td>
-					<td class="text-center">${check_cycle}</td>
-					<td class="text-center">${checkstaffname}</td>
-					<td class="text-center">${maintainstaffname}</td>
-					<td class="text-center">${areaname}</td>
-					<td class="text-center">${type}</td>
-					<td class="text-center"><button type="button" class="btn btn-info">查看</button></td>
-				</tr>
-					</s:iterator>
+						<td class="text-center">${ep_score}</td>
+						<td class="text-center">${criticalname}</td>
+						<td class="text-center" style="width: 100px">${backup_plan}</td>
+						<td class="text-center">${checkmethodname}</td>
+						<td class="text-center">${check_cycle}</td>
+						<td class="text-center">${checkstaffname}</td>
+						<td class="text-center">${maintainstaffname}</td>
+						<td class="text-center">${areaname}</td>
+						<td class="text-center">${type}</td>
+						<td class="text-center"><button type="button"
+								class="btn btn-info">查看</button></td>
+					</tr>
+				</s:iterator>
 			</table>
+			<div class="text-center">
+				<ul class="pagination text-center">
+					<s:if test='#pageBean.hasPre == true'>
+						<li><a
+							href="http://localhost:8080/TPM/EquipmentList?pageNow=1">首页</a></li>
+						<li><a
+							href="http://localhost:8080/TPM/EquipmentList?pageNow=${pageBean.pageNow-1 }">上一页</a></li>
+					</s:if>
+					<s:iterator value="pageNumbers" var="pageNumber">
+						<s:if test='#pageNumber == #pageBean.pageNow'>
+							<li class="active"><a
+								href="http://localhost:8080/TPM/EquipmentList?pageNow=${pageNumber}">
+									${pageNumber}</a></li>
+						</s:if>
+						<s:else>
+							<li><a
+								href="http://localhost:8080/TPM/EquipmentList?pageNow=${pageNumber}">
+									${pageNumber}</a></li>
+						</s:else>
+					</s:iterator>
+					<s:if test='#pageBean.hasNext == true'>
+						<li><a
+							href="http://localhost:8080/TPM/EquipmentList?pageNow=${pageBean.pageNow+1 }">下一页</a></li>
+						<li><a
+							href="http://localhost:8080/TPM/EquipmentList?pageNow=${pageBean.totalPage }">最后一页</a></li>
+					</s:if>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<%@include file="bottom.jsp"%>

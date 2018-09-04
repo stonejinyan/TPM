@@ -41,9 +41,23 @@
 
 <body>
 	<%@include file="head.jsp"%>
-	<br>
+
 	<div class="">
 		<div class="insertEP">
+			<br>
+			<form class="form-inline">
+				<div class="form-group">
+					<label for="exampleInputName2">编号</label> <input type="text"
+						class="form-control" id="exampleInputName2" placeholder="请输入编号">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail2">名称</label> <input type="email"
+						class="form-control" id="exampleInputEmail2"
+						placeholder="jane.doe@example.com">
+				</div>
+				<button type="submit" class="btn btn-default">筛选</button>
+			</form>
+			<br>
 			<table
 				class="table table-striped table-bordered table-hover table-condensed insertEP">
 				<tr>
@@ -76,37 +90,66 @@
 					<td class="text-center">操作</td>
 				</tr>
 				<s:iterator value="equipmentlist">
-				<tr>
-					<td class="text-center">${id}</td>
-					<td class="text-center">${epid}</td>
-					<td class="text-center" style="width:100px">${epname}</td>
-					<td class="text-center">${property_id}</td>
-					<td class="text-center">${description}</td>
-					<td class="text-center">${status}</td>
-					<td class="text-center">${attribute}</td>
-					<!-- 
+					<tr>
+						<td class="text-center">${id}</td>
+						<td class="text-center">${epid}</td>
+						<td class="text-center" style="width: 100px">${epname}</td>
+						<td class="text-center">${property_id}</td>
+						<td class="text-center">${description}</td>
+						<td class="text-center">${status}</td>
+						<td class="text-center">${attribute}</td>
+						<!-- 
 					<td >${environmental_impact}</td>
 					<td >${output_impact}</td>
 					<td >${ep_complexity}</td>
 					<td >${ep_manufacturing_channel}</td>
 					<td >${ep_cost}</td>
 					-->
-					<td class="text-center">${n_m}</td>
-					<td class="text-center">${check_time}</td>
-					<td class="text-center" style="width:100px">${next_check_time}</td>
-					<td class="text-center">${checkmethodname}</td>
-					<!--  
+						<td class="text-center">${n_m}</td>
+						<td class="text-center">${check_time}</td>
+						<td class="text-center" style="width: 100px">${next_check_time}</td>
+						<td class="text-center">${checkmethodname}</td>
+						<!--  
 					<td class="text-center">${check_cycle}</td>
 					<td class="text-center">${checkstaffname}</td>
 					<td class="text-center">${maintainstaffname}</td>
 					-->
-					<td class="text-center">${areaname}</td>
-					<td class="text-center">${user}</td>
-					<td class="text-center">${type}</td>
-					<td class="text-center"><button type="button" class="btn btn-info">查看</button></td>
-				</tr>
-					</s:iterator>
+						<td class="text-center">${areaname}</td>
+						<td class="text-center">${user}</td>
+						<td class="text-center">${type}</td>
+						<td class="text-center"><button type="button"
+								class="btn btn-info">查看</button></td>
+					</tr>
+				</s:iterator>
 			</table>
+						<div class="text-center">
+				<ul class="pagination text-center">
+					<s:if test='#pageBean.hasPre == true'>
+						<li><a
+							href="http://localhost:8080/TPM/EquipmentList?pageNow=1">首页</a></li>
+						<li><a
+							href="http://localhost:8080/TPM/EquipmentList?pageNow=${pageBean.pageNow-1 }">上一页</a></li>
+					</s:if>
+					<s:iterator value="pageNumbers" var="pageNumber">
+						<s:if test='#pageNumber == #pageBean.pageNow'>
+							<li class="active"><a
+								href="http://localhost:8080/TPM/EquipmentList?pageNow=${pageNumber}">
+									${pageNumber}</a></li>
+						</s:if>
+						<s:else>
+							<li><a
+								href="http://localhost:8080/TPM/EquipmentList?pageNow=${pageNumber}">
+									${pageNumber}</a></li>
+						</s:else>
+					</s:iterator>
+					<s:if test='#pageBean.hasNext == true'>
+						<li><a
+							href="http://localhost:8080/TPM/EquipmentList?pageNow=${pageBean.pageNow+1 }">下一页</a></li>
+						<li><a
+							href="http://localhost:8080/TPM/EquipmentList?pageNow=${pageBean.totalPage }">最后一页</a></li>
+					</s:if>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<%@include file="bottom.jsp"%>

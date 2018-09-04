@@ -198,7 +198,7 @@ canvas {
 			</div>
 			<div class="container2 col-xs-6">
 				<h3>
-					<span class="label label-success">设备故障平均修复时间MTTR</span>
+					<span class="label label-success">设备故障平均间隔时间MTBF</span>
 				</h3>
 				<div style="width: 100%;">
 					<canvas id="canvasMTBF"></canvas>

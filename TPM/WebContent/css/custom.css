@@ -1,4 +1,7 @@
-
+.hmargin{
+	margin-bottom: 0px;
+	margin-top: 3px;
+}
 	
 .table tbody tr td{
             vertical-align: middle;
