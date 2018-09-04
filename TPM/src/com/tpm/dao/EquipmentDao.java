@@ -88,6 +88,7 @@ public class EquipmentDao {
 		// TODO Auto-generated method stub
 		String sql = "select * from eplist where" + sqlString + " order by id limit ?,10";
 		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		// System.out.println(sql + param.toString());
 		try {
 			List<EquipmentList> list = queryRunner.query(sql, new BeanListHandler<EquipmentList>(EquipmentList.class),
 			        param);

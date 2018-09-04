@@ -106,13 +106,11 @@
 							<li><a href="PartUseList">备品使用记录</a></li>
 						</ul></li>
 				</ul>
-				<!-- 
+ 
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Link</a></li>
-					<li><a href="#">Link</a></li>
-					<li><a href="#">Link</a></li>
+					<li><a href="https://github.com/stonejinyan/TPM/commits/master">版本更新记录</a></li>
 				</ul>
-				 -->
+
 			</div>
 			<!--/.nav-collapse -->
 		</div>

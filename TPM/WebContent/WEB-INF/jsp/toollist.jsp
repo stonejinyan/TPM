@@ -45,16 +45,23 @@
 	<div class="">
 		<div class="insertEP">
 			<br>
-			<form class="form-inline">
+			<form class="form-inline" action="EquipmentList" method="get">
 				<div class="form-group">
-					<label for="exampleInputName2">编号</label> <input type="text"
+					<label for="exampleInputName2"> 编号</label> <input type="text" name="epid"
 						class="form-control" id="exampleInputName2" placeholder="请输入编号">
 				</div>
 				<div class="form-group">
-					<label for="exampleInputEmail2">名称</label> <input type="email"
-						class="form-control" id="exampleInputEmail2"
-						placeholder="jane.doe@example.com">
+					<label for="inputEmail3"> 存放区域</label> <select id="equipmentarea"
+						class="form-control" name="area">
+						<option value="0">请选择存放区域</option>
+						<s:iterator value="processLine_AreaList">
+							<option value="<s:property value="id" />"><s:property
+									value="name" /></option>
+						</s:iterator>
+					</select>
 				</div>
+				<input type="hidden" name="type"
+						value="${type }">
 				<button type="submit" class="btn btn-default">筛选</button>
 			</form>
 			<br>
@@ -122,7 +129,7 @@
 					</tr>
 				</s:iterator>
 			</table>
-						<div class="text-center">
+			<div class="text-center">
 				<ul class="pagination text-center">
 					<s:if test='#pageBean.hasPre == true'>
 						<li><a

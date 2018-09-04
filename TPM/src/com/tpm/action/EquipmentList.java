@@ -7,10 +7,12 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.tpm.bean.PageBean;
 import com.tpm.dao.EquipmentDao;
+import com.tpm.dao.ProcessLine_AreaDao;
 
 public class EquipmentList extends ActionSupport {
 
 	EquipmentDao equipmentDao = new EquipmentDao();
+	ProcessLine_AreaDao processLine_AreaDao = new ProcessLine_AreaDao();
 	private int type;
 	private int pageNow;
 	private String epid;
@@ -27,20 +29,20 @@ public class EquipmentList extends ActionSupport {
 			if (pageNow == 0) {
 				pageNow = 1;
 			}
-			if (epid != null) {
-				sqlString = sqlString + " epid = ?";
+			if (epid != null && epid != "") {
+				sqlString = sqlString + " and epid = ?";
 				param.add(epid);
 			}
-			if (name != null) {
-				sqlString = sqlString + " epname = ?";
-				param.add(name);
+			if (name != null && name != "") {
+				sqlString = sqlString + " and epname like ?";
+				param.add("%" + name + "%");
 			}
 			if (area != 0) {
-				sqlString = sqlString + " areaname = ?";
+				sqlString = sqlString + " and areaid = ?";
 				param.add(area);
 			}
 			if (n_m != 0) {
-				sqlString = sqlString + " n_m = ?";
+				sqlString = sqlString + " and n_m = ?";
 				param.add(n_m);
 			}
 			ActionContext.getContext().getSession().put("param", param);
@@ -62,6 +64,7 @@ public class EquipmentList extends ActionSupport {
 		        equipmentDao.getAllEquipmentListByType(sqlString, param.toArray()));
 		// PageBean pageBean = new PageBean(1, equipmentDao.getPagetotalSize());
 		// ActionContext.getContext().put("pageBean", pageBean);
+		ActionContext.getContext().put("processLine_AreaList", processLine_AreaDao.getAllProcessLine_Area());
 		ActionContext.getContext().put("active", "record");
 		if (type == 5) {
 			return "toollist";

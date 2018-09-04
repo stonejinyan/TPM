@@ -44,6 +44,31 @@
 	<br>
 	<div class="">
 		<div class="insertEP">
+		<br>
+			<form class="form-inline" action="EquipmentList" method="get">
+				<div class="form-group">
+					<label for="exampleInputName2"> 编号</label> <input type="text" name="epid"
+						class="form-control" id="exampleInputName2" placeholder="请输入编号">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputName2"> 名称</label> <input type="text" name="name"
+						class="form-control" id="exampleInputName2" placeholder="请输入名称">
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3"> 存放区域</label> <select id="equipmentarea"
+						class="form-control" name="area">
+						<option value="0">请选择存放区域</option>
+						<s:iterator value="processLine_AreaList">
+							<option value="<s:property value="id" />"><s:property
+									value="name" /></option>
+						</s:iterator>
+					</select>
+				</div>
+				<input type="hidden" name="type"
+						value="${type }">
+				<button type="submit" class="btn btn-default">筛选</button>
+			</form>
+			<br>
 			<table
 				class="table table-striped table-bordered table-hover table-condensed insertEP">
 				<tr>
