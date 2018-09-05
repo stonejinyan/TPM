@@ -133,27 +133,27 @@
 				<ul class="pagination text-center">
 					<s:if test='#pageBean.hasPre == true'>
 						<li><a
-							href="http://localhost:8080/TPM/EquipmentList?pageNow=1">首页</a></li>
+							href="EquipmentList?pageNow=1">首页</a></li>
 						<li><a
-							href="http://localhost:8080/TPM/EquipmentList?pageNow=${pageBean.pageNow-1 }">上一页</a></li>
+							href="EquipmentList?pageNow=${pageBean.pageNow-1 }">上一页</a></li>
 					</s:if>
 					<s:iterator value="pageNumbers" var="pageNumber">
 						<s:if test='#pageNumber == #pageBean.pageNow'>
 							<li class="active"><a
-								href="http://localhost:8080/TPM/EquipmentList?pageNow=${pageNumber}">
+								href="EquipmentList?pageNow=${pageNumber}">
 									${pageNumber}</a></li>
 						</s:if>
 						<s:else>
 							<li><a
-								href="http://localhost:8080/TPM/EquipmentList?pageNow=${pageNumber}">
+								href="EquipmentList?pageNow=${pageNumber}">
 									${pageNumber}</a></li>
 						</s:else>
 					</s:iterator>
 					<s:if test='#pageBean.hasNext == true'>
 						<li><a
-							href="http://localhost:8080/TPM/EquipmentList?pageNow=${pageBean.pageNow+1 }">下一页</a></li>
+							href="EquipmentList?pageNow=${pageBean.pageNow+1 }">下一页</a></li>
 						<li><a
-							href="http://localhost:8080/TPM/EquipmentList?pageNow=${pageBean.totalPage }">最后一页</a></li>
+							href="EquipmentList?pageNow=${pageBean.totalPage }">最后一页</a></li>
 					</s:if>
 				</ul>
 			</div>

@@ -335,7 +335,7 @@ canvas {
 		var randomScalingFactor = function() {
 			return Math.round(Math.random() * 100);
 		};
-		var pmProportion = [ 0, 0, 0, 0 ];
+		var pmProportion = [ 0, 0, 0 ];
 		function setChartArea() {
 			$.ajax({
 				url : '/TPM/PmProportion',
@@ -365,11 +365,10 @@ canvas {
 					data : pmProportion,
 					mytype : 'doughnut',
 					backgroundColor : [ window.chartColors.blue,
-							window.chartColors.green, window.chartColors.red,
-							window.chartColors.orange, ],
+							window.chartColors.red, window.chartColors.orange],
 					label : 'Dataset 1'
 				} ],
-				labels : [ 'PM', 'PM-巡线', 'RM', 'other' ]
+				labels : [ 'PM', 'RM', 'other' ]
 			},
 			options : {
 				responsive : true,
