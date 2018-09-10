@@ -368,7 +368,7 @@ canvas {
 							window.chartColors.red, window.chartColors.orange],
 					label : 'Dataset 1'
 				} ],
-				labels : [ 'PM', 'RM', 'other' ]
+				labels : [ '设备保养PM', '应急性维修RM', '其他' ]
 			},
 			options : {
 				responsive : true,

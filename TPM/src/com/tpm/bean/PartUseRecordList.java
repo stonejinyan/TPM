@@ -20,6 +20,7 @@ public class PartUseRecordList {
 	private int number;
 	private String unit;
 	private String staffname;
+	private String status_id;
 
 	public int getId() {
 		return id;
@@ -149,13 +150,12 @@ public class PartUseRecordList {
 		this.staffname = staffname;
 	}
 
-	@Override
-	public String toString() {
-		return "PartUseRecordList [id=" + id + ", part_id=" + part_id + ", partname=" + partname + ", use_number="
-		        + use_number + ", typename=" + typename + ", epname=" + epname + ", time=" + time + ", epid=" + epid
-		        + ", domain=" + domain + ", specification=" + specification + ", brand=" + brand + ", userep=" + userep
-		        + ", order_number=" + order_number + ", number=" + number + ", unit=" + unit + ", staffname="
-		        + staffname + "]";
+	public String getStatus_id() {
+		return status_id;
+	}
+
+	public void setStatus_id(String status_id) {
+		this.status_id = status_id;
 	}
 
 }

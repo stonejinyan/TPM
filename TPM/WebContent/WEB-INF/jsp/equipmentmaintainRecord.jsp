@@ -66,7 +66,7 @@
 					<td class="text-center">维修时间</td>
 					<td class="text-center">操作</td>
 				</tr>
-				<s:iterator value="equipmentMaintainRecord">
+				<s:iterator value="equipmentMaintainRecord" var="Record">
 				<tr>
 					<td class="text-center">${id}</td>
 					<td class="text-center">${epid}</td>
@@ -85,7 +85,12 @@
 					<td class="text-center">${maintenancetypename}</td>
 					<td class="text-center">${user_time}</td>
 					<td class="text-center">${time}</td>
-					<td class="text-center"><button value="${id}" id="repealButton" onclick="repeal()" type="button" class="btn btn-info">撤销</button></td>
+					<s:if test="%{#Record.status_id == 1}">
+					<td class="text-center" id="maintenance${id}"><button value="${id}" id="repealButton" onclick="repeal(${id})" type="button" class="btn btn-info">撤销</button></td>
+					</s:if>
+					<s:if test="%{#Record.status_id == 2}">
+					<td class="text-center" id="maintenance${id}">已撤销</td>
+					</s:if>
 				</tr>
 					</s:iterator>
 			</table>
@@ -104,14 +109,26 @@
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="js/ie10-viewport-bug-workaround.js"></script>
 	<script type="text/javascript">
-	function repeal(){
-		$.ajax({
-			url : '/TPM/RepealEPMaintainRecord?id='+,
-			type : 'GET',
-			success : function(data) {
-				parts = data;
-			}
-		});
+	function delete_confirm()
+	{
+	    event.returnValue = confirm("撤销不可恢复，你确认要撤销吗？");
+	}
+	
+	function repeal(id){
+		if(confirm("撤销不可恢复，你确认要撤销吗？")){
+			$.ajax({
+				url : '/TPM/CancelMaintenance?maintenance_id='+id,
+				type : 'GET',
+				success : function(data) {
+					if(data=="success"){
+					var sltArea = document.getElementById("maintenance"+id);
+					sltArea.innerText = '已撤销'; 
+					}else{
+						alert(data+"--请联系管理员");
+					}
+				}
+			});
+		}
 	}
 	</script>
 </body>

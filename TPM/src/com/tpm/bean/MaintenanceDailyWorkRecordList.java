@@ -15,6 +15,7 @@ public class MaintenanceDailyWorkRecordList {
 	private String epname;
 	private String areaname;
 	private String maintenancetypename;
+	private int status_id;
 
 	public int getId() {
 		return id;
@@ -104,12 +105,12 @@ public class MaintenanceDailyWorkRecordList {
 		this.epid = epid;
 	}
 
-	@Override
-	public String toString() {
-		return "MaintenanceDailyWorkRecordList [id=" + id + ", question_description=" + question_description
-		        + ", process_description=" + process_description + ", pm_id=" + pm_id + ", time=" + time
-		        + ", staffname=" + staffname + ", user_time=" + user_time + ", epid=" + epid + ", epname=" + epname
-		        + ", areaname=" + areaname + ", maintenancetypename=" + maintenancetypename + "]";
+	public int getStatus_id() {
+		return status_id;
+	}
+
+	public void setStatus_id(int status_id) {
+		this.status_id = status_id;
 	}
 
 }

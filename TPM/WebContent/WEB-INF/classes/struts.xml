@@ -109,5 +109,9 @@
 			method="execute">
 			<result name="success">/WEB-INF/jsp/partuselist.jsp</result> 
 		</action>
+		<action name="CancelMaintenance" class="com.tpm.action.CancelMaintenance"
+			method="execute">
+			<result name="success">Json.jsp</result> 
+		</action>
 	</package>
 </struts>

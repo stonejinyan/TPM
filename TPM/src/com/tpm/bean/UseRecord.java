@@ -8,6 +8,7 @@ public class UseRecord {
 	private int maintenance_daily_work_record_id;
 	private int use_number;
 	private String part_id;
+	private String status_id;
 
 	public int getId() {
 		return id;
@@ -57,11 +58,12 @@ public class UseRecord {
 		this.part_id = part_id;
 	}
 
-	@Override
-	public String toString() {
-		return "UseRecord [id=" + id + ", staff_id=" + staff_id + ", replacement_part_id=" + replacement_part_id
-		        + ", maintenance_daily_work_record_id=" + maintenance_daily_work_record_id + ", use_number="
-		        + use_number + ", part_id=" + part_id + "]";
+	public String getStatus_id() {
+		return status_id;
+	}
+
+	public void setStatus_id(String status_id) {
+		this.status_id = status_id;
 	}
 
 }

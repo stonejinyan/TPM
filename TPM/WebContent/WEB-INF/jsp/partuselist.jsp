@@ -62,7 +62,7 @@
 					<td class="text-center">维修人员</td>
 					<td class="text-center">操作</td>
 				</tr>
-				<s:iterator value="partuserlist">
+				<s:iterator value="partuserlist" var="part">
 				<tr>
 					<td class="text-center">${id}</td>
 					<td class="text-center">${part_id}</td>
@@ -77,7 +77,12 @@
 					<td class="text-center">${epname}</td>
 					<td class="text-center">${typename}</td>
 					<td class="text-center">${staffname}</td>
-					<td class="text-center"><button type="button" class="btn btn-info">查看</button></td>
+					<s:if test="%{#part.status_id == 1}">
+					<td class="text-center" id="maintenance${id}"><button value="${id}" id="repealButton" onclick="repeal(${id})" type="button" class="btn btn-info">查看</button></td>
+					</s:if>
+					<s:if test="%{#part.status_id == 2}">
+					<td class="text-center" id="maintenance${id}">已撤销</td>
+					</s:if>
 				</tr>
 					</s:iterator>
 			</table>
