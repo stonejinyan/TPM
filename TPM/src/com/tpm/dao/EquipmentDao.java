@@ -61,7 +61,7 @@ public class EquipmentDao {
 
 	public List<Equipment> getAllEquipmentBySave_area_id(int save_area_id) {
 		// TODO Auto-generated method stub
-		String sql = "select * from ep where save_area_id = ?";
+		String sql = "select * from ep where save_area_id = ? ORDER BY epid";
 		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
 		try {
 			List<Equipment> list = queryRunner.query(sql, new BeanListHandler<Equipment>(Equipment.class),
