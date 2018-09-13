@@ -19,6 +19,7 @@ public class EquipmentList extends ActionSupport {
 	private String name;
 	private int area;
 	private int n_m;
+	private int critical_id = -1;
 	private String sqlString = "";
 	private List<Object> param = new ArrayList<Object>();
 
@@ -44,6 +45,10 @@ public class EquipmentList extends ActionSupport {
 			if (n_m != 0) {
 				sqlString = sqlString + " and n_m = ?";
 				param.add(n_m);
+			}
+			if (critical_id == 0 || critical_id == 1 || critical_id == 3) {
+				sqlString = sqlString + " and critical_id = ?";
+				param.add(critical_id);
 			}
 			ActionContext.getContext().getSession().put("param", param);
 			ActionContext.getContext().getSession().put("sqlString", sqlString);
@@ -127,6 +132,14 @@ public class EquipmentList extends ActionSupport {
 
 	public void setN_m(int n_m) {
 		this.n_m = n_m;
+	}
+
+	public int getCritical_id() {
+		return critical_id;
+	}
+
+	public void setCritical_id(int critical_id) {
+		this.critical_id = critical_id;
 	}
 
 }

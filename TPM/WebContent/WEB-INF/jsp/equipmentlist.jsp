@@ -55,6 +55,15 @@
 						class="form-control" id="exampleInputName2" placeholder="请输入名称">
 				</div>
 				<div class="form-group">
+					<label for="inputEmail3"> 是否关键</label> 
+					<select id="equipmentarea" class="form-control" name="critical_id">
+						<option value="-1">请选择</option>
+							<option value="0">非关键</option>
+							<option value="1">关键</option>
+							<option value="3">N/A</option>
+					</select>
+				</div>
+				<div class="form-group">
 					<label for="inputEmail3"> 存放区域</label> <select id="equipmentarea"
 						class="form-control" name="area">
 						<option value="0">请选择存放区域</option>
