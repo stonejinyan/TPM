@@ -110,7 +110,7 @@
 										data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
 										data-link-format="yyyy-mm-dd">
 										<input name="maintenanceDailyWorkRecord.time"
-											class="text-center" size="16" type="text" readonly><div class="label label-success class="input-group-addon"">选填:默认为今天</div>
+											class="text-center" size="16" type="text" readonly><div class="label label-success">选填:默认为今天</div>
 										<span class="add-on"><i class="icon-remove"></i></span> <span
 											class="add-on"><i class="icon-th"></i></span>
 									</div>

@@ -12,7 +12,7 @@ import com.tpm.bean.Equipment;
 import com.tpm.bean.EquipmentList;
 import com.tpm.tool.JDBCUtils;
 
-public class EquipmentDao {
+public class EquipmentDao extends IBaseDao<Equipment> {
 
 	public List<EquipmentList> getAllEquipmentList() {
 		// TODO Auto-generated method stub
@@ -110,5 +110,10 @@ public class EquipmentDao {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	public long getEPCount(int type) {
+		String sql = "select count(*) from ep where type = ?";
+		return super.queryForCount(sql, type);
 	}
 }

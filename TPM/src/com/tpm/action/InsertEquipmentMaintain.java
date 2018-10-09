@@ -27,6 +27,7 @@ public class InsertEquipmentMaintain extends ActionSupport {
 			maintenanceDailyWorkRecord.setTime(new java.sql.Date(new Date().getTime()));
 		}
 		if (maintenanceDailyWorkRecord.getEp_id() != 0) {
+			maintenanceDailyWorkRecord.setPm_id(pmSchedule_id);
 			maintenanceDailyWorkRecord
 			        .setStaff_id(((Staff) ActionContext.getContext().getSession().get("staff")).getId());
 			equipmentMaintainDao.insert(maintenanceDailyWorkRecord, useRecords, pmSchedule_id);

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib uri="/struts-tags" prefix="s" %>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -38,7 +38,8 @@
 </head>
 
 <body>
-<!--  Logo 部位        -->
+	
+	<!--  Logo 部位        -->
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default">
 		<div>
@@ -49,71 +50,82 @@
 				</div>
 				<div class="col-xs-7">
 					<div class="row">
-						<h3 class="display-5  title hmargin">Total Productive Maintenance
-							System</h3>
+						<h3 class="display-5  title hmargin">Total Productive
+							Maintenance System</h3>
 						<h3 class="display-5  title hmargin">
 							<small class="display-5  title">全员生产性维护系统</small>
 						</h3>
 					</div>
 				</div>
 				<s:if test="%{#session.staff != null}">
-				<div class="col-xs-2">
-					<div class="row text-right">
-						<h4 class="display-5  title text-right">${staff.name}</h4>
-						<h5 class="display-5 title text-right">欢迎你！</h5>
+					<div class="col-xs-2">
+						<div class="row text-right">
+							<h4 class="display-5  title text-right">${staff.name}</h4>
+							<h5 class="display-5 title text-right">欢迎你！</h5>
+						</div>
 					</div>
-				</div>
-				<div class="col-xs-1" style="display: table-cell;vertical-align: middle;text-align: center;">
-					<img class="img-responsive center-block" alt="" src="image/head.png"
-						width="50px">
-				</div>
+					<div class="col-xs-1"
+						style="display: table-cell; vertical-align: middle; text-align: center;">
+						<img class="img-responsive center-block" alt=""
+							src="image/head.png" width="50px">
+					</div>
 				</s:if>
 			</div>
 		</div>
 		<s:if test="%{#session.staff != null}">
-		<div class="container">
-			<div class="navbar-header">
-				<!-- The mobile navbar-toggle button can be safely removed since you do not need it in a non-responsive implementation -->
-				
-			</div>
-			<!-- Note that the .navbar-collapse and .collapse classes have been removed from the #navbar -->
-			<div id="navbar">
-				<ul class="nav navbar-nav">
-					<li <s:if test="#active=='home'">class="active"</s:if>><a href="home">首页</a></li>
-					<li <s:if test="%{#active == 'EquipmentMaintain'}">class="active"</s:if>><a href="EquipmentMaintain">维修</a></li>
-					<li <s:if test="%{#active == 'equipmentmaintainRecord'}">class="active"</s:if>><a href="EquipmentMaintainRecord">维修记录</a></li> 
-					<li class="dropdown <s:if test="%{#active == 'new'}">active</s:if>"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">新增/入库<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="IncreaseParts">备品入库</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="InsertParts">备品新增</a></li>
-							<li><a href="NewEquipment">设备/模具/工装新增</a></li>
-							<li><a href="NewTool">扭力工具新增</a></li>
-						</ul></li>
-					<li class="dropdown <s:if test="%{#active == 'record'}">active</s:if>"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">台账查看<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="EquipmentList?type=1">设备台账</a></li>
-							<li><a href="EquipmentList?type=4">工装台账</a></li>
-							<li><a href="EquipmentList?type=2">内部模具台账</a></li>
-							<li><a href="EquipmentList?type=3">外部模具台账</a></li>
-							<li><a href="EquipmentList?type=5">扭力工具台账</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="PartList">备品台账</a></li>
-							<li><a href="PartUseList">备品使用记录</a></li>
-						</ul></li>
-				</ul>
- 
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="https://github.com/stonejinyan/TPM/commits/master">版本更新记录</a></li>
-				</ul>
+			<div class="container">
+				<div class="navbar-header">
+					<!-- The mobile navbar-toggle button can be safely removed since you do not need it in a non-responsive implementation -->
 
+				</div>
+				<!-- Note that the .navbar-collapse and .collapse classes have been removed from the #navbar -->
+				<div id="navbar">
+					<ul class="nav navbar-nav">
+						<li <s:if test="#active=='home'">class="active"</s:if>><a
+							href="home">首页</a></li>
+						<li
+							<s:if test="%{#active == 'EquipmentMaintain'}">class="active"</s:if>><a
+							href="EquipmentMaintain">维修</a></li>
+						<li
+							<s:if test="%{#active == 'equipmentmaintainRecord'}">class="active"</s:if>><a
+							href="EquipmentMaintainRecord">维修记录</a></li>
+						<li
+							class="dropdown <s:if test="%{#active == 'new'}">active</s:if>"><a
+							href="#" class="dropdown-toggle" data-toggle="dropdown"
+							role="button" aria-haspopup="true" aria-expanded="false">新增/入库<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="IncreaseParts">备品入库</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="InsertParts">备品新增</a></li>
+								<li><a href="NewEquipment">设备/模具/工装新增</a></li>
+								<li><a href="NewTool">扭力工具新增</a></li>
+							</ul></li>
+						<li
+							class="dropdown <s:if test="%{#active == 'record'}">active</s:if>"><a
+							href="#" class="dropdown-toggle" data-toggle="dropdown"
+							role="button" aria-haspopup="true" aria-expanded="false">台账查看<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="EquipmentList?type=1">设备台账</a></li>
+								<li><a href="EquipmentList?type=4">工装台账</a></li>
+								<li><a href="EquipmentList?type=2">内部模具台账</a></li>
+								<li><a href="EquipmentList?type=3">外部模具台账</a></li>
+								<li><a href="EquipmentList?type=5">扭力工具台账</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="PartList">备品台账</a></li>
+								<li><a href="PartUseList">备品使用记录</a></li>
+							</ul></li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li><a
+							href="https://github.com/stonejinyan/TPM/commits/master">版本更新记录</a></li>
+					</ul>
+
+				</div>
+				<!--/.nav-collapse -->
 			</div>
-			<!--/.nav-collapse -->
-		</div>
 		</s:if>
 	</nav>
 	<!-- Bootstrap core JavaScript

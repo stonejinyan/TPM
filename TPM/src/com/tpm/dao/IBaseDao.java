@@ -133,6 +133,34 @@ public class IBaseDao<T> {
 		return null;
 	}
 
+	@SuppressWarnings({ "hiding", "unchecked" })
+	public <T> List<T> getAll(String tableName) {
+		String sql = "select * from " + tableName;
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		List<T> list;
+		try {
+			list = queryRunner.query(sql, new BeanListHandler<T>((Class<T>) entityClass));
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@SuppressWarnings({ "hiding", "unchecked" })
+	public <T> List<T> getAll(String tableName, int offset, int limit, String order) {
+		String sql = "select * from " + tableName + " order by id " + order + " limit " + offset + "," + limit;
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		List<T> list;
+		try {
+			list = queryRunner.query(sql, new BeanListHandler<T>((Class<T>) entityClass));
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	/*
 	 * （非 Javadoc） <p>Title: queryForMultiple</p> <p>Description: </p>
 	 * 
@@ -248,8 +276,9 @@ public class IBaseDao<T> {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+
 	}
 
 	/*
@@ -379,7 +408,24 @@ public class IBaseDao<T> {
 	 * @see com.zjcw.dao.IBaseDao#queryForSum(java.lang.String, java.lang.Object[])
 	 */
 	public double queryForSum(String sql, Object... args) {
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		try {
+			return (double) queryRunner.query(sql, new ScalarHandler(1), args);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return 0;
+	}
+
+	public Long queryForTotal(String tableName) {
+		String sql = "select count(*) from " + tableName;
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		try {
+			return (Long) queryRunner.query(sql, new ScalarHandler(1));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return (long) 0;
 	}
 
 	/*
