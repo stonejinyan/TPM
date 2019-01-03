@@ -12,8 +12,8 @@ public class StaffServiceTest {
 
 	@Test
 	public void test() {
-		System.out.println("9月MTTR：" + TPMService.getMTTR("2018-09-01", "2018-09-30"));
-		System.out.println("9月MTBF：" + TPMService.getMTBF("2018-09-01", "2018-09-30"));
+		System.out.println("9月MTTR：" + TPMService.getMTTR("2018-11-01", "2018-11-30"));
+		System.out.println("9月MTBF：" + TPMService.getMTBF("2018-11-01", "2018-11-30"));
 	}
 
 }

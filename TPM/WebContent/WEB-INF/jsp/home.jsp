@@ -231,19 +231,23 @@ canvas {
 			type : 'line',
 			data : {
 				labels : MONTHS,
-				datasets : [ {
-					label : '目标',
-					backgroundColor : window.chartColors.blue,
-					borderColor : window.chartColors.blue,
-					data : [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30 ],
-					fill : false,
-				}, {
-					label : '实际',
-					fill : false,
-					backgroundColor : "#38c859",
-					borderColor : "#38c859",
-					data : [ 22.4, 20.5, 24, 24.4, 23.5 ,22.1,24.9,36.3,47.41],
-				} ]
+				datasets : [
+						{
+							label : '目标',
+							backgroundColor : window.chartColors.blue,
+							borderColor : window.chartColors.blue,
+							data : [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+									30, 30 ],
+							fill : false,
+						},
+						{
+							label : '实际',
+							fill : false,
+							backgroundColor : "#38c859",
+							borderColor : "#38c859",
+							data : [ 22.4, 20.5, 24, 24.4, 23.5, 22.1, 24.9,
+									36.3, 47.41, 54.13, 44.54 ],
+						} ]
 			},
 			options : {
 				responsive : true,
@@ -296,7 +300,7 @@ canvas {
 							backgroundColor : "#38c859",
 							borderColor : "#38c859",
 							data : [ 161.3, 64.3, 261.2, 133.5, 85.6, 106.7,
-									161.4 ,130.6,148.44],
+									161.4, 130.6, 148.44, 238.85, 286.02 ],
 						} ]
 			},
 			options : {
@@ -365,7 +369,7 @@ canvas {
 					data : pmProportion,
 					mytype : 'doughnut',
 					backgroundColor : [ window.chartColors.blue,
-							window.chartColors.red, window.chartColors.orange],
+							window.chartColors.red, window.chartColors.orange ],
 					label : 'Dataset 1'
 				} ],
 				labels : [ '设备保养PM', '应急性维修RM', '其他' ]

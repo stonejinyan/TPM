@@ -38,7 +38,7 @@
 </head>
 
 <body>
-	
+
 	<!--  Logo 部位        -->
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default">
@@ -116,8 +116,9 @@
 								<li><a href="PartList">备品台账</a></li>
 								<li><a href="PartUseList">备品使用记录</a></li>
 							</ul></li>
+						<!-- <li <s:if test="#active=='dashboard'">class="active"</s:if>><a
+							href="Dashboard">仪表盘</a></li> -->
 					</ul>
-
 					<ul class="nav navbar-nav navbar-right">
 						<li><a
 							href="https://github.com/stonejinyan/TPM/commits/master">版本更新记录</a></li>
