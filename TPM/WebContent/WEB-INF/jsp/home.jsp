@@ -241,12 +241,18 @@ canvas {
 							fill : false,
 						},
 						{
+							label : '',
+							backgroundColor : "#ffffff",
+							borderColor : "#ffffff",
+							data : [ , , , , , , , , , , , , 50 ],
+							fill : false,
+						},
+						{
 							label : '实际',
 							fill : false,
 							backgroundColor : "#38c859",
 							borderColor : "#38c859",
-							data : [ 22.4, 20.5, 24, 24.4, 23.5, 22.1, 24.9,
-									36.3, 47.41, 54.13, 44.54 ],
+							data : [ 17.14 ,17.93 ,24.0],
 						} ]
 			},
 			options : {
@@ -272,6 +278,9 @@ canvas {
 						}
 					} ],
 					yAxes : [ {
+						 ticks: {
+				                beginAtZero:true
+				            },
 						display : true,
 						scaleLabel : {
 							display : true,
@@ -295,12 +304,18 @@ canvas {
 							fill : false,
 						},
 						{
+							label : '',
+							backgroundColor : "#ffffff",
+							borderColor : "#ffffff",
+							data : [ , , , , , , , , , , , , 200 ],
+							fill : false,
+						},
+						{
 							label : '实际',
 							fill : false,
 							backgroundColor : "#38c859",
 							borderColor : "#38c859",
-							data : [ 161.3, 64.3, 261.2, 133.5, 85.6, 106.7,
-									161.4, 130.6, 148.44, 238.85, 286.02 ],
+							data : [ 133.24 ,78.89],
 						} ]
 			},
 			options : {
@@ -326,6 +341,9 @@ canvas {
 						}
 					} ],
 					yAxes : [ {
+						ticks: {
+			                beginAtZero:true
+			            },
 						display : true,
 						scaleLabel : {
 							display : true,
