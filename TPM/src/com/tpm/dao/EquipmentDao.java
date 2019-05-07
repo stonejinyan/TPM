@@ -14,6 +14,10 @@ import com.tpm.tool.JDBCUtils;
 
 public class EquipmentDao extends IBaseDao<Equipment> {
 
+	public int update(String sql, int id, String newValue) {
+		return super.update("update ep " + sql, newValue, id);
+	}
+
 	public List<EquipmentList> getAllEquipmentList() {
 		// TODO Auto-generated method stub
 		String sql = "select * from eplist";
@@ -41,7 +45,7 @@ public class EquipmentDao extends IBaseDao<Equipment> {
 	}
 
 	public void insert(Equipment equipment) {
-		String sql1 = "insert into ep(id,epid,name,description,status,critical,environmental_impact,output_impact,ep_complexity,ep_manufacturing_channel,ep_cost,ep_score,backup_plan,check_method,check_cycle,check_staff_id,maintain_staff_id,property_id,attribute,save_area_id,type,n_m,user) values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql1 = "insert into ep(id,epid,name,description,status,critical,environmental_impact,output_impact,ep_complexity,ep_manufacturing_channel,ep_cost,ep_score,backup_plan,check_method,check_cycle,check_staff_id,maintain_staff_id,property_id,attribute,save_area_id,type,n_m,user,workstation) values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
 		Object[] param1 = { equipment.getEpid(), equipment.getName(), equipment.getDescription(), equipment.getStatus(),
 		        equipment.getCritical(), equipment.getEnvironmental_impact(), equipment.getOutput_impact(),
@@ -49,7 +53,7 @@ public class EquipmentDao extends IBaseDao<Equipment> {
 		        equipment.getEp_score(), equipment.getBackup_plan(), equipment.getCheck_method(),
 		        equipment.getCheck_cycle(), equipment.getCheck_staff_id(), equipment.getMaintain_staff_id(),
 		        equipment.getProperty_id(), equipment.getAttribute(), equipment.getSave_area_id(), equipment.getType(),
-		        equipment.getN_m(), equipment.getUser() };
+		        equipment.getN_m(), equipment.getUser(), equipment.getWorkstation() };
 		try {
 			queryRunner.update(sql1, param1);
 		} catch (SQLException e) {
@@ -115,5 +119,23 @@ public class EquipmentDao extends IBaseDao<Equipment> {
 	public long getEPCount(int type) {
 		String sql = "select count(*) from ep where type = ?";
 		return super.queryForCount(sql, type);
+	}
+
+	public List<EquipmentList> getAllEquipmentListByType(int type) {
+		String sql = "select * from eplist where type_id = ? order by id";
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		// System.out.println(sql + param.toString());
+		try {
+			List<EquipmentList> list = queryRunner.query(sql, new BeanListHandler<EquipmentList>(EquipmentList.class),
+			        type);
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public Equipment getByID(int id) {
+		return super.findById(id, "ep");
 	}
 }

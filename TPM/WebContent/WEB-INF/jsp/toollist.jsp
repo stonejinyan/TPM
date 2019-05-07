@@ -18,10 +18,9 @@
 
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<!-- Custom styles for this template -->
-<link href="css/custom.css" rel="stylesheet">
-<link href="css/login.css" rel="stylesheet">
-<link href="css/insertequipment.css" rel="stylesheet">
+<link href="css/home.css" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap-table.css">
+<link href="css/bootstrap-editable.css" rel="stylesheet">
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
@@ -41,135 +40,216 @@
 
 <body>
 	<%@include file="head.jsp"%>
+	<div class="container-fluid mycontainer">
+		<div class="row">
+			<div class="col-xs-12">
 
-	<div class="">
-		<div class="insertEP">
-			<br>
-			<form class="form-inline" action="EquipmentList" method="get">
-				<div class="form-group">
-					<label for="exampleInputName2"> 编号</label> <input type="text" name="epid"
-						class="form-control" id="exampleInputName2" placeholder="请输入编号">
+				<!-- <div id="searchtop">
+			<br> <br> <br> <br> <br>
+		</div> -->
+				<div class="row"></div>
+				<div class="row">
+					<h3>
+						<span class="label label-success">${typename}</span>
+					</h3>
+
+					<div id="toolbar">
+					<button id="btn_edit" type="button" class="btn btn-default">
+				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+			</button>
+					</div>
 				</div>
-				<div class="form-group">
-					<label for="inputEmail3"> 存放区域</label> <select id="equipmentarea"
-						class="form-control" name="area">
-						<option value="0">请选择存放区域</option>
-						<s:iterator value="processLine_AreaList">
-							<option value="<s:property value="id" />"><s:property
-									value="name" /></option>
-						</s:iterator>
-					</select>
-				</div>
-				<input type="hidden" name="type"
-						value="${type }">
-				<button type="submit" class="btn btn-default">筛选</button>
-			</form>
-			<br>
-			<table
-				class="table table-striped table-bordered table-hover table-condensed insertEP">
-				<tr>
-					<td class="text-center">序号</td>
-					<td class="text-center">编号</td>
-					<td class="text-center">名称</td>
-					<td class="text-center">固资编号</td>
-					<td class="text-center">描述</td>
-					<td class="text-center">状态</td>
-					<td class="text-center">类型</td>
-					<!--  
-					<td >环境影响度</td>
-					<td >产量影响度</td>
-					<td >设备复杂度</td>
-					<td >设备制造渠道</td>
-					<td >设备总价</td>
-					-->
-					<td class="text-center">n_m</td>
-					<td class="text-center">上次校检时间</td>
-					<td class="text-center">下次校检时间</td>
-					<td class="text-center">校验方式</td>
-					<!-- 
-					<td class="text-center">校验周期(月)</td>
-					<td class="text-center">校验负责人</td>
-					<td class="text-center">保养负责人</td>
-					-->
-					<td class="text-center">存放区域</td>
-					<td class="text-center">区域领用人</td>
-					<td class="text-center">设备/模具/工装</td>
-					<td class="text-center">操作</td>
-				</tr>
-				<s:iterator value="equipmentlist">
-					<tr>
-						<td class="text-center">${id}</td>
-						<td class="text-center">${epid}</td>
-						<td class="text-center" style="width: 100px">${epname}</td>
-						<td class="text-center">${property_id}</td>
-						<td class="text-center">${description}</td>
-						<td class="text-center">${status}</td>
-						<td class="text-center">${attribute}</td>
-						<!-- 
-					<td >${environmental_impact}</td>
-					<td >${output_impact}</td>
-					<td >${ep_complexity}</td>
-					<td >${ep_manufacturing_channel}</td>
-					<td >${ep_cost}</td>
-					-->
-						<td class="text-center">${n_m}</td>
-						<td class="text-center">${check_time}</td>
-						<td class="text-center" style="width: 100px">${next_check_time}</td>
-						<td class="text-center">${checkmethodname}</td>
-						<!--  
-					<td class="text-center">${check_cycle}</td>
-					<td class="text-center">${checkstaffname}</td>
-					<td class="text-center">${maintainstaffname}</td>
-					-->
-						<td class="text-center">${areaname}</td>
-						<td class="text-center">${user}</td>
-						<td class="text-center">${type}</td>
-						<td class="text-center"><button type="button"
-								class="btn btn-info">查看</button></td>
-					</tr>
-				</s:iterator>
-			</table>
-			<div class="text-center">
-				<ul class="pagination text-center">
-					<s:if test='#pageBean.hasPre == true'>
-						<li><a
-							href="EquipmentList?pageNow=1">首页</a></li>
-						<li><a
-							href="EquipmentList?pageNow=${pageBean.pageNow-1 }">上一页</a></li>
-					</s:if>
-					<s:iterator value="pageNumbers" var="pageNumber">
-						<s:if test='#pageNumber == #pageBean.pageNow'>
-							<li class="active"><a
-								href="EquipmentList?pageNow=${pageNumber}">
-									${pageNumber}</a></li>
-						</s:if>
-						<s:else>
-							<li><a
-								href="EquipmentList?pageNow=${pageNumber}">
-									${pageNumber}</a></li>
-						</s:else>
-					</s:iterator>
-					<s:if test='#pageBean.hasNext == true'>
-						<li><a
-							href="EquipmentList?pageNow=${pageBean.pageNow+1 }">下一页</a></li>
-						<li><a
-							href="EquipmentList?pageNow=${pageBean.totalPage }">最后一页</a></li>
-					</s:if>
-				</ul>
+				<table id="table"></table>
 			</div>
+
 		</div>
 	</div>
 	<%@include file="bottom.jsp"%>
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 	<script>
 		window.jQuery
 				|| document.write('<script src="js/jquery.min.js"><\/script>')
 	</script>
 	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"
+		charset="UTF-8"></script>
+	<script type="text/javascript"
+		src="js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+	<script src="js/bootstrap-editable.js"></script>
+	<script src="js/bootstrap-table.js"></script>
+	<script src="js/bootstrap-table-zh-CN.js"></script>
+	<script src="js/bootstrap-table-editable.js"></script>
+	<script src="js/combodate.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<script src="js/ie10-viewport-bug-workaround.js"></script>
+	<script type="text/javascript">
+		var tableConfig = {
+			url : '/TPM/GetEquipmentList?type=${type_id}', //请求后台的URL（*）
+			method : 'get', //请求方式（*）
+			contentType : "application/x-www-form-urlencoded",//必须要有！！！！
+			toolbar : '#toolbar', //工具按钮用哪个容器
+			striped : true, //是否显示行间隔色
+			cache : false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+			pagination : true, //是否显示分页（*）
+			sortable : false, //是否启用排序
+			sortOrder : "desc", //排序方式
+			//editable : true,
+			//queryParams: oTableInit.queryParams,//传递参数（*）
+			sidePagination : "client", //分页方式：client客户端分页，server服务端分页（*）
+			pageNumber : 1, //初始化加载第一页，默认第一页
+			pageSize : 20, //每页的记录行数（*）
+			pageList : [ 20, 30, 50 ], //可供选择的每页的行数（*）
+			search : true, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+			//strictSearch: true,
+			//showColumns: true,                  //是否显示所有的列
+			showRefresh : true, //是否显示刷新按钮
+			//minimumCountColumns: 2,             //最少允许的列数
+			clickToSelect : false, //是否启用点击选中行
+			//height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+			uniqueId : "ID", //每一行的唯一标识，一般为主键列
+			//showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
+			//cardView: false,                    //是否显示详细视图
+			//detailView: false,                   //是否显示父子表+
+			//showFullscreen : true,
+			buttonsAlign : 'left',
+			searchAlign : 'left',
+			toolbarAlign : 'right',
+			//searchText : '请输入订单名称或Batch号进行检索...',
+			columns : [ {
+				field : 'id',
+				title : '序号',
+				align : 'left',
+				valign : 'middle',
+			},{
+				field : 'epid',
+				title : '编号',
+				editable : false,
+				align : 'left',
+				valign : 'middle',
+			}, {
+				field : 'epname',
+				title : '名称',
+				editable : false,
+				align : 'center',
+				valign : 'middle',
+			}, {
+				field : 'property_id',
+				title : '固资编号',
+				editable : false,
+				align : 'center',
+				valign : 'middle',
+			}, {
+				field : 'description',
+				title : '描述',
+				align : 'center',
+				valign : 'middle',
+			}, {
+				field : 'status',
+				title : '状态',
+				align : 'center',
+				valign : 'middle',
+			}, {
+				field : 'attribute',
+				title : '类型',
+				align : 'center',
+				valign : 'middle',
+
+			}, {
+				field : 'n_m',
+				title : 'n_m',
+				editable : false,
+				align : 'center',
+				valign : 'middle',
+			}, {
+				field : 'user',
+				title : '区域领用人',
+				editable : true,
+				align : 'center',
+				valign : 'middle',
+			}, {
+				field : 'backup_plan',
+				title : '备份计划',
+				editable : false,
+				align : 'center',
+				valign : 'middle',
+			}, {
+				field : 'checkmethodname',
+				title : '校验方式',
+				align : 'center',
+				valign : 'middle',
+			}, {
+				field : 'checkstaffname',
+				title : '校验负责人',
+				align : 'center',
+				valign : 'middle',
+			}, {
+				field : 'maintainstaffname',
+				title : '保养负责人',
+				align : 'center',
+				valign : 'middle',
+			} , {
+				field : 'areaname',
+				title : '存放区域',
+				align : 'center',
+				valign : 'middle',
+			} , {
+				field : 'type',
+				title : '设备/模具/工装',
+				align : 'center',
+				valign : 'middle',
+			}, {
+				field : 'workstation',
+				title : '工位',
+				align : 'center',
+				valign : 'middle',
+			} , {
+				field : 'fileList',
+				title : '文件',
+				align : 'center',
+				valign : 'middle',
+			} ],
+			onEditableSave : function(field, row, oldValue, $el) {
+				$.ajax({
+					type : "post",
+					url : "EditEPAction",
+					data : {
+						"id" : row.id,
+						"fieldName" : field,
+						"oldValue" : oldValue,
+						"newValue" : row[field]
+					},
+					success : function(data, status) {
+						if (status == "success") {
+							if (status != 0) {
+								alert("编辑成功");
+							} else {
+								alert("编辑失败");
+							}
+						}
+					},
+					error : function() {
+						alert("编辑失败");
+					},
+					complete : function() {
+						//alert("complete:"+"field:"+field+"rowid:"+row.id+"rowfield:"+row[field]+"oldvalue:"+oldValue+"el:"+$el);
+						$table.bootstrapTable('refresh');
+					}
+				});
+			}
+		};
+		$(function() {
+			$('#btn_edit').click(function() {
+				editable();
+			});
+		});
+		function editable() {
+			$('#table .editable').editable('toggleDisabled');
+		}
+		$(function() {
+			$('#table').bootstrapTable(tableConfig);
+		});
+	</script>
 </body>
 </html>

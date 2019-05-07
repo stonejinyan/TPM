@@ -6,7 +6,8 @@
 	<constant name="struts.enable.DynamicMethodInvocation"
 		value="true" />
 	<constant name="struts.devMode" value="disable" />
-
+	<constant name="struts.multipart.maxSize" value="20485760" />
+	 <!-- <constant name="struts.multipart.saveDir" value="/TPMupLoad"/>-->
 	<package name="helloworld" extends="struts-default">
 		<interceptors>
 			<interceptor name="loginInterceptor"
@@ -22,7 +23,7 @@
 			name="loginDefaultStack"></default-interceptor-ref>
 		<global-results>
 			<result name="login" type="redirect">/login.jsp</result>
-            <result name="invalid.token" type="redirect">/error.jsp</result>
+			<result name="invalid.token" type="redirect">/error.jsp</result>
 		</global-results>
 		<action name="home" class="com.tpm.action.homeAction"
 			method="execute">
@@ -30,92 +31,112 @@
 		</action>
 		<action name="UserLogin" class="com.tpm.action.UserLoginAction"
 			method="execute">
-			<result name="home" type="redirectAction">home</result> 
+			<result name="home" type="redirectAction">home</result>
 		</action>
-		<action name="InsertEquipment" class="com.tpm.action.InsertEquipment"
-			method="execute">
+		<action name="InsertEquipment"
+			class="com.tpm.action.InsertEquipment" method="execute">
 			<result name="success" type="redirectAction">EquipmentList?type=1</result>
 		</action>
 		<action name="NewTool" class="com.tpm.action.NewTool"
 			method="execute">
 			<result name="success">/WEB-INF/jsp/inserttool.jsp</result>
 		</action>
-		<action name="EquipmentList" class="com.tpm.action.EquipmentList"
-			method="execute">
-			<result name="success">/WEB-INF/jsp/equipmentlist.jsp</result> 
-			<result name="toollist">/WEB-INF/jsp/toollist.jsp</result> 
+		<action name="EquipmentList"
+			class="com.tpm.action.EquipmentList" method="execute">
+			<result name="success">/WEB-INF/jsp/equipmentlist.jsp</result>
+			<result name="toollist">/WEB-INF/jsp/toollist.jsp</result>
 		</action>
 		<action name="NewEquipment" class="com.tpm.action.NewEquipment"
 			method="execute">
-			<result name="success">/WEB-INF/jsp/insertequipment.jsp</result> 
+			<result name="success">/WEB-INF/jsp/insertequipment.jsp</result>
 		</action>
-		<action name="EquipmentMaintain" class="com.tpm.action.EquipmentMaintain"
-			method="execute">
-			<result name="success">/WEB-INF/jsp/equipmentmaintain.jsp</result> 
+		<action name="EquipmentMaintain"
+			class="com.tpm.action.EquipmentMaintain" method="execute">
+			<result name="success">/WEB-INF/jsp/equipmentmaintain.jsp</result>
 		</action>
-		<action name="ProcessLineAreas" class="com.tpm.action.ProcessLineAreas"
-			method="execute">
-			<result name="success">Json.jsp</result> 
+		<action name="ProcessLineAreas"
+			class="com.tpm.action.ProcessLineAreas" method="execute">
+			<result name="success">Json.jsp</result>
 		</action>
-		<action name="GetEquipmentbyArea" class="com.tpm.action.GetEquipmentbyArea"
-			method="execute">
-			<result name="success">Json.jsp</result> 
+		<action name="GetEquipmentbyArea"
+			class="com.tpm.action.GetEquipmentbyArea" method="execute">
+			<result name="success">Json.jsp</result>
 		</action>
-		<action name="GetReplacementParts" class="com.tpm.action.GetReplacementParts"
-			method="execute">
-			<result name="success">Json.jsp</result> 
+		<action name="GetReplacementParts"
+			class="com.tpm.action.GetReplacementParts" method="execute">
+			<result name="success">Json.jsp</result>
 		</action>
-		<action name="InsertEquipmentMaintain" class="com.tpm.action.InsertEquipmentMaintain"
-			method="execute">
-			<result name="success" type="redirectAction">EquipmentMaintainRecord</result> 
+		<action name="InsertEquipmentMaintain"
+			class="com.tpm.action.InsertEquipmentMaintain" method="execute">
+			<result name="success" type="redirectAction">EquipmentMaintainRecord</result>
 		</action>
-		<action name="EquipmentMaintainRecord" class="com.tpm.action.EquipmentMaintainRecord"
-			method="execute">
-			<result name="success">/WEB-INF/jsp/equipmentmaintainRecord.jsp</result> 
+		<action name="EquipmentMaintainRecord"
+			class="com.tpm.action.EquipmentMaintainRecord" method="execute">
+			<result name="success">/WEB-INF/jsp/equipmentmaintainRecord.jsp</result>
 		</action>
 		<action name="InsertParts" class="com.tpm.action.InsertParts"
 			method="execute">
-			<result name="success">/WEB-INF/jsp/insertparts.jsp</result> 
+			<result name="success">/WEB-INF/jsp/insertparts.jsp</result>
 		</action>
-		<action name="IncreaseParts" class="com.tpm.action.IncreaseParts"
-			method="execute">
-			<result name="success">/WEB-INF/jsp/increaseparts.jsp</result> 
+		<action name="IncreaseParts"
+			class="com.tpm.action.IncreaseParts" method="execute">
+			<result name="success">/WEB-INF/jsp/increaseparts.jsp</result>
 		</action>
 		<action name="PartList" class="com.tpm.action.PartList"
 			method="execute">
-			<result name="success">/WEB-INF/jsp/partlist.jsp</result> 
+			<result name="success">/WEB-INF/jsp/partlist.jsp</result>
 		</action>
 		<action name="InsertPart" class="com.tpm.action.InsertPart"
 			method="execute">
-			<result name="success" type="redirectAction">PartList</result>  
+			<result name="success" type="redirectAction">PartList</result>
 		</action>
 		<action name="IncreasePart" class="com.tpm.action.IncreasePart"
 			method="execute">
-			<result name="success" type="redirectAction">PartList</result>   
+			<result name="success" type="redirectAction">PartList</result>
 		</action>
-		<action name="MaintenanceType" class="com.tpm.action.MaintenanceType"
-			method="execute">
-			<result name="success">Json.jsp</result> 
+		<action name="MaintenanceType"
+			class="com.tpm.action.MaintenanceType" method="execute">
+			<result name="success">Json.jsp</result>
 		</action>
-		<action name="GetPMSchedules" class="com.tpm.action.GetPMSchedules"
-			method="execute">
-			<result name="success">Json.jsp</result> 
+		<action name="GetPMSchedules"
+			class="com.tpm.action.GetPMSchedules" method="execute">
+			<result name="success">Json.jsp</result>
 		</action>
 		<action name="PmProportion" class="com.tpm.action.PmProportion"
 			method="execute">
-			<result name="success">Json.jsp</result> 
+			<result name="success">Json.jsp</result>
 		</action>
 		<action name="PartUseList" class="com.tpm.action.PartUseList"
 			method="execute">
-			<result name="success">/WEB-INF/jsp/partuselist.jsp</result> 
+			<result name="success">/WEB-INF/jsp/partuselist.jsp</result>
 		</action>
 		<action name="Dashboard" class="com.tpm.action.DashboardAction"
 			method="execute">
-			<result name="success">/WEB-INF/jsp/dashboard.jsp</result> 
+			<result name="success">/WEB-INF/jsp/dashboard.jsp</result>
 		</action>
-		<action name="CancelMaintenance" class="com.tpm.action.CancelMaintenance"
+		<action name="epFileList"
+			class="com.tpm.action.EPFileListAction" method="execute">
+			<result name="success">/WEB-INF/jsp/equipmentfilelist.jsp</result>
+		</action>
+		<action name="CancelMaintenance"
+			class="com.tpm.action.CancelMaintenance" method="execute">
+			<result name="success">Json.jsp</result>
+		</action>
+		<action name="GetEquipmentList"
+			class="com.tpm.action.GetEquipmentList" method="execute">
+			<result name="success">Json.jsp</result>
+		</action>
+		<action name="GetEquipmentFileList"
+			class="com.tpm.action.GetEquipmentFileListAction" method="execute">
+			<result name="success">Json.jsp</result>
+		</action>
+		<action name="EditEPAction" class="com.tpm.action.EditEPAction"
 			method="execute">
-			<result name="success">Json.jsp</result> 
+			<result name="success">Json.jsp</result>
+		</action>
+		<action name="SaveEPFile" class="com.tpm.action.SaveEPFile"
+			method="execute">
+			<result name="success" type="redirect">epFileList</result>
 		</action>
 	</package>
 </struts>

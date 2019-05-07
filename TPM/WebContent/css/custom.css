@@ -35,3 +35,30 @@ body{
 	background-color: #38c859;
 	color: #ffffff;
 }
+.mycontainer{
+	background-color: #FFFFFF;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.middle{
+   float: none;
+   display: inline-block;
+   vertical-align: middle;
+}
+.center-vertical {
+position:relative;
+top:50%;
+transform:translateY(-50%);
+}
+.hr{
+	border-right: solid 2px #c0c0c0;
+}
+.center-block {
+  display: block;
+  margin-top: 20px;
+}
+.homecontainer{
+	background-color: #FFFFFF;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}

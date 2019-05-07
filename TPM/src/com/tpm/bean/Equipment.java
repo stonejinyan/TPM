@@ -28,6 +28,15 @@ public class Equipment {
 	private Staff check_staff = new Staff();
 	private Staff maintain_staff = new Staff();
 	private ProcessLine_Area processLine_Area = new ProcessLine_Area();
+	private String workstation;
+
+	public String getWorkstation() {
+		return workstation;
+	}
+
+	public void setWorkstation(String workstation) {
+		this.workstation = workstation;
+	}
 
 	public int getId() {
 		return id;

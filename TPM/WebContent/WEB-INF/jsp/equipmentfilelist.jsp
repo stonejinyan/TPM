@@ -49,10 +49,54 @@
 				<div class="row"></div>
 				<div class="row">
 					<h3>
-						<span class="label label-success">${typename}</span>
+						<span class="label label-success">${ep.epid}${ep.name} 文件查看</span>
 					</h3>
 
-					<div id="toolbar">
+					<p class="bg-danger">${savenumber}${updatenumber}${error}</p>
+					<div id="toolbar" class="btn-group">
+						<button id="btn_add" type="button" class="btn btn-default"
+							data-toggle="modal" data-target="#exampleModal"
+							data-whatever="@mdo">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+						</button>
+						<div class="modal fade" id="exampleModal" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+										<h4 class="modal-title" id="exampleModalLabel">文件新增</h4>
+									</div>
+									<form action="SaveEPFile" method="post"
+										enctype="multipart/form-data">
+										<div class="modal-body">
+											<div class="form-group">
+												<label for="recipient-name" class="control-label">请输入文件名称</label>
+												<input type="text" class="form-control" id="recipient-name"
+													name="name">
+											</div>
+											<div class="form-group">
+												
+												<input type="hidden" class="form-control" id="recipient-name"
+													name="id" value="${id }">
+											</div>
+											<div class="form-group">
+												<label for="exampleInputFile">文件上传</label> <input
+													type="file" name="uploadfile">
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">上传</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<table id="table"></table>
@@ -79,7 +123,7 @@
 	<script src="js/ie10-viewport-bug-workaround.js"></script>
 	<script type="text/javascript">
 		var tableConfig = {
-			url : '/TPM/GetEquipmentList?type=${type_id}', //请求后台的URL（*）
+			url : '/TPM/GetEquipmentFileList?id=${getFilesByep_id}', //请求后台的URL（*）
 			method : 'get', //请求方式（*）
 			contentType : "application/x-www-form-urlencoded",//必须要有！！！！
 			toolbar : '#toolbar', //工具按钮用哪个容器
@@ -106,9 +150,9 @@
 			//cardView: false,                    //是否显示详细视图
 			//detailView: false,                   //是否显示父子表+
 			//showFullscreen : true,
-			buttonsAlign : 'left',
-			searchAlign : 'left',
-			toolbarAlign : 'right',
+			buttonsAlign : 'right',
+			searchAlign : 'right',
+			toolbarAlign : 'left',
 			//searchText : '请输入订单名称或Batch号进行检索...',
 			columns : [ {
 				field : 'id',
@@ -116,94 +160,27 @@
 				editable : true,
 				align : 'left',
 				valign : 'middle',
-			},{
-				field : 'epid',
-				title : '编号',
+			}, {
+				field : 'name',
+				title : '文件名称',
 				editable : true,
 				align : 'left',
 				valign : 'middle',
 			}, {
-				field : 'epname',
-				title : '名称',
-				editable : true,
-				align : 'center',
-				valign : 'middle',
-				width : '100px',
-			}, {
-				field : 'property_id',
-				title : '固资编号',
+				field : 'link',
+				title : '地址',
 				editable : true,
 				align : 'center',
 				valign : 'middle',
 			}, {
-				field : 'description',
-				title : '描述',
-				align : 'center',
-				valign : 'middle',
-				width : '50px',
-			}, {
-				field : 'status',
-				title : '状态',
-				align : 'center',
-				valign : 'middle',
-			}, {
-				field : 'attribute',
-				title : '类型',
-				align : 'center',
-				valign : 'middle',
-
-			}, {
-				field : 'ep_score',
-				title : '评估分',
+				field : 'TDDate',
+				title : '上传时间',
 				editable : true,
 				align : 'center',
 				valign : 'middle',
 			}, {
-				field : 'criticalname',
-				title : '是否关键',
-				editable : true,
-				align : 'center',
-				valign : 'middle',
-			}, {
-				field : 'backup_plan',
-				title : '备份计划',
-				editable : true,
-				align : 'center',
-				valign : 'middle',
-				width : '100px',
-			}, {
-				field : 'checkmethodname',
-				title : '校验方式',
-				align : 'center',
-				valign : 'middle',
-			}, {
-				field : 'checkstaffname',
-				title : '校验负责人',
-				align : 'center',
-				valign : 'middle',
-			}, {
-				field : 'maintainstaffname',
-				title : '保养负责人',
-				align : 'center',
-				valign : 'middle',
-			} , {
-				field : 'areaname',
-				title : '存放区域',
-				align : 'center',
-				valign : 'middle',
-			} , {
-				field : 'type',
-				title : '设备/模具/工装',
-				align : 'center',
-				valign : 'middle',
-			} , {
-				field : 'workstation',
-				title : '工位',
-				align : 'center',
-				valign : 'middle',
-			}, {
-				field : 'fileList',
-				title : '文件',
+				field : 'staff',
+				title : '上传人',
 				align : 'center',
 				valign : 'middle',
 			} ],

@@ -187,6 +187,13 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-3 control-label">工位号</label>
+							<div class="col-sm-8">
+								<input name="equipment.workstation" type="text" class="form-control"
+									id="inputEmail3" placeholder="请输入工位号.....">
+							</div>
+						</div>
+						<div class="form-group">
 							<div class="col-sm-offset-4 col-sm-8">
 								<button type="submit" class="btn btn-default">提交</button>
 							</div>

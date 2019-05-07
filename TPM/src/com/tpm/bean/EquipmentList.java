@@ -24,6 +24,24 @@ public class EquipmentList {
 	private Date check_time;
 	private Date next_check_time;
 	private String user;
+	private String fileList;
+	private String workstation;
+
+	public String getWorkstation() {
+		return workstation;
+	}
+
+	public void setWorkstation(String workstation) {
+		this.workstation = workstation;
+	}
+
+	public String getFileList() {
+		return fileList;
+	}
+
+	public void setFileList(String fileList) {
+		this.fileList = fileList;
+	}
 
 	public int getId() {
 		return id;
@@ -31,6 +49,7 @@ public class EquipmentList {
 
 	public void setId(int id) {
 		this.id = id;
+		setFileList("<a href=\"epFileList?id=" + id + "\" type=\"button\" class=\"btn btn-success\">查看</a");
 	}
 
 	public String getEpid() {
@@ -183,17 +202,6 @@ public class EquipmentList {
 
 	public void setUser(String user) {
 		this.user = user;
-	}
-
-	@Override
-	public String toString() {
-		return "EquipmentList [id=" + id + ", epid=" + epid + ", epname=" + epname + ", description=" + description
-		        + ", ep_score=" + ep_score + ", backup_plan=" + backup_plan + ", check_cycle=" + check_cycle
-		        + ", checkstaffname=" + checkstaffname + ", attribute=" + attribute + ", status=" + status
-		        + ", areaname=" + areaname + ", criticalname=" + criticalname + ", maintainstaffname="
-		        + maintainstaffname + ", checkmethodname=" + checkmethodname + ", property_id=" + property_id
-		        + ", type=" + type + ", n_m=" + n_m + ", check_time=" + check_time + ", next_check_time="
-		        + next_check_time + ", user=" + user + "]";
 	}
 
 }
