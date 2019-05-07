@@ -84,11 +84,15 @@
 						<li <s:if test="#active=='home'">class="active"</s:if>><a
 							href="home">首页</a></li>
 						<li
-							<s:if test="%{#active == 'EquipmentMaintain'}">class="active"</s:if>><a
-							href="EquipmentMaintain">维修</a></li>
-						<li
-							<s:if test="%{#active == 'equipmentmaintainRecord'}">class="active"</s:if>><a
-							href="EquipmentMaintainRecord">维修记录</a></li>
+							class="dropdown <s:if test="%{#active == 'EquipmentMaintain'}">active</s:if>"><a
+							href="#" class="dropdown-toggle" data-toggle="dropdown"
+							role="button" aria-haspopup="true" aria-expanded="false">维修<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="MaintenanceRequest">维修申请</a></li>
+								<li><a href="EquipmentMaintain">工单提交</a></li>
+								<li><a href="EquipmentMaintainRecord">维修记录查看</a></li>
+							</ul></li>
 						<li
 							class="dropdown <s:if test="%{#active == 'new'}">active</s:if>"><a
 							href="#" class="dropdown-toggle" data-toggle="dropdown"

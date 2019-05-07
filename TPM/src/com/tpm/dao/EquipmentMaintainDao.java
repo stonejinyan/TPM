@@ -58,7 +58,7 @@ public class EquipmentMaintainDao {
 			        + "','" + maintenanceDailyWorkRecord.getPm_id() + "','" + maintenanceDailyWorkRecord.getTime()
 			        + "','" + maintenanceDailyWorkRecord.getStaff_id() + "','"
 			        + maintenanceDailyWorkRecord.getUser_time() + "','" + maintenanceDailyWorkRecord.getEp_id()
-			        + "','1')";
+			        + "','1'" + ",'" + maintenanceDailyWorkRecord.getRm_id() + "')";
 			ps = conn.prepareStatement(sql1);
 			ps.executeUpdate();
 			String sql2 = "SELECT LAST_INSERT_ID()";
@@ -80,9 +80,16 @@ public class EquipmentMaintainDao {
 					ps.executeUpdate();
 				}
 			}
-			String sql4 = "update pm_schedule set finish = '完成' , maintenance_id = '" + RS.getInt(1) + "'"
-			        + " where id = '" + pmSchedule_id + "'";
-			ps = conn.prepareStatement(sql4);
+			if (maintenanceDailyWorkRecord.getType() == 1) {
+				String sql4 = "update pm_schedule set finish = '完成' , maintenance_id = '" + RS.getInt(1) + "'"
+				        + " where id = '" + pmSchedule_id + "'";
+				ps = conn.prepareStatement(sql4);
+			}
+			if (maintenanceDailyWorkRecord.getType() == 2) {
+				String sql5 = "update maintenancerequest set status_id = 1, maintenance_id = '" + RS.getInt(1) + "'"
+				        + " where id = '" + pmSchedule_id + "'";
+				ps = conn.prepareStatement(sql5);
+			}
 			ps.executeUpdate();
 			conn.commit();
 			return "success";

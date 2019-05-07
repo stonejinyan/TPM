@@ -64,14 +64,17 @@
 		<div class="container insertEP">
 			<div class="row">
 				<div class="col-xs-7 ">
+			<h3>
+			<span class="label label-success">维修申请</span>
+			</h3>
 					<br>
-					<form id="defaultForm" action="InsertEquipmentMaintain" method="get"
+					<form id="defaultForm" action="InsertMaintenanceRequest" method="get"
 						class="form-horizontal">
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-3 control-label">选择存放区域</label>
 							<div class="col-sm-8">
 								<select onChange="setEquipments()" id="equipmentarea"
-									class="form-control" name="area">
+									class="form-control" name="maintenanceRequest.area">
 									<option value="">请选择存放区域</option>
 									<s:iterator value="processLine_AreaList">
 										<option value="<s:property value="id" />"><s:property
@@ -85,20 +88,9 @@
 							<div>
 								<div class="col-xs-8">
 									<select onChange="setPM()" id="equipment"
-										name="maintenanceDailyWorkRecord.ep_id" class="form-control">
+										name="maintenanceRequest.ep_id" class="form-control">
 										<option value="">请先选择存放区域</option>
 									</select>
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-3 control-label" for="exampleInputAmount">实际耗时分钟数</label>
-							<div class="col-xs-8">
-								<div class="input-group">
-									<input name="maintenanceDailyWorkRecord.user_time" type="text"
-										class="form-control" id="exampleInputAmount"
-										placeholder="请输入实际耗时分钟数....">
-									<div class="input-group-addon">分钟　</div>
 								</div>
 							</div>
 						</div>
@@ -109,7 +101,7 @@
 									<div id="datetimePicker" class="controls input-append date form_date" data-date=""
 										data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
 										data-link-format="yyyy-mm-dd">
-										<input name="maintenanceDailyWorkRecord.time"
+										<input name="maintenanceRequest.time"
 											class="text-center" size="16" type="text" readonly><div class="label label-success">选填:默认为今天</div>
 										<span class="add-on"><i class="icon-remove"></i></span> <span
 											class="add-on"><i class="icon-th"></i></span>
@@ -118,54 +110,19 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3"
-								class="col-sm-3 control-label">维修类型</label>
-							<div class="col-sm-8">
-								<select name="maintenanceDailyWorkRecord.type" onChange="setPM()" id="MaintenanceType"
-									class="form-control">
-									<option value="">请选择维修类型</option>
-									<s:iterator value="MaintenanceType">
-										<option value="<s:property value="id" />"><s:property
-												value="name" /></option>
-									</s:iterator>
-								</select>
-							</div>
-						</div>
-						<div id="PM"></div>
-						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-3 control-label">问题描述</label>
 							<div class="col-sm-8">
-								<textarea name="maintenanceDailyWorkRecord.question_description"
+								<textarea name="maintenanceRequest.question_description"
 									class="form-control" rows="3" placeholder="请输入问题描述....."></textarea>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">处理方法</label>
+							<label for="inputEmail3" class="col-sm-3 control-label">建议处理方法</label>
 							<div class="col-sm-8">
-								<textarea name="maintenanceDailyWorkRecord.process_description"
+								<textarea name="maintenanceRequest.process_description"
 									class="form-control" rows="3" placeholder="请输入处理方法....."></textarea>
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">使用备品种类</label>
-							<div class="col-sm-8">
-								<select name="partkind" id="partkinds" onchange="newPart()" name=""
-									class="form-control">
-									<option value="0">无</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-								</select>
-							</div>
-						</div>
-						<div id='newPart'></div>
 						<div class="form-group">
 							<div class="col-sm-offset-4 col-sm-8">
 								<button id="validateBtn" type="submit" class="btn btn-default">提交</button>
@@ -282,100 +239,6 @@
 				opt.value = '';
 				opt.text = '请先选择设备存放区域';
 				sltEquipment.add(opt, null);
-			}
-		}
-		function newPart() {
-			var newPart = document.getElementById("newPart");
-			var partkindsObj = document.getElementById("partkinds");
-			var id = partkindsObj.options[partkindsObj.selectedIndex].value;
-			//alert("13");
-			//alert(partkinds);
-			newPart.innerHTML = '';
-			for (var i = 0; i < id; i++) {
-				var sequence = i + 1;
-				newPart.innerHTML = newPart.innerHTML
-						+ '<div class="form-group"><label for="inputEmail3" class="col-sm-3 control-label bg-danger">备品'
-						+ sequence
-						+ ':ID</label><div class="col-sm-8"><input onBlur="searchPart(this)" name="useRecords['
-						+ i
-						+ '].part_id" type="text" class="form-control" id="'
-						+ sequence
-						+ '" placeholder="请输入备品ID：S-..."></div></div>'
-						+ '<div class="form-group"><label for="inputEmail3" class="col-sm-3 control-label">使用数量</label><div class="col-sm-8"><input name="useRecords['+i+'].use_number" type="text" class="form-control" id="inputEmail3" placeholder="请输入备品使用数量（正整数）"></div></div>'
-						+ '<div class="form-group"><label for="inputEmail3" class="col-sm-3 control-label">请核对备品名称</label><div class="col-sm-8"> <p id="partname'+sequence+'" class="form-control-static bg-danger"></p><input type="hidden" name="useRecords['+i+'].replacement_part_id" id="replacement_part_id'+sequence+'"/></div></div>';
-			}
-		}
-		function searchPart(thisinput) {
-			var partname = document.getElementById("partname" + thisinput.id);
-			var replacement_part_id = document
-					.getElementById("replacement_part_id" + thisinput.id);
-			//alert(1);
-			//alert(parts[1].name);
-			//alert(thisinput.value);
-			partname.innerText = "";
-			for (var i = 0; i < parts.length; i++) {
-				if (parts[i].part_id == thisinput.value) {
-					partname.innerText = "　" + parts[i].name;
-					replacement_part_id.value = parts[i].id;
-					break;
-				}
-			}
-			if (partname.innerText == "") {
-				partname.innerText = "无此备件"
-			}
-		}
-
-		function setPM() {
-			var maintenanceType = document.getElementById("MaintenanceType");
-			var equipment = document.getElementById("equipment");
-			var pm = document.getElementById("PM");
-			if (maintenanceType.value == 1 && equipment.value != 0) {
-				$
-				.ajax({
-					url : '/TPM/GetPMSchedules?ep_id='
-							+ equipment.value,
-					type : 'GET',
-					success : function(data) {
-						obj = data;
-				            pm.innerHTML = '<div class="form-group"><label for="inputEmail3" class="col-sm-3 control-label">PM计划</label><div class="col-sm-8"><select id="PMSchedule" name="pmSchedule_id" class="form-control"></select></div></div>';
-				            var PMSchedule = document.getElementById("PMSchedule");
-				            var opt = document.createElement('option');
-							opt.value = '';
-							opt.text =  '请选择PM计划';
-							PMSchedule.add(opt, null);
-				            for (var i = 0; i < obj.length; i++) {
-							var opt = document.createElement('option');
-							opt.value = obj[i].id;
-							opt.text =  obj[i].schedule_time;
-							PMSchedule.add(opt, null);
-						}
-					}
-				});	
-				            
-			} else if(maintenanceType.value == 2 && equipment.value != 0) {
-				$
-				.ajax({
-					url : '/TPM/GetPMSchedulesByEpID?ep_id='
-							+ equipment.value,
-					type : 'GET',
-					success : function(data) {
-						obj = data;
-				            pm.innerHTML = '<div class="form-group"><label for="inputEmail3" class="col-sm-3 control-label">维修申请单</label><div class="col-sm-8"><select id="PMSchedule" name="pmSchedule_id" class="form-control"></select></div></div>';
-				            var PMSchedule = document.getElementById("PMSchedule");
-				            var opt = document.createElement('option');
-							opt.value = '';
-							opt.text =  '请选择RM计划';
-							PMSchedule.add(opt, null);
-				            for (var i = 0; i < obj.length; i++) {
-							var opt = document.createElement('option');
-							opt.value = obj[i].id;
-							opt.text =  obj[i].epid +' - '+ obj[i].epname;
-							PMSchedule.add(opt, null);
-						}
-					}
-				});
-			}else {
-				pm.innerText = "";
 			}
 		}
 		$(document).ready(function() {

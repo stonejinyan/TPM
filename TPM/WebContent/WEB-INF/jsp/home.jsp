@@ -18,6 +18,7 @@
 
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap-table.css">
 <!-- Custom styles for this template -->
 <link href="css/custom.css" rel="stylesheet">
 <link href="css/login.css" rel="stylesheet">
@@ -39,33 +40,6 @@
       <script src="js/respond.min.js"></script>
     <![endif]-->
 <style>
-canvas {
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-}
-
-.chart-container {
-	width: 550px;
-	margin-left: 25px;
-	padding-left: 0px;
-	margin-right: 0px;
-	margin-bottom: 5px;
-}
-
-.container1 {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap; //
-	justify-content: center;
-}
-
-.container2 {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap; //
-	justify-content: center;
-}
 </style>
 </head>
 
@@ -75,8 +49,16 @@ canvas {
 	<div class="container-fluid">
 
 
-
-		<div class="row PMplan">
+		<div class="row insertEP">
+			<div class="col-xs-12">
+			<h3>
+					<span class="label label-success">待处理维修申请</span>
+				</h3>
+				<table id="table"></table>
+			</div>
+		</div>
+		<hr>
+		<div class="row insertEP">
 			<div class="col-xs-6 PMplan hr">
 				<h3>
 					<span class="label label-success">预防性维护计划</span>
@@ -178,6 +160,7 @@ canvas {
 				</div>
 			</div>
 			<div class="col-xs-6 insertEP">
+
 				<h3>
 					<span class="label label-success">预防性维护资源占比</span>
 				</h3>
@@ -185,8 +168,10 @@ canvas {
 					<canvas id="chart-area"></canvas>
 				</div>
 			</div>
+
 		</div>
 		<hr>
+
 		<div class="row insertEP">
 			<div class="container1 col-xs-6 hr">
 				<h3>
@@ -220,40 +205,149 @@ canvas {
 				|| document.write('<script src="js/jquery.min.js"><\/script>')
 	</script>
 	<script src="js/bootstrap.min.js"></script>
-	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<script src="js/ie10-viewport-bug-workaround.js"></script>
+	<script src="js/bootstrap3-typeahead.js"></script>
+	<script src="js/bootstrap-table.js"></script>
+	<script src="js/bootstrap-table-zh-CN.js"></script>
+	<script src="js/bootstrap-table-en-US.js"></script>
 	<script type="text/javascript" src="js/Chartbundle.js"></script>
 	<script type="text/javascript" src="js/utils.js"></script>
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="js/ie10-viewport-bug-workaround.js"></script>
+
 	<script type="text/javascript">
+		var tableConfig = {
+			url : '/TPM/GetAllMaintenanceRequest', //请求后台的URL（*）
+			method : 'get', //请求方式（*）
+			contentType : "application/x-www-form-urlencoded",//必须要有！！！！
+			//toolbar : '#toolbar', //工具按钮用哪个容器
+			striped : true, //是否显示行间隔色
+			cache : false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+			pagination : true, //是否显示分页（*）
+			sortable : false, //是否启用排序
+			sortOrder : "desc", //排序方式
+			//editable : true,
+			//queryParams: oTableInit.queryParams,//传递参数（*）
+			sidePagination : "client", //分页方式：client客户端分页，server服务端分页（*）
+			pageNumber : 1, //初始化加载第一页，默认第一页
+			pageSize : 10, //每页的记录行数（*）
+			pageList : [ 10, 20, 30 ], //可供选择的每页的行数（*）
+			search : false, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+			//strictSearch: true,
+			//showColumns: true,                  //是否显示所有的列
+			showRefresh : false, //是否显示刷新按钮
+			//minimumCountColumns: 2,             //最少允许的列数
+			clickToSelect : false, //是否启用点击选中行
+			//height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+			uniqueId : "ID", //每一行的唯一标识，一般为主键列
+			//showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
+			//cardView: false,                    //是否显示详细视图
+			//detailView: false,                   //是否显示父子表+
+			//showFullscreen : true,
+			buttonsAlign : 'right',
+			searchAlign : 'right',
+			toolbarAlign : 'left',
+			//searchText : '请输入订单名称或Batch号进行检索...',
+			columns : [ {
+				field : 'area',
+				title : '区域',
+				editable : true,
+				align : 'left',
+				valign : 'middle',
+			},{
+				field : 'epid',
+				title : '序号',
+				editable : true,
+				align : 'left',
+				valign : 'middle',
+			}, {
+				field : 'epname',
+				title : '设备/工具/工装',
+				editable : true,
+				align : 'left',
+				valign : 'middle',
+			}, {
+				field : 'question_description',
+				title : '问题描述',
+				editable : true,
+				align : 'left',
+				valign : 'middle',
+			}, {
+				field : 'process_description',
+				title : '建议处理方法',
+				editable : true,
+				align : 'center',
+				valign : 'middle',
+			}, {
+				field : 'time',
+				title : '提交时间',
+				editable : true,
+				align : 'center',
+				valign : 'middle',
+			}, {
+				field : 'staff',
+				title : '提交员工',
+				align : 'center',
+				valign : 'middle',
+			} ],
+			onEditableSave : function(field, row, oldValue, $el) {
+				$.ajax({
+					type : "post",
+					url : "EditMO",
+					data : {
+						"id" : row.id,
+						"fieldName" : field,
+						"oldValue" : oldValue,
+						"newValue" : row[field]
+					},
+					success : function(data, status) {
+						if (status == "success") {
+							if (status != 0) {
+								alert("编辑成功");
+							} else {
+								alert("编辑失败");
+							}
+						}
+					},
+					error : function() {
+						alert("编辑失败");
+					},
+					complete : function() {
+						//alert("complete:"+"field:"+field+"rowid:"+row.id+"rowfield:"+row[field]+"oldvalue:"+oldValue+"el:"+$el);
+						$table.bootstrapTable('refresh');
+					}
+				});
+			}
+		};
+
+		$(function() {
+			$('#table').bootstrapTable(tableConfig);
+		});
+
 		var MONTHS = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
 				'Sep', 'Oct', 'Nov', 'Dec' ];
 		var configMTTR = {
 			type : 'line',
 			data : {
 				labels : MONTHS,
-				datasets : [
-						{
-							label : '目标',
-							backgroundColor : window.chartColors.blue,
-							borderColor : window.chartColors.blue,
-							data : [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-									30, 30 ],
-							fill : false,
-						},
-						{
-							label : '',
-							backgroundColor : "#ffffff",
-							borderColor : "#ffffff",
-							data : [ , , , , , , , , , , , , 50 ],
-							fill : false,
-						},
-						{
-							label : '实际',
-							fill : false,
-							backgroundColor : "#38c859",
-							borderColor : "#38c859",
-							data : [ 17.14 ,17.93 ,24.0],
-						} ]
+				datasets : [ {
+					label : '目标',
+					backgroundColor : window.chartColors.blue,
+					borderColor : window.chartColors.blue,
+					data : [ 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30 ],
+					fill : false,
+				}, {
+					label : '',
+					backgroundColor : "#ffffff",
+					borderColor : "#ffffff",
+					data : [ , , , , , , , , , , , , 50 ],
+					fill : false,
+				}, {
+					label : '实际',
+					fill : false,
+					backgroundColor : "#38c859",
+					borderColor : "#38c859",
+					data : [ 17.14, 17.93, 24.0 ],
+				} ]
 			},
 			options : {
 				responsive : true,
@@ -278,9 +372,9 @@ canvas {
 						}
 					} ],
 					yAxes : [ {
-						 ticks: {
-				                beginAtZero:true
-				            },
+						ticks : {
+							beginAtZero : true
+						},
 						display : true,
 						scaleLabel : {
 							display : true,
@@ -302,20 +396,18 @@ canvas {
 							data : [ 100, 100, 100, 100, 100, 100, 100, 100,
 									100, 100, 100, 100 ],
 							fill : false,
-						},
-						{
+						}, {
 							label : '',
 							backgroundColor : "#ffffff",
 							borderColor : "#ffffff",
 							data : [ , , , , , , , , , , , , 200 ],
 							fill : false,
-						},
-						{
+						}, {
 							label : '实际',
 							fill : false,
 							backgroundColor : "#38c859",
 							borderColor : "#38c859",
-							data : [ 133.24 ,78.89],
+							data : [ 133.24, 78.89 ,150.54 ],
 						} ]
 			},
 			options : {
@@ -341,9 +433,9 @@ canvas {
 						}
 					} ],
 					yAxes : [ {
-						ticks: {
-			                beginAtZero:true
-			            },
+						ticks : {
+							beginAtZero : true
+						},
 						display : true,
 						scaleLabel : {
 							display : true,
@@ -456,7 +548,7 @@ canvas {
 		});
 
 		window.onload = function() {
-
+			$('#table').bootstrapTable(tableConfig);
 			var ctx = document.getElementById('canvasMTTR').getContext('2d');
 			window.myLine = new Chart(ctx, configMTTR);
 			var ctx = document.getElementById('canvasMTBF').getContext('2d');

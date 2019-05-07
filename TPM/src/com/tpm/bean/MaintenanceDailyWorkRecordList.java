@@ -8,6 +8,7 @@ public class MaintenanceDailyWorkRecordList {
 	private String question_description;
 	private String process_description;
 	private int pm_id;
+	private int rm_id;
 	private Date time;
 	private String staffname;
 	private double user_time;
@@ -16,6 +17,14 @@ public class MaintenanceDailyWorkRecordList {
 	private String areaname;
 	private String maintenancetypename;
 	private int status_id;
+
+	public int getRm_id() {
+		return rm_id;
+	}
+
+	public void setRm_id(int rm_id) {
+		this.rm_id = rm_id;
+	}
 
 	public int getId() {
 		return id;

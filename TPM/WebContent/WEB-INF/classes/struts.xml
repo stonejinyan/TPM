@@ -70,6 +70,10 @@
 			class="com.tpm.action.InsertEquipmentMaintain" method="execute">
 			<result name="success" type="redirectAction">EquipmentMaintainRecord</result>
 		</action>
+		<action name="InsertMaintenanceRequest"
+			class="com.tpm.action.InsertMaintenanceRequest" method="execute">
+			<result name="success" type="redirectAction">home</result>
+		</action>
 		<action name="EquipmentMaintainRecord"
 			class="com.tpm.action.EquipmentMaintainRecord" method="execute">
 			<result name="success">/WEB-INF/jsp/equipmentmaintainRecord.jsp</result>
@@ -134,9 +138,20 @@
 			method="execute">
 			<result name="success">Json.jsp</result>
 		</action>
+		<action name="GetAllMaintenanceRequest" class="com.tpm.action.GetAllMaintenanceRequest"
+			method="execute">
+			<result name="success">Json.jsp</result>
+		</action>
+		<action name="GetPMSchedulesByEpID" class="com.tpm.action.GetPMSchedulesByEpID"
+			method="execute">
+			<result name="success">Json.jsp</result>
+		</action>
 		<action name="SaveEPFile" class="com.tpm.action.SaveEPFile"
 			method="execute">
 			<result name="success" type="redirect">epFileList</result>
+		</action>
+		<action name="MaintenanceRequest" class="com.tpm.action.MaintenanceRequest" method="execute">
+			<result name="success">/WEB-INF/jsp/MaintenanceRequest.jsp</result>
 		</action>
 	</package>
 </struts>

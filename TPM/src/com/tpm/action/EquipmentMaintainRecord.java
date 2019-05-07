@@ -11,7 +11,7 @@ public class EquipmentMaintainRecord extends ActionSupport {
 	public String execute() throws Exception {
 		ActionContext.getContext().put("equipmentMaintainRecord",
 		        maintenanceDailyWorkRecordList.getAllMaintenanceDailyWorkRecords());
-		ActionContext.getContext().put("active", "equipmentmaintainRecord");
+		ActionContext.getContext().put("active", "EquipmentMaintain");
 		return "success";
 
 	}

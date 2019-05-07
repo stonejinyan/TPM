@@ -9,10 +9,19 @@ public class MaintenanceDailyWorkRecord {
 	private String process_description;
 	private int type;
 	private int pm_id;
+	private int rm_id;
 	private Date time;
 	private int staff_id;
 	private double user_time;
 	private int ep_id;
+
+	public int getRm_id() {
+		return rm_id;
+	}
+
+	public void setRm_id(int rm_id) {
+		this.rm_id = rm_id;
+	}
 
 	public int getId() {
 		return id;
