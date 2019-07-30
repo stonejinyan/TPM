@@ -16,10 +16,12 @@
 
 <title>TPM</title>
 
+
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/home.css" rel="stylesheet">
 <link rel="stylesheet" href="css/bootstrap-table.css">
+<link href="css/bootstrap-editable.css" rel="stylesheet">
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
@@ -37,7 +39,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body onload="editable()">
 	<%@include file="head.jsp"%>
 	<div class="container-fluid mycontainer">
 		<div class="row">
@@ -53,6 +55,9 @@
 					</h3>
 
 					<div id="toolbar">
+						<button id="btn_edit" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+						</button>
 					</div>
 				</div>
 				<table id="table"></table>
@@ -70,11 +75,10 @@
 				|| document.write('<script src="js/jquery.min.js"><\/script>')
 	</script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/bootstrap3-typeahead.js"></script>
+	<script src="js/bootstrap-editable.js"></script>
 	<script src="js/bootstrap-table.js"></script>
-	<script src="js/bootstrap-table-zh-CN.js"></script>
-	<script type="text/javascript" src="js/Chartbundle.js"></script>
-	<script type="text/javascript" src="js/utils.js"></script>
+	<script src="js/bootstrap-table-locale-all.min.js"></script>
+	<script src="js/bootstrap-table-editable.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="js/ie10-viewport-bug-workaround.js"></script>
 	<script type="text/javascript">
@@ -116,7 +120,7 @@
 				editable : true,
 				align : 'left',
 				valign : 'middle',
-			},{
+			}, {
 				field : 'epid',
 				title : '编号',
 				editable : true,
@@ -155,13 +159,13 @@
 			}, {
 				field : 'ep_score',
 				title : '评估分',
-				editable : true,
+				editable : false,
 				align : 'center',
 				valign : 'middle',
 			}, {
 				field : 'criticalname',
 				title : '是否关键',
-				editable : true,
+				//editable : true,
 				align : 'center',
 				valign : 'middle',
 			}, {
@@ -186,21 +190,22 @@
 				title : '保养负责人',
 				align : 'center',
 				valign : 'middle',
-			} , {
+			}, {
 				field : 'areaname',
 				title : '存放区域',
 				align : 'center',
 				valign : 'middle',
-			} , {
+			}, {
 				field : 'type',
 				title : '设备/模具/工装',
 				align : 'center',
 				valign : 'middle',
-			} , {
+			}, {
 				field : 'workstation',
 				title : '工位',
 				align : 'center',
 				valign : 'middle',
+				editable : true,
 			}, {
 				field : 'fileList',
 				title : '文件',
@@ -210,7 +215,7 @@
 			onEditableSave : function(field, row, oldValue, $el) {
 				$.ajax({
 					type : "post",
-					url : "EditMO",
+					url : "EditEPAction",
 					data : {
 						"id" : row.id,
 						"fieldName" : field,
@@ -237,8 +242,19 @@
 			}
 		};
 
+
+		$(function() {
+			$('#btn_edit').click(function() {
+				editable();
+			});
+		});
+		function editable() {
+			$('#table .editable').editable('toggleDisabled');
+		}
 		$(function() {
 			$('#table').bootstrapTable(tableConfig);
+			var lang = navigator.language || navigator.userLanguage;
+			$('#table').bootstrapTable('refreshOptions', {locale : lang});
 		});
 	</script>
 </body>

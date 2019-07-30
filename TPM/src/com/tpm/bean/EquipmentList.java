@@ -15,6 +15,7 @@ public class EquipmentList {
 	private String attribute;
 	private String status;
 	private String areaname;
+	private int save_area_id;
 	private String criticalname;
 	private String maintainstaffname;
 	private String checkmethodname;
@@ -26,6 +27,14 @@ public class EquipmentList {
 	private String user;
 	private String fileList;
 	private String workstation;
+
+	public int getSave_area_id() {
+		return save_area_id;
+	}
+
+	public void setSave_area_id(int save_area_id) {
+		this.save_area_id = save_area_id;
+	}
 
 	public String getWorkstation() {
 		return workstation;

@@ -110,7 +110,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">环境影响度</label>
+							<label for="inputEmail3" class="col-sm-3 control-label">健康环境影响度</label>
 							<div class="col-sm-8">
 								<select name="equipment.environmental_impact" class="form-control">
 									<option>1</option>
@@ -121,7 +121,18 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">产量影响度</label>
+							<label for="inputEmail3" class="col-sm-3 control-label">质量影响度</label>
+							<div class="col-sm-8">
+								<select name="equipment.quality_impact" class="form-control">
+									<option>1</option>
+									<option>4</option>
+									<option>7</option>
+									<option>10</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-3 control-label">产能影响度</label>
 							<div class="col-sm-8">
 								<select name="equipment.output_impact" class="form-control">
 									<option>1</option>
@@ -132,7 +143,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">复杂度</label>
+							<label for="inputEmail3" class="col-sm-3 control-label">可替代性</label>
 							<div class="col-sm-8">
 								<select name="equipment.ep_complexity" class="form-control">
 									<option>1</option>
@@ -143,7 +154,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">制造渠道</label>
+							<label for="inputEmail3" class="col-sm-3 control-label">可用性</label>
 							<div class="col-sm-8">
 								<select name="equipment.ep_manufacturing_channel" class="form-control">
 									<option>1</option>
@@ -154,7 +165,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">总价</label>
+							<label for="inputEmail3" class="col-sm-3 control-label">可维护性</label>
 							<div class="col-sm-8">
 								<select name="equipment.ep_cost" class="form-control">
 									<option>1</option>

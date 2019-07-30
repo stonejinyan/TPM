@@ -27,6 +27,20 @@ public class ReplacementPartDao {
 		return null;
 	}
 
+	public List<ReplacementPart> getSparePartsRequestList() {
+		// TODO Auto-generated method stub
+		String sql = "select * from replacement_part where number <= order_number";
+		QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+		try {
+			List<ReplacementPart> list = queryRunner.query(sql,
+			        new BeanListHandler<ReplacementPart>(ReplacementPart.class));
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public void insert(ReplacementPart replacementPart, int staffid) {
 		String sql1 = "insert into replacement_part values(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		String sql2 = "select * from replacement_part where part_id = ?";

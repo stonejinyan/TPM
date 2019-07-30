@@ -25,8 +25,6 @@ public class StaffServiceTest {
 		System.out.println("1月MTTR：" + TPMService.getMTTR("2019-01-01", "2019-01-31"));
 		System.out.println("2月MTTR：" + TPMService.getMTTR("2019-02-01", "2019-02-28"));
 		System.out.println("3月MTTR：" + TPMService.getMTTR("2019-03-01", "2019-03-31 23:59:59"));
-		// System.out.println("1月MTBF：" + TPMService.getMTBF("2019-01-01",
-		// "2019-01-31"));
 	}
 
 }

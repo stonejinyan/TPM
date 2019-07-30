@@ -9,6 +9,7 @@ public class Equipment {
 	private int status;
 	private int critical;
 	private int environmental_impact;
+	private int quality_impact;
 	private int output_impact;
 	private int ep_complexity;
 	private int ep_manufacturing_channel;
@@ -29,6 +30,14 @@ public class Equipment {
 	private Staff maintain_staff = new Staff();
 	private ProcessLine_Area processLine_Area = new ProcessLine_Area();
 	private String workstation;
+
+	public int getQuality_impact() {
+		return quality_impact;
+	}
+
+	public void setQuality_impact(int quality_impact) {
+		this.quality_impact = quality_impact;
+	}
 
 	public String getWorkstation() {
 		return workstation;

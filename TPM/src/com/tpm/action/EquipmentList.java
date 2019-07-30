@@ -32,6 +32,10 @@ public class EquipmentList extends ActionSupport {
 			ActionContext.getContext().getSession().put("typename", "扭力工具台账");
 			ActionContext.getContext().getSession().put("type_id", 5);
 			break;
+		case 7:
+			ActionContext.getContext().getSession().put("typename", "厂务设备台账");
+			ActionContext.getContext().getSession().put("type_id", 7);
+			break;
 
 		default:
 			break;

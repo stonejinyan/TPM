@@ -98,8 +98,9 @@ public class MaintenanceDailyWorkRecord {
 	@Override
 	public String toString() {
 		return "MaintenanceDailyWorkRecord [id=" + id + ", question_description=" + question_description
-		        + ", process_description=" + process_description + ", type=" + type + ", pm_id=" + pm_id + ", time="
-		        + time + ", staff_id=" + staff_id + ", user_time=" + user_time + ", ep_id=" + ep_id + "]";
+		        + ", process_description=" + process_description + ", type=" + type + ", pm_id=" + pm_id + ", rm_id="
+		        + rm_id + ", time=" + time + ", staff_id=" + staff_id + ", user_time=" + user_time + ", ep_id=" + ep_id
+		        + "]";
 	}
 
 }

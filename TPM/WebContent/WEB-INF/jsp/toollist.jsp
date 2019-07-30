@@ -38,7 +38,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body onload="editable()">
 	<%@include file="head.jsp"%>
 	<div class="container-fluid mycontainer">
 		<div class="row">
@@ -74,50 +74,41 @@
 				|| document.write('<script src="js/jquery.min.js"><\/script>')
 	</script>
 	<script src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"
-		charset="UTF-8"></script>
-	<script type="text/javascript"
-		src="js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 	<script src="js/bootstrap-editable.js"></script>
 	<script src="js/bootstrap-table.js"></script>
-	<script src="js/bootstrap-table-zh-CN.js"></script>
+	<script src="js/bootstrap-table-locale-all.min.js"></script>
 	<script src="js/bootstrap-table-editable.js"></script>
-	<script src="js/combodate.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script type="text/javascript">
 		var tableConfig = {
 			url : '/TPM/GetEquipmentList?type=${type_id}', //请求后台的URL（*）
 			method : 'get', //请求方式（*）
-			contentType : "application/x-www-form-urlencoded",//必须要有！！！！
 			toolbar : '#toolbar', //工具按钮用哪个容器
 			striped : true, //是否显示行间隔色
 			cache : false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
 			pagination : true, //是否显示分页（*）
-			sortable : false, //是否启用排序
-			sortOrder : "desc", //排序方式
+			sortable : true, //是否启用排序
+			sortOrder : "asc", //排序方式
 			//editable : true,
 			//queryParams: oTableInit.queryParams,//传递参数（*）
-			sidePagination : "client", //分页方式：client客户端分页，server服务端分页（*）
-			pageNumber : 1, //初始化加载第一页，默认第一页
-			pageSize : 20, //每页的记录行数（*）
-			pageList : [ 20, 30, 50 ], //可供选择的每页的行数（*）
+			//sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+			//pageNumber:1,                       //初始化加载第一页，默认第一页
+			//pageSize: 10,                       //每页的记录行数（*）
+			//pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
 			search : true, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
 			//strictSearch: true,
 			//showColumns: true,                  //是否显示所有的列
 			showRefresh : true, //是否显示刷新按钮
 			//minimumCountColumns: 2,             //最少允许的列数
-			clickToSelect : false, //是否启用点击选中行
+			clickToSelect : true, //是否启用点击选中行
 			//height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
 			uniqueId : "ID", //每一行的唯一标识，一般为主键列
 			//showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
 			//cardView: false,                    //是否显示详细视图
-			//detailView: false,                   //是否显示父子表+
-			//showFullscreen : true,
-			buttonsAlign : 'left',
-			searchAlign : 'left',
-			toolbarAlign : 'right',
-			//searchText : '请输入订单名称或Batch号进行检索...',
+			//detailView: false,                   //是否显示父子表
 			columns : [ {
+				checkbox : true
+			},{
 				field : 'id',
 				title : '序号',
 				align : 'left',
@@ -190,10 +181,32 @@
 				align : 'center',
 				valign : 'middle',
 			} , {
-				field : 'areaname',
+				field : 'save_area_id',
 				title : '存放区域',
 				align : 'center',
 				valign : 'middle',
+				editable : {
+					type : 'select',
+					title : '产线',
+					source : function() {
+						var result = [];
+						$.ajax({
+							url : '/TPM/ProcessLineAreas',
+							async : false,
+							type : "get",
+							data : {},
+							success : function(data, status) {
+								$.each(data, function(key, value) {
+									result.push({
+										value : value.id,
+										text : value.name
+									});
+								});
+							}
+						});
+						return result;
+					}
+				},
 			} , {
 				field : 'type',
 				title : '设备/模具/工装',
@@ -239,6 +252,7 @@
 				});
 			}
 		};
+		
 		$(function() {
 			$('#btn_edit').click(function() {
 				editable();
@@ -249,6 +263,10 @@
 		}
 		$(function() {
 			$('#table').bootstrapTable(tableConfig);
+			var lang = navigator.language || navigator.userLanguage;
+			$('#table').bootstrapTable('refreshOptions', {
+				locale : lang
+			})
 		});
 	</script>
 </body>

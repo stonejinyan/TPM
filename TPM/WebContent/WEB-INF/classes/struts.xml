@@ -153,5 +153,9 @@
 		<action name="MaintenanceRequest" class="com.tpm.action.MaintenanceRequest" method="execute">
 			<result name="success">/WEB-INF/jsp/MaintenanceRequest.jsp</result>
 		</action>
+		<action name="GetSparePartsRequestList" class="com.tpm.action.GetSparePartsRequestList"
+			method="execute">
+			<result name="success">Json.jsp</result>
+		</action>
 	</package>
 </struts>

@@ -84,13 +84,14 @@ public class EquipmentMaintainDao {
 				String sql4 = "update pm_schedule set finish = '完成' , maintenance_id = '" + RS.getInt(1) + "'"
 				        + " where id = '" + pmSchedule_id + "'";
 				ps = conn.prepareStatement(sql4);
+				ps.executeUpdate();
 			}
 			if (maintenanceDailyWorkRecord.getType() == 2) {
 				String sql5 = "update maintenancerequest set status_id = 1, maintenance_id = '" + RS.getInt(1) + "'"
 				        + " where id = '" + pmSchedule_id + "'";
 				ps = conn.prepareStatement(sql5);
+				ps.executeUpdate();
 			}
-			ps.executeUpdate();
 			conn.commit();
 			return "success";
 		} catch (Exception e) {

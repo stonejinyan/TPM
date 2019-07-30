@@ -23,6 +23,7 @@
 <link href="css/custom.css" rel="stylesheet">
 <link href="css/login.css" rel="stylesheet">
 <link href="css/home.css" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap-table.css">
 <link href="css/insertequipment.css" rel="stylesheet">
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -190,10 +191,26 @@
 				</div>
 			</div>
 		</div>
-		<br>
-		<div class="row">
-			<div class="col-xs-12 insertEP"></div>
+		<hr>
+		<div class="row insertEP">
+			<div class="container1 col-xs-9 hr">
+				<h3>
+					<span class="label label-success">采购需求</span>
+				</h3>
+				<div style="width: 100%;">
+					<table id="requestTable"></table>
+				</div>
+			</div>
+			<div class="container2 col-xs-3">
+				<h3>
+					<span class="label label-success">每日盘点</span>
+				</h3>
+				<div style="width: 100%;">
+					
+				</div>
+			</div>
 		</div>
+		<br>
 	</div>
 	<%@include file="bottom.jsp"%>
 	<!-- Bootstrap core JavaScript
@@ -206,15 +223,110 @@
 	</script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/bootstrap3-typeahead.js"></script>
+	<script src="js/bootstrap-editable.js"></script>
 	<script src="js/bootstrap-table.js"></script>
-	<script src="js/bootstrap-table-zh-CN.js"></script>
-	<script src="js/bootstrap-table-en-US.js"></script>
+	<script src="js/bootstrap-table-locale-all.min.js"></script>
+	<script src="js/bootstrap-table-editable.js"></script>
 	<script type="text/javascript" src="js/Chartbundle.js"></script>
 	<script type="text/javascript" src="js/utils.js"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="js/ie10-viewport-bug-workaround.js"></script>
 
 	<script type="text/javascript">
+	var requestTableConfig = {
+			url : '/TPM/GetSparePartsRequestList', //请求后台的URL（*）
+			method : 'get', //请求方式（*）
+			//toolbar : '#toolbar', //工具按钮用哪个容器
+			striped : true, //是否显示行间隔色
+			cache : false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+			pagination : true, //是否显示分页（*）
+			sortable : true, //是否启用排序
+			sortOrder : "asc", //排序方式
+			//editable : true,
+			//queryParams: oTableInit.queryParams,//传递参数（*）
+			//sidePagination: "server",           //分页方式：client客户端分页，server服务端分页（*）
+			//pageNumber:1,                       //初始化加载第一页，默认第一页
+			//pageSize: 10,                       //每页的记录行数（*）
+			//pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+			search : false, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+			//strictSearch: true,
+			//showColumns: true,                  //是否显示所有的列
+			showRefresh : false, //是否显示刷新按钮
+			//minimumCountColumns: 2,             //最少允许的列数
+			clickToSelect : true, //是否启用点击选中行
+			//height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+			uniqueId : "ID", //每一行的唯一标识，一般为主键列
+			//showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
+			//cardView: false,                    //是否显示详细视图
+			//detailView: false,                   //是否显示父子表
+			columns : [{
+				field : 'part_id',
+				title : '编号',
+				align : 'center',
+				valign : 'middle',
+			},{
+				field : 'name',
+				title : '名称',
+				editable : false,
+				align : 'center',
+				valign : 'middle',
+			},{
+				field : 'specification',
+				title : '规格',
+				editable : false,
+				align : 'center',
+				valign : 'middle',
+			}, {
+				field : 'brand',
+				title : '品牌',
+				editable : false,
+				align : 'center',
+				valign : 'middle',
+			},{
+				field : 'domain',
+				title : '库位',
+				editable : false,
+				align : 'center',
+				valign : 'middle',
+			},{
+				field : 'userep',
+				title : '适用设备',
+				align : 'center',
+				valign : 'middle',
+			},{
+				field : 'number',
+				title : '库存量',
+				editable : false,
+				align : 'center',
+				valign : 'middle',
+			}, {
+				field : 'order_number',
+				title : '订购点',
+				editable : false,
+				align : 'center',
+				valign : 'middle',
+			},{
+				field : 'max',
+				title : '最大库存',
+				editable : false,
+				align : 'center',
+				valign : 'middle',
+			},{
+				field : 'price',
+				title : '单价',
+				align : 'center',
+				valign : 'middle',
+			}]
+		};
+		$(function() {
+			$('#requestTable').bootstrapTable(requestTableConfig);
+			var lang = navigator.language || navigator.userLanguage;
+			$('#requestTable').bootstrapTable('refreshOptions', {
+				locale : lang
+			})
+		});
+		
+	
 		var tableConfig = {
 			url : '/TPM/GetAllMaintenanceRequest', //请求后台的URL（*）
 			method : 'get', //请求方式（*）
@@ -251,25 +363,25 @@
 				field : 'area',
 				title : '区域',
 				editable : true,
-				align : 'left',
+				align : 'center',
 				valign : 'middle',
 			},{
 				field : 'epid',
 				title : '序号',
 				editable : true,
-				align : 'left',
+				align : 'center',
 				valign : 'middle',
 			}, {
 				field : 'epname',
 				title : '设备/工具/工装',
 				editable : true,
-				align : 'left',
+				align : 'center',
 				valign : 'middle',
 			}, {
 				field : 'question_description',
 				title : '问题描述',
 				editable : true,
-				align : 'left',
+				align : 'center',
 				valign : 'middle',
 			}, {
 				field : 'process_description',
@@ -321,6 +433,10 @@
 
 		$(function() {
 			$('#table').bootstrapTable(tableConfig);
+			var lang = navigator.language || navigator.userLanguage;
+			$('#table').bootstrapTable('refreshOptions', {
+				locale : lang
+			})
 		});
 
 		var MONTHS = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
@@ -346,7 +462,7 @@
 					fill : false,
 					backgroundColor : "#38c859",
 					borderColor : "#38c859",
-					data : [ 17.14, 17.93, 24.0 ],
+					data : [ 17.14, 17.93, 24.0, 22.0,20.26,21.45],
 				} ]
 			},
 			options : {
@@ -407,7 +523,7 @@
 							fill : false,
 							backgroundColor : "#38c859",
 							borderColor : "#38c859",
-							data : [ 133.24, 78.89 ,150.54 ],
+							data : [ 133.24, 78.89 ,481.28 ,332.73,140.33,261.58],
 						} ]
 			},
 			options : {
